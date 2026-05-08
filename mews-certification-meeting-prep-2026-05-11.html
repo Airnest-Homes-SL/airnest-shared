@@ -1156,28 +1156,14 @@
         </div>
       </div>
 
-      <div class="qa-card">
-        <div class="qa-header">
-          <span class="qa-badge">Q3</span>
-          <span class="qa-question">Why didn't you request <code>customers/update</code> or <code>reservations/update</code>?</span>
-        </div>
-        <div class="qa-say">
-          <span class="say-tag">SAY</span>
-          <span class="say-text">"Mews is the system of record for guest profiles and reservation changes. Our integration is read-heavy — we observe and report on what Mews holds, we don't modify existing records."</span>
-        </div>
-        <details class="qa-detail">
-          <summary>If they ask more →</summary>
-          <div class="detail-body">All modifications to reservations come through Mews itself — staff using the Mews PMS, OTAs via channel manager, or the booking engine. Our connector observes those changes via webhooks. We do not want to create a second write path that could conflict with Mews as the source of truth. The only write paths we need are <code>reservations/add</code> and <code>customers/add</code> for the future direct booking flow — both create new records, not modify existing ones.</div>
-        </details>
-        <div class="note-box">
-          <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — No update endpoints" placeholder="Notes from call..."></textarea>
-        </div>
+      <div class="gap-card" style="background:var(--primary-faint);border-color:var(--primary-border);border-left-color:var(--primary);">
+        <div class="gap-label" style="color:var(--primary);">Note — if they ask about write endpoints</div>
+        <div class="gap-text">Mews is the system of record. Our integration is read-heavy — we observe and report, we don't modify existing records. All reservation and guest changes come through Mews itself (staff PMS, OTAs, booking engine), which we observe via webhooks. The only write paths we need are <code>reservations/add</code> and <code>customers/add</code> for the future direct booking flow — both create new records, not modify existing ones.</div>
       </div>
 
       <div class="qa-card">
         <div class="qa-header">
-          <span class="qa-badge">Q4</span>
+          <span class="qa-badge">Q3/span>
           <span class="qa-question">What is your expected call frequency?</span>
         </div>
         <div class="qa-say">
@@ -1190,13 +1176,13 @@
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-4" data-note-label="Q4 — Call frequency" placeholder="Notes from call..."></textarea>
+          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — Call frequency" placeholder="Notes from call..."></textarea>
         </div>
       </div>
 
       <div class="qa-card">
         <div class="qa-header">
-          <span class="qa-badge">Q5</span>
+          <span class="qa-badge">Q4/span>
           <span class="qa-question">How do you handle guest data and PII?</span>
         </div>
         <div class="qa-say">
@@ -1209,13 +1195,13 @@
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-5" data-note-label="Q5 — PII handling" placeholder="Notes from call..."></textarea>
+          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — PII handling" placeholder="Notes from call..."></textarea>
         </div>
       </div>
 
       <div class="qa-card">
         <div class="qa-header">
-          <span class="qa-badge">Q6</span>
+          <span class="qa-badge">Q5/span>
           <span class="qa-question">Why both <code>ResourceUpdated</code> webhook AND <code>Resource</code> WebSocket?</span>
         </div>
         <div class="qa-say">
@@ -1228,13 +1214,13 @@
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-6" data-note-label="Q6 — Webhook + WebSocket" placeholder="Notes from call..."></textarea>
+          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — Webhook + WebSocket" placeholder="Notes from call..."></textarea>
         </div>
       </div>
 
       <div class="qa-card">
         <div class="qa-header">
-          <span class="qa-badge">Q7</span>
+          <span class="qa-badge">Q6/span>
           <span class="qa-question">Why subscribe to the Price update WebSocket if you're not pushing rates?</span>
         </div>
         <div class="qa-say">
@@ -1247,13 +1233,13 @@
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-7" data-note-label="Q7 — Price update WebSocket / Atomize" placeholder="Notes from call..."></textarea>
+          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — Price update WebSocket / Atomize" placeholder="Notes from call..."></textarea>
         </div>
       </div>
 
       <div class="qa-card">
         <div class="qa-header">
-          <span class="qa-badge">Q8</span>
+          <span class="qa-badge">Q7/span>
           <span class="qa-question">Are you certified to handle credit card data?</span>
         </div>
         <div class="qa-say">
@@ -1266,13 +1252,13 @@
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-8" data-note-label="Q8 — Credit card data" placeholder="Notes from call..."></textarea>
+          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — Credit card data" placeholder="Notes from call..."></textarea>
         </div>
       </div>
 
       <div class="qa-card">
         <div class="qa-header">
-          <span class="qa-badge">Q9</span>
+          <span class="qa-badge">Q8/span>
           <span class="qa-question">Have you tested all endpoints in the demo environment?</span>
         </div>
         <div class="qa-say">
@@ -1285,13 +1271,13 @@
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-9" data-note-label="Q9 — Demo testing" placeholder="Notes from call..."></textarea>
+          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — Demo testing" placeholder="Notes from call..."></textarea>
         </div>
       </div>
 
       <div class="qa-card">
         <div class="qa-header">
-          <span class="qa-badge">Q10</span>
+          <span class="qa-badge">Q9/span>
           <span class="qa-question">Are you respecting the 200 requests / 30 second rate limit?</span>
         </div>
         <div class="qa-say">
@@ -1304,13 +1290,13 @@
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-10" data-note-label="Q10 — Rate limit" placeholder="Notes from call..."></textarea>
+          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — Rate limit" placeholder="Notes from call..."></textarea>
         </div>
       </div>
 
       <div class="qa-card">
         <div class="qa-header">
-          <span class="qa-badge">Q11</span>
+          <span class="qa-badge">Q10/span>
           <span class="qa-question">How do you handle the 100-day reservation interval limit?</span>
         </div>
         <div class="qa-say">
@@ -1323,13 +1309,13 @@
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-11" data-note-label="Q11 — 100-day interval limit" placeholder="Notes from call..."></textarea>
+          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — 100-day interval limit" placeholder="Notes from call..."></textarea>
         </div>
       </div>
 
       <div class="qa-card">
         <div class="qa-header">
-          <span class="qa-badge">Q12</span>
+          <span class="qa-badge">Q11/span>
           <span class="qa-question">What language and runtime are you using?</span>
         </div>
         <div class="qa-say">
@@ -1342,7 +1328,7 @@
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
-          <textarea class="note-area" data-note-id="qa-12" data-note-label="Q12 — Language / runtime" placeholder="Notes from call..."></textarea>
+          <textarea class="note-area" data-note-id="qa-3" data-note-label="Q3 — Language / runtime" placeholder="Notes from call..."></textarea>
         </div>
       </div>
 
@@ -1440,7 +1426,7 @@
           <span class="ask-q">Test environment after certification — can demo keep running alongside production?</span>
         </div>
         <div class="ask-sub">We want to keep running integration tests in the demo environment (BGH property) after going live. Will demo access continue post-certification?</div>
-        <input type="text" class="ask-note" data-note-id="ask-9" data-note-label="Ask Q9 — Demo after cert" placeholder="Answer from Milan...">
+        <input type="text" class="ask-note" data-note-id="ask-9" data-note-label="Ask Q8 — Demo after cert" placeholder="Answer from Milan...">
       </div>
 
     </div><!-- /.ask-list -->
