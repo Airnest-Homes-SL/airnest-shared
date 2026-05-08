@@ -4,15 +4,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Airnest Shared Files</title>
+  <script src="gate.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 60px auto; padding: 0 20px; color: #222; }
-    h1 { font-size: 1.4rem; color: #1a1a2e; }
-    p { color: #555; font-size: 0.95rem; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #0c1420;
+      color: #edf5fc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .wordmark {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: #00AADD;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: #edf5fc;
+      margin-bottom: 6px;
+    }
+    .sub {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(237,245,252,0.55);
+      margin-bottom: 40px;
+    }
+    .file-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 560px;
+    }
+    .file-card {
+      background: #111c2c;
+      border: 1px solid #1e3048;
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .file-card:hover { border-color: #0077BB; background: #13243a; }
+    .file-icon {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      color: #0077BB;
+      flex-shrink: 0;
+    }
+    .file-meta { flex: 1; }
+    .file-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: #d8eaf4;
+      margin-bottom: 3px;
+    }
+    .file-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #3a5068;
+      letter-spacing: 0.05em;
+    }
+    .file-arrow {
+      font-size: 14px;
+      color: #1e3048;
+    }
+    .file-card:hover .file-arrow { color: #0077BB; }
+    footer {
+      margin-top: 48px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #1e3048;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <h1>Airnest Shared Files</h1>
-  <p>This page hosts temporary files shared by Airnest Homes SL.</p>
-  <p>If you received a direct link, use that URL to access your file.</p>
+  <div class="wordmark">Airnest Ops Connector · INT003752</div>
+  <h1>Shared Files</h1>
+  <p class="sub">Internal documents — Mews Certification</p>
+
+  <div class="file-grid">
+    <a href="mews-certification-notes-2026-05-11.html" class="file-card">
+      <div class="file-icon">📋</div>
+      <div class="file-meta">
+        <div class="file-title">Mews Certification Review — Briefing</div>
+        <div class="file-sub">REVIEW CALL · MONDAY 11 MAY 2026 · 12:00 GMT+1 · HOTEL MASANET PILOT</div>
+      </div>
+      <div class="file-arrow">→</div>
+    </a>
+    <a href="mews-certification-submission-2026-05-08.html" class="file-card">
+      <div class="file-icon">📄</div>
+      <div class="file-meta">
+        <div class="file-title">Mews Certification Submission — Status Report</div>
+        <div class="file-sub">SUBMITTED 2026-05-08 · PARTNER ID INT003752 · AWAITING REVIEW CALL</div>
+      </div>
+      <div class="file-arrow">→</div>
+    </a>
+    <a href="mews-integration-report-2026-05-07.html" class="file-card">
+      <div class="file-icon">🔬</div>
+      <div class="file-meta">
+        <div class="file-title">Mews API Integration Report — Demo Testing</div>
+        <div class="file-sub">TESTED 2026-05-07 · 13/13 ENDPOINTS CONFIRMED · BGH PROPERTY</div>
+      </div>
+      <div class="file-arrow">→</div>
+    </a>
+  </div>
+
+  <footer>Airnest Homes SL · Internal only · Not for distribution</footer>
 </body>
 </html>
