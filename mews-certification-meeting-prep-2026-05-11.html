@@ -1116,11 +1116,11 @@
         </div>
         <div class="qa-say">
           <span class="say-tag">SAY</span>
-          <span class="say-text">"We plan to start using the Mews booking engine shortly. <code>reservations/add</code> is reserved for our future proprietary direct booking channel, which is currently in development. We certified it now to avoid a scope amendment later."</span>
+          <span class="say-text">"Actually, we don't need it right now and are happy to drop it from this certification. We'll be using the Mews booking engine. Down the line we may build an Airnest-owned booking surface that would need it, but that's not on the immediate roadmap — we can request a scope amendment when that time comes."</span>
         </div>
         <details class="qa-detail">
           <summary>If they ask more →</summary>
-          <div class="detail-body">The direct booking channel is a future Airnest-built booking surface. Until it ships, <code>reservations/add</code> will not be exercised in production. We are not bypassing the Mews booking engine — we plan to use it. The endpoint was included to keep our scope future-proof. We can commit to only activating it once the channel is live if Mews requires that.</div>
+          <div class="detail-body">We included it initially to be future-proof, but on reflection it's cleaner to keep the certified scope tight to what we actually use today. If and when an Airnest-built booking surface ships, we'll request a scope amendment to add <code>reservations/add</code> (and <code>customers/add</code>) at that point.</div>
         </details>
         <div class="note-box">
           <div class="note-label">YOUR NOTES <span class="note-hint">· Auto-saved</span></div>
@@ -1376,15 +1376,6 @@
 
       <div class="ask-item">
         <div class="ask-item-header">
-          <input type="checkbox" data-check-id="ask-check-7">
-          <span class="ask-q">Rate limit on Portfolio token — per token or per property?</span>
-        </div>
-        <div class="ask-sub">If a Portfolio token covers all 4 properties, does the 200 req/30 sec limit apply to the token total or per-property separately?</div>
-        <input type="text" class="ask-note" data-note-id="ask-7" data-note-label="Ask Q7 — Portfolio rate limit" placeholder="Answer from Milan...">
-      </div>
-
-      <div class="ask-item">
-        <div class="ask-item-header">
           <input type="checkbox" data-check-id="ask-check-8">
           <span class="ask-q">Webhook retry policy — what happens if our endpoint is briefly down?</span>
         </div>
@@ -1487,12 +1478,6 @@
             <td>Provision Hetzner CX22 VPS — deploy FastAPI webhook receiver at <code>https://webhooks.airnest.es/mews</code> with Let's Encrypt TLS</td>
             <td>Luis</td>
             <td>Before prod</td>
-            <td class="status-open">⏳ Pending</td>
-          </tr>
-          <tr>
-            <td>Reply to Milan — confirm form submitted, provide webhook URL once live, raise the two flagged gaps</td>
-            <td>Luis</td>
-            <td>Same day</td>
             <td class="status-open">⏳ Pending</td>
           </tr>
           <tr>
