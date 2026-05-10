@@ -771,7 +771,7 @@
 <!-- ── HEADER ──────────────────────────────────── -->
 <header class="doc-header">
   <div class="header-actions">
-    <button class="btn-ghost" onclick="exportNotes()">Export notes</button>
+    <button class="btn-ghost" onclick="exportNotes()">Email Notes</button>
     <button class="btn-ghost" onclick="clearNotes()">Clear notes</button>
   </div>
   <div class="header-brand">Airnest Ops Connector</div>
@@ -789,7 +789,7 @@
 
 <div class="note-bar">
   <strong>Notes auto-save to this browser only</strong> — they never leave your device.
-  Use <strong>Export notes</strong> before clearing or switching devices.
+  Use <strong>Email Notes</strong> before clearing or switching devices.
 </div>
 
 <!-- ── MAIN ────────────────────────────────────── -->
@@ -1585,14 +1585,23 @@
 
   restore();
 
-  // ── EXPORT ──
+  // ── EMAIL NOTES ──
   window.exportNotes = function () {
-    var lines = [
-      'MEWS REVIEW CALL NOTES — 11 May 2026',
-      '======================================',
-      ''
-    ];
-    var found = false;
+    var sections = [];
+
+    // Checked items summary
+    var checkedLabels = [];
+    document.querySelectorAll('[data-check-id]').forEach(function (el) {
+      if (el.checked) {
+        var label = el.closest('li,div') && el.closest('li,div').querySelector('.check-label,.ask-q');
+        checkedLabels.push('✓ ' + (label ? label.textContent.trim().split('\n')[0] : el.dataset.checkId));
+      }
+    });
+    if (checkedLabels.length) {
+      sections.push('CHECKED ITEMS\n' + checkedLabels.join('\n'));
+    }
+
+    // All note fields
     document.querySelectorAll('[data-note-id]').forEach(function (el) {
       var label = el.dataset.noteLabel || el.dataset.noteId;
       var val;
@@ -1602,20 +1611,29 @@
         val = (el.innerText || '').trim();
       }
       if (val) {
-        found = true;
-        lines.push('[' + label + ']');
-        lines.push(val);
-        lines.push('');
+        sections.push('[' + label + ']\n' + val);
       }
     });
-    if (!found) { alert('No notes yet.'); return; }
-    var blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'mews-call-notes-2026-05-11.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+
+    if (!sections.length && !checkedLabels.length) { alert('No notes yet.'); return; }
+
+    var body = [
+      'MEWS REVIEW CALL NOTES — 11 May 2026',
+      '======================================',
+      '',
+      sections.join('\n\n'),
+      '',
+      '--------------------------------------',
+      'Exported from meeting prep document',
+      'https://commanderwi11.github.io/airnest-shared/mews-certification-meeting-prep-2026-05-11.html'
+    ].join('\n');
+
+    var subject = 'Mews Certification Review Call Notes — 11 May 2026';
+    var mailto = 'mailto:luis@airnest.es'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailto;
   };
 
   // ── CLEAR ──
