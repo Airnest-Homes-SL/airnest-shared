@@ -1629,11 +1629,12 @@
     ].join('\n');
 
     var subject = 'Mews Certification Review Call Notes — 11 May 2026';
-    var mailto = 'mailto:luis@airnest.es'
-      + '?subject=' + encodeURIComponent(subject)
+    var gmailUrl = 'https://mail.google.com/mail/?view=cm'
+      + '&to=' + encodeURIComponent('luis@airnest.es')
+      + '&su=' + encodeURIComponent(subject)
       + '&body=' + encodeURIComponent(body);
 
-    window.location.href = mailto;
+    window.open(gmailUrl, '_blank');
   };
 
   // ── CLEAR ──
