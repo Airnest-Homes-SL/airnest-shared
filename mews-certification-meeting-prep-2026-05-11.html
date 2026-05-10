@@ -1593,8 +1593,9 @@
     var checkedLabels = [];
     document.querySelectorAll('[data-check-id]').forEach(function (el) {
       if (el.checked) {
-        var labelEl = el.closest('li,div') && el.closest('li,div').querySelector('.check-label,.ask-q');
-        checkedLabels.push('  ✓ ' + (labelEl ? labelEl.textContent.trim().split('\n')[0] : el.dataset.checkId));
+        var parent = el.closest('li') || el.closest('.ask-item-header');
+        var textEl = parent && parent.querySelector('.check-label, .ask-q');
+        checkedLabels.push('  ✓ ' + (textEl ? textEl.textContent.trim().split('\n')[0] : el.dataset.checkId));
       }
     });
     if (checkedLabels.length) {
@@ -1603,6 +1604,11 @@
 
     // All note fields with context-aware headers
     document.querySelectorAll('[data-note-id]').forEach(function (el) {
+      var noteId = el.dataset.noteId;
+
+      // Bug fix A: action owner/date/status cells are grouped with their task cell — skip them here
+      if (noteId.indexOf('action-') === 0 && noteId.slice(-5) !== '-task') return;
+
       var val;
       if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
         val = el.value.trim();
@@ -1611,7 +1617,6 @@
       }
       if (!val) return;
 
-      var noteId = el.dataset.noteId;
       var header = '';
 
       if (noteId.indexOf('qa-') === 0) {
@@ -1645,7 +1650,7 @@
         header = 'Decision Tracker — ' + (tKey ? tKey.textContent.trim() : el.dataset.noteLabel || noteId);
 
       } else if (noteId.indexOf('section-') === 0) {
-        // Section general notes — lead with section title
+        // Section general notes — lead with section eyebrow + title
         var wrap = el.closest('.section-wrap');
         if (wrap) {
           var eyebrow = wrap.querySelector('.section-eyebrow');
@@ -1658,8 +1663,22 @@
         }
 
       } else if (noteId.indexOf('action-') === 0) {
-        // Post-call action table cell
-        header = 'Post-Call Actions — ' + (el.dataset.noteLabel || noteId);
+        // Bug fix A: group the whole row — task + owner + date + status
+        var rowPrefix = noteId.slice(0, -5); // strip '-task'
+        var actionNum = rowPrefix.replace('action-', '');
+        var ownerEl  = document.querySelector('[data-note-id="' + rowPrefix + '-owner"]');
+        var dateEl   = document.querySelector('[data-note-id="' + rowPrefix + '-date"]');
+        var statusEl = document.querySelector('[data-note-id="' + rowPrefix + '-status"]');
+        var owner  = ownerEl  ? (ownerEl.innerText  || '').trim() : '';
+        var date   = dateEl   ? (dateEl.innerText   || '').trim() : '';
+        var status = statusEl ? (statusEl.innerText || '').trim() : '';
+        var meta = [
+          owner  && 'Owner: '  + owner,
+          date   && 'Date: '   + date,
+          status && 'Status: ' + status
+        ].filter(Boolean).join(' | ');
+        header = 'Post-Call Action ' + actionNum;
+        val = val + (meta ? '\n' + meta : '');
 
       } else {
         header = el.dataset.noteLabel || noteId;
@@ -1682,7 +1701,8 @@
     ].join('\n');
 
     var subject = 'Mews Certification Review Call Notes — 11 May 2026';
-    var gmailUrl = 'https://mail.google.com/mail/?view=cm'
+    // Bug fix B: fs=1 opens full Gmail compose (not mini-drawer)
+    var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1'
       + '&to=' + encodeURIComponent('luis@airnest.es')
       + '&su=' + encodeURIComponent(subject)
       + '&body=' + encodeURIComponent(body);
