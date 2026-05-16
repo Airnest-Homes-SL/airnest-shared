@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice AI — The Four Options · Airnest</title>
+<script src="gate.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F4F1EA;
+  --text:     #141210;
+  --text-2:   #5C5852;
+  --text-3:   #9A9590;
+  --accent:   #B5331A;
+  --border:   #D5D0C8;
+  --border-s: #B0A89E;
+  --surface:  #FDFBF7;
+  --green:    #2E7D4F;
+  --amber:    #9A6008;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+header {
+  padding: 36px 48px 0;
+  animation: fadeUp 0.7s ease 0.05s both;
+}
+
+.mast-top-rule { height: 1.5px; background: var(--text); }
+
+.mast-brand-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0 4px;
+}
+
+.mast-wordmark {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+
+.doc-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-2);
+  padding-bottom: 14px;
+}
+
+.mast-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0 0;
+  border-top: 1.5px solid var(--text);
+}
+
+.mast-strip span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.mast-meta { color: var(--text-3); }
+.mast-status { color: var(--accent); }
+
+main {
+  flex: 1;
+  padding: 0 48px 72px;
+  max-width: 980px;
+  width: 100%;
+}
+
+.section-block {
+  border-top: 1px solid var(--border);
+  margin-top: 44px;
+  padding-top: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease both;
+}
+.section-block:nth-child(1) { animation-delay: 0.20s; }
+.section-block:nth-child(2) { animation-delay: 0.30s; }
+.section-block:nth-child(3) { animation-delay: 0.40s; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.section-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+
+p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 14px; max-width: 72ch; }
+p strong { font-weight: 600; }
+
+/* ── FOCUS NOTE ── */
+.focus-note {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 22px 26px;
+  margin-bottom: 16px;
+}
+.focus-note p { margin-bottom: 10px; }
+.focus-note p:last-child { margin-bottom: 0; }
+.focus-note .eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+/* ── OPTIONS ── */
+.options { display: flex; flex-direction: column; gap: 16px; margin-top: 6px; }
+
+.option {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 22px 26px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+}
+
+.option-letter {
+  font-family: 'Fraunces', serif;
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--border-s);
+}
+
+.option-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.option-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border-s);
+  color: var(--text-2);
+}
+.pill.warn { color: var(--amber); border-color: var(--amber); }
+.pill.go { color: var(--green); border-color: var(--green); }
+.pill.stop { color: var(--accent); border-color: var(--accent); }
+.pill.filled-go { background: var(--green); color: var(--surface); border-color: var(--green); }
+.pill.filled-accent { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+
+.option-body {
+  list-style: none;
+  margin-bottom: 10px;
+}
+.option-body li {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.55;
+  padding: 4px 0;
+  padding-left: 18px;
+  position: relative;
+}
+.option-body li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--border-s);
+}
+
+.option-risk {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.option-risk strong { color: var(--text); font-weight: 600; }
+
+/* ── VERDICT (preferences) ── */
+.verdicts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 6px;
+}
+.verdict-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px 22px;
+}
+.verdict-card.luis  { border-left: 3px solid var(--accent); }
+.verdict-card.ai    { border-left: 3px solid var(--green); }
+.verdict-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.verdict-card.luis .verdict-eyebrow { color: var(--accent); }
+.verdict-card.ai   .verdict-eyebrow { color: var(--green); }
+.verdict-headline {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.verdict-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+footer {
+  padding: 16px 48px;
+  border-top: 1.5px solid var(--text);
+  display: flex;
+  justify-content: space-between;
+  animation: fadeUp 0.5s ease 0.85s both;
+}
+footer span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+@media (max-width: 720px) {
+  header, main { padding-left: 24px; padding-right: 24px; }
+  footer { padding: 14px 24px; }
+  .option { grid-template-columns: 1fr; gap: 12px; }
+  .option-letter { font-size: 36px; }
+  .verdicts { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="mast-top-rule"></div>
+    <div class="mast-brand-row">
+      <div class="mast-wordmark">Voice AI · The Four Options</div>
+      <a href="./" class="back-link">← Shared-Airnest</a>
+    </div>
+    <div class="doc-title">A focused view — the four real paths and what we recommend</div>
+    <div class="mast-strip">
+      <span class="mast-meta">From Luis Navarro · 16 May 2026 · Internal · 2-min read</span>
+      <span class="mast-status">Companion to the CEO decision brief</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 01  FOCUS ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§01</span>
+        <span class="section-name">Before the options — a discipline note</span>
+      </div>
+      <h2 class="section-title">Don't open another front while so many are still mid-build.</h2>
+
+      <div class="focus-note">
+        <div class="eyebrow">Why this framing matters</div>
+        <p>We are already running several heavy onboarding workstreams in parallel: the Guesty → Mews migration, the Mews API Connector, the Ops Brain, the 7 remaining Mews Classic kick-offs, and the Airnest Operating System rollout. Each of those is itself a "new onboarding project" that demands attention, context-switching, and team bandwidth.</p>
+        <p>Adding a voice-AI build or a full vendor contract <em>on top of that</em> is not a free option — even at $33k/yr, the real cost is the focus we pull away from work that is already 60–80% done. The cheapest, fastest path to value is to finish what we started, and only then expand the surface.</p>
+      </div>
+    </section>
+
+    <!-- ── 02  THE FOUR OPTIONS ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§02</span>
+        <span class="section-name">The four real options</span>
+      </div>
+      <h2 class="section-title">A, B, C, D — what each path actually buys.</h2>
+
+      <div class="options">
+
+        <!-- A -->
+        <article class="option">
+          <div class="option-letter">A</div>
+          <div>
+            <div class="option-head">
+              <div class="option-title">Hire one more Colombia rep, defer the AI decision to Q4 2026</div>
+              <span class="pill go">Luis preferred</span>
+            </div>
+            <ul class="option-body">
+              <li>+$12k/yr team cost (3 → 4 people), $0 AI spend</li>
+              <li>Carries us through 180 units comfortably</li>
+              <li>We finish Mews_API_Connector and Ops Brain on schedule</li>
+              <li>Q4 2026 we scope voice AI on top of a mature Mews connector</li>
+              <li>Launch v1 in Q1–Q2 2027 with a proper foundation</li>
+            </ul>
+            <div class="option-risk"><strong>Risk:</strong> discipline. "Defer" can become "never." Needs a hard re-decision date on the calendar.</div>
+          </div>
+        </article>
+
+        <!-- B -->
+        <article class="option">
+          <div class="option-letter">B</div>
+          <div>
+            <div class="option-head">
+              <div class="option-title">Conduit 90-day pilot (push back on the 12-month term)</div>
+              <span class="pill warn">Fallback</span>
+            </div>
+            <ul class="option-body">
+              <li>Negotiate $3–4k/month × 3 months ≈ $10k total, clean exit</li>
+              <li>Treat it as a paid intelligence-gathering exercise: real call transcripts, real deflection rates, hospitality-tuned prompts, Canarias-Spanish voice quality benchmark</li>
+              <li>We don't touch code; we stay focused on the Mews connector</li>
+              <li>At day 75: renew, kill, or migrate</li>
+            </ul>
+            <div class="option-risk"><strong>Risk:</strong> Salesbricks may refuse a 3-month term. Worth asking before assuming.</div>
+          </div>
+        </article>
+
+        <!-- C -->
+        <article class="option">
+          <div class="option-letter">C</div>
+          <div>
+            <div class="option-head">
+              <div class="option-title">Conduit 12-month + parallel build (Javier's "lean," with an explicit endgame)</div>
+              <span class="pill go">AI co-recommend</span>
+            </div>
+            <ul class="option-body">
+              <li>Year 1: Conduit at $33k. We stay focused on the Mews connector through Q4 2026</li>
+              <li>Q1 2027: start building the ElevenLabs replacement on top of the finished Mews connector, informed by Conduit's data</li>
+              <li>At renewal: switch. Save $20–30k/yr from there forward</li>
+            </ul>
+            <div class="option-risk"><strong>Risk:</strong> the switch never actually happens (sunk cost / inertia). The endgame date has to be written down, not implied.</div>
+          </div>
+        </article>
+
+        <!-- D -->
+        <article class="option">
+          <div class="option-letter">D</div>
+          <div>
+            <div class="option-head">
+              <div class="option-title">Fully autonomous AI + a single on-call emergency contact</div>
+              <span class="pill stop">2028+ endgame</span>
+            </div>
+            <ul class="option-body">
+              <li>AI handles 100% of inbound and structured outbound</li>
+              <li>One on-call human (Luis, Brigitte, or a part-time responsable) is the legal 24/7 contact, paged only for emergencies</li>
+              <li>Colombia team drops from 3 → 1 part-time → ~$24–30k/yr saved</li>
+              <li>Legal: likely OK for Airnest Collection under Decreto 113/2015 (reachable, not staffed). Not OK as-is for Airnest Hotels — boutique hotel category likely requires staffed/24-7 reception. Needs a lawyer's read before we bet on it.</li>
+            </ul>
+            <div class="option-risk"><strong>Risk:</strong> a single bad AI interaction during a real incident (broken AC in August, locked-out guest at midnight) = refund + bad review + possible regulator complaint. Plus the HR/structural reality of winding down headcount inside a family business. <strong>This is an endgame, not a 2026 plan.</strong></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── 03  THE RECOMMENDATION ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§03</span>
+        <span class="section-name">Where we land</span>
+      </div>
+      <h2 class="section-title">Two reads of the same picture.</h2>
+
+      <div class="verdicts">
+
+        <div class="verdict-card luis">
+          <div class="verdict-eyebrow">Luis's preference</div>
+          <div class="verdict-headline">Option A — finish what's on the bench first.</div>
+          <div class="verdict-body">The discipline argument wins. We already have multiple onboarding projects in flight. Adding Conduit — even at $10k for 90 days — costs more in attention than it saves in headcount. A new rep is the lowest-risk way to absorb 2026 growth while we finish the Mews stack. Revisit voice AI in Q4 2026 from a position of strength.</div>
+        </div>
+
+        <div class="verdict-card ai">
+          <div class="verdict-eyebrow">AI analysis</div>
+          <div class="verdict-headline">A + C, with D as the 2028+ north star.</div>
+          <div class="verdict-body">Hire the rep (A) <strong>and</strong> run Conduit as a one-year intelligence layer (C) — the rep absorbs growth, Conduit gives us real hospitality call data we can't generate ourselves, and the parallel build kicks off in Q1 2027 on a mature Mews connector. At renewal we switch off Conduit and own the stack. D stays on the board, but only after the legal read on Airnest Hotels — 2028 at the earliest.</div>
+        </div>
+
+      </div>
+
+      <p style="margin-top:22px;">Both reads agree on the floor (hire the rep, don't sign a 12-month contract under the current framing) and on the ceiling (D is the right destination, not the right 2026 plan). The disagreement is about whether we pay for one year of outside data while we wait. That's the 30-minute conversation.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Airnest · Internal</span>
+    <span>v1.0 · 2026-05-16</span>
+  </footer>
+
+</body>
+</html>
