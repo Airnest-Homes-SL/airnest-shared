@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice AI — Decision Summary for CEO · Airnest</title>
+<script src="gate.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F4F1EA;
+  --text:     #141210;
+  --text-2:   #5C5852;
+  --text-3:   #9A9590;
+  --accent:   #B5331A;
+  --border:   #D5D0C8;
+  --border-s: #B0A89E;
+  --surface:  #FDFBF7;
+  --green:    #2E7D4F;
+  --amber:    #9A6008;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── HEADER ── */
+header {
+  padding: 36px 48px 0;
+  animation: fadeUp 0.7s ease 0.05s both;
+}
+
+.mast-top-rule { height: 1.5px; background: var(--text); }
+
+.mast-brand-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0 4px;
+}
+
+.mast-wordmark {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+
+.doc-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-2);
+  padding-bottom: 14px;
+}
+
+.mast-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0 0;
+  border-top: 1.5px solid var(--text);
+}
+
+.mast-strip span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.mast-meta { color: var(--text-3); }
+.mast-status { color: var(--accent); }
+
+/* ── MAIN ── */
+main {
+  flex: 1;
+  padding: 0 48px 72px;
+  max-width: 980px;
+  width: 100%;
+}
+
+/* ── BLOCK / SECTION ── */
+.section-block {
+  border-top: 1px solid var(--border);
+  margin-top: 44px;
+  padding-top: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease both;
+}
+.section-block:nth-child(1) { animation-delay: 0.20s; }
+.section-block:nth-child(2) { animation-delay: 0.30s; }
+.section-block:nth-child(3) { animation-delay: 0.40s; }
+.section-block:nth-child(4) { animation-delay: 0.50s; }
+.section-block:nth-child(5) { animation-delay: 0.60s; }
+.section-block:nth-child(6) { animation-delay: 0.70s; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.section-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+
+.section-lede {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin-bottom: 22px;
+  max-width: 72ch;
+}
+
+p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 14px; max-width: 72ch; }
+p strong { font-weight: 600; }
+
+/* ── VERDICT BOX (key recommendation) ── */
+.verdict {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.verdict-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.verdict-text {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+.verdict-text em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ── NUMBERED LIST ── */
+.numbered {
+  list-style: none;
+  counter-reset: nlist;
+  margin: 0;
+}
+.numbered li {
+  counter-increment: nlist;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.numbered li:last-child { border-bottom: none; }
+.numbered li::before {
+  content: counter(nlist, decimal-leading-zero);
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--border-s);
+  line-height: 1.2;
+}
+.numbered .li-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.numbered .li-body {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+/* ── COMPARE TABLE ── */
+.compare {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 13px;
+}
+.compare th, .compare td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.compare th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  font-weight: 500;
+  background: var(--surface);
+}
+.compare td.label {
+  font-weight: 600;
+  color: var(--text);
+  width: 32%;
+}
+.compare td.num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text);
+}
+.compare .strike {
+  text-decoration: line-through;
+  color: var(--text-3);
+  margin-right: 8px;
+}
+.compare .correct {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ── ASKS / ACTION CARDS ── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 6px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+}
+.card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.card-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+/* ── PILL / TAG ── */
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border-s);
+  color: var(--text-2);
+  margin-right: 6px;
+}
+.pill.warn { color: var(--amber); border-color: var(--amber); }
+.pill.go { color: var(--green); border-color: var(--green); }
+.pill.stop { color: var(--accent); border-color: var(--accent); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 16px 48px;
+  border-top: 1.5px solid var(--text);
+  display: flex;
+  justify-content: space-between;
+  animation: fadeUp 0.5s ease 0.85s both;
+}
+footer span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 720px) {
+  header, main { padding-left: 24px; padding-right: 24px; }
+  footer { padding: 14px 24px; }
+  .cards { grid-template-columns: 1fr; }
+  .compare th, .compare td { padding: 10px 8px; font-size: 12px; }
+  .compare td.label { width: 40%; }
+}
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="mast-top-rule"></div>
+    <div class="mast-brand-row">
+      <div class="mast-wordmark">Voice AI · Decision Brief</div>
+      <a href="./" class="back-link">← Shared-Airnest</a>
+    </div>
+    <div class="doc-title">Super-summary for the CEO — response to the May 2026 build/buy/stay memo</div>
+    <div class="mast-strip">
+      <span class="mast-meta">From Luis Navarro · 16 May 2026 · Internal · 5-min read</span>
+      <span class="mast-status">For Javier — review before our 30-min</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 01  THE CALL ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§01</span>
+        <span class="section-name">The Call</span>
+      </div>
+      <h2 class="section-title">Don't sign the 12-month Conduit contract.</h2>
+
+      <div class="verdict">
+        <div class="verdict-eyebrow">Recommendation</div>
+        <div class="verdict-text">
+          Push Conduit to a <em>90-day paid pilot</em> (~$10k, clean exit).
+          I stay on Mews_API_Connector. Build the ElevenLabs/AOS voice layer in
+          <em>2027</em>, not 2026. Keep "fully autonomous + emergency contact"
+          alive as a 2028 endgame for Collection only.
+        </div>
+      </div>
+
+      <p>The $33k/yr Conduit commitment is a 7% drag on our 2026 EBITDA target, and the memo's case for it is built on growth assumptions that don't match our actual OKRs. We can capture most of the upside (data, deflection rates, hospitality patterns) with a 90-day pilot at a third of the cost.</p>
+    </section>
+
+    <!-- ── 02  WHAT'S WRONG WITH THE MEMO ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§02</span>
+        <span class="section-name">What the Memo Gets Wrong</span>
+      </div>
+      <h2 class="section-title">Five things to fix before we decide.</h2>
+      <p class="section-lede">The memo's headline numbers are persuasive but the underlying assumptions don't survive contact with our actual 2026 OKRs, our team realities, and how the Conduit and ElevenLabs products actually price.</p>
+
+      <ol class="numbered">
+        <li>
+          <div>
+            <div class="li-title">It's optimised for 500 listings. We're targeting 180 in 2026.</div>
+            <div class="li-body">All the dramatic savings tables ($245k vs Conduit, $140k vs hiring) are at 500 listings — 2028–2029 territory. Our 2026 OKR is 180 units. Re-run at the real target and the gaps shrink dramatically.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">"Same 3 people forever" doesn't hold.</div>
+            <div class="li-body">Even with 70% AI deflection, absolute human-handled volume at 500 listings is 3.6× today. Real minimum is 4–5 Colombia headcount at scale, not 3. Adds $12–24k/yr to every "with AI" scenario.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Conduit's scale cost is overstated.</div>
+            <div class="li-body">Re-running the Salesbricks math at 500 listings: ~$96k/yr, not $110k. At 300: ~$61k, not $66k. Small, but it inflates the "savings vs Conduit" story.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">ElevenLabs is mis-framed as "raw voice."</div>
+            <div class="li-body">The pricing cited is ElevenLabs <em>Agents</em> — a managed conversational AI product (TTS + STT + LLM orchestration + telephony). Not "raw ingredients." Build effort is roughly half what the memo implies — closer to 80–150 hours on top of the Mews connector I'm already building.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Two big things missing: AOS strategy + legal regime.</div>
+            <div class="li-body">Voice AI built on AOS becomes Nestral-productizable IP — directly aligned with OKR #2. Buying Conduit doesn't. And the memo treats Collection (VV, only needs reachable contact) and Hotels (boutique-hotel category, likely needs staffed reception) identically. They are not.</div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ── 03  CORRECTED NUMBERS ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§03</span>
+        <span class="section-name">The Numbers, Corrected</span>
+      </div>
+      <h2 class="section-title">At our 2026 target, the gap is much smaller.</h2>
+
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Memo (500 listings)</th>
+            <th>Corrected (180 listings, 2026)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Hire as we grow</td>
+            <td class="num">$192–240 / listing</td>
+            <td class="num">~$240 / listing (4 ppl)</td>
+          </tr>
+          <tr>
+            <td class="label">Conduit (full)</td>
+            <td class="num"><span class="strike">$292</span> <span class="correct">~$255</span> / listing</td>
+            <td class="num">~$430 / listing</td>
+          </tr>
+          <tr>
+            <td class="label">Conduit 90-day pilot</td>
+            <td class="num">—</td>
+            <td class="num">~$73 one-time + team</td>
+          </tr>
+          <tr>
+            <td class="label">ElevenLabs DIY (Luis builds)</td>
+            <td class="num">$138 / listing <em>(excl. my time)</em></td>
+            <td class="num">~$255 / listing <em>(incl. my time)</em></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:20px;"><strong>Read the right-hand column.</strong> At 180 listings, every "buy AI now" option is meaningfully more expensive per listing than hiring one more rep. The build-it case only starts winning at 250+ listings, which is a 2027 conversation. <em>The pilot is the cheapest path to actually know.</em></p>
+    </section>
+
+    <!-- ── 04  THE 4 OPTIONS ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§04</span>
+        <span class="section-name">The Four Real Options</span>
+      </div>
+      <h2 class="section-title">Sequenced, not all-in.</h2>
+
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Cost · Year 1</th>
+            <th>What it gets us</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">A — Hire #4 now, defer AI to Q4</td>
+            <td class="num">+$12k</td>
+            <td>Buys runway; I finish Mews connector; voice AI scoped properly for 2027.</td>
+            <td><span class="pill go">Fallback</span></td>
+          </tr>
+          <tr>
+            <td class="label">B — Conduit 90-day pilot</td>
+            <td class="num">~$10k</td>
+            <td>Real call data, real deflection rates, Canarias-Spanish quality benchmark. Walk-away right.</td>
+            <td><span class="pill go">Preferred</span></td>
+          </tr>
+          <tr>
+            <td class="label">C — Conduit 12mo + parallel build</td>
+            <td class="num">$33k</td>
+            <td>Zero ops risk; build replacement on Conduit's data; switch at renewal.</td>
+            <td><span class="pill warn">Only if B refused</span></td>
+          </tr>
+          <tr>
+            <td class="label">D — Fully autonomous + 1 emergency contact</td>
+            <td class="num">−$20–30k/yr</td>
+            <td>Endgame. Probably legal for Collection (VV). Probably not for Hotels without legal review.</td>
+            <td><span class="pill stop">2028 north star</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ── 05  STRATEGIC ANGLES ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§05</span>
+        <span class="section-name">Why This Is About More Than Cost</span>
+      </div>
+      <h2 class="section-title">Three angles the memo doesn't surface.</h2>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-num">A · AOS</div>
+          <div class="card-title">Voice AI = AOS IP</div>
+          <div class="card-body">OKR #2 is productizing the Airnest Operating System. Voice AI built on Mews + AOS is exactly the kind of module Nestral Solutions can sell to other operators. Conduit gives us none of this asset.</div>
+        </div>
+        <div class="card">
+          <div class="card-num">B · Legal</div>
+          <div class="card-title">Collection ≠ Hotels</div>
+          <div class="card-body">Canarias Decreto 113/2015 only requires a <em>reachable</em> 24/7 contact for VV — one person is enough. Boutique-hotel category under regional turismo law likely requires <em>staffed</em> reception. Any "autonomous" plan must respect this split.</div>
+        </div>
+        <div class="card">
+          <div class="card-num">C · Bandwidth</div>
+          <div class="card-title">Mews connector first</div>
+          <div class="card-body">My CEO-agreed primary work is the Mews API Connector (customers.py next). It's the foundation any DIY voice AI calls into. Pulling me onto voice AI in 2026 puts the connector at risk and delays everything downstream.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 06  ASK ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§06</span>
+        <span class="section-name">What I'm Asking</span>
+      </div>
+      <h2 class="section-title">Three decisions for our 30-minute.</h2>
+
+      <ol class="numbered">
+        <li>
+          <div>
+            <div class="li-title">Authorise me to counter Conduit with a 90-day pilot.</div>
+            <div class="li-body">Target: $3–4k/month × 3 months, clean walk-away, with contractual deliverables — call recordings, transcripts, deflection-by-intent, Canarias-Spanish quality scores. If they refuse, we fall back to hiring one more Colombia rep.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Confirm my 2026 priority order.</div>
+            <div class="li-body">Mews_API_Connector → Ops Brain → (only then) voice AI scoping. I should not be building voice AI in 2026 in parallel to the connector — it kills delivery on the higher-leverage piece.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Agree that the long-term plan is build, not buy.</div>
+            <div class="li-body">2027: ElevenLabs/Agents-on-AOS voice layer as a Nestral-ready module. 2028: evaluate fully-autonomous (Collection only) with a lawyer's read on Hotels staffing rules. If we agree on this endgame, the 90-day pilot becomes a recon mission for our own build, not a contract Trojan horse.</div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Airnest Homes SL · Voice AI Decision Brief · 2026-05-16</span>
+    <span>Internal · Not for external distribution</span>
+  </footer>
+
+</body>
+</html>
