@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conduit Alternatives — Decision Summary for CEO · Airnest</title>
+<script src="gate.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F4F1EA;
+  --text:     #141210;
+  --text-2:   #5C5852;
+  --text-3:   #9A9590;
+  --accent:   #B5331A;
+  --border:   #D5D0C8;
+  --border-s: #B0A89E;
+  --surface:  #FDFBF7;
+  --green:    #2E7D4F;
+  --amber:    #9A6008;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+header {
+  padding: 36px 48px 0;
+  animation: fadeUp 0.7s ease 0.05s both;
+}
+.mast-top-rule { height: 1.5px; background: var(--text); }
+.mast-brand-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0 4px;
+}
+.mast-wordmark {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+.doc-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-2);
+  padding-bottom: 14px;
+}
+.mast-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0 0;
+  border-top: 1.5px solid var(--text);
+}
+.mast-strip span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.mast-meta { color: var(--text-3); }
+.mast-status { color: var(--accent); }
+
+main {
+  flex: 1;
+  padding: 0 48px 72px;
+  max-width: 980px;
+  width: 100%;
+}
+
+.section-block {
+  border-top: 1px solid var(--border);
+  margin-top: 44px;
+  padding-top: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease both;
+}
+.section-block:nth-child(1) { animation-delay: 0.20s; }
+.section-block:nth-child(2) { animation-delay: 0.30s; }
+.section-block:nth-child(3) { animation-delay: 0.40s; }
+.section-block:nth-child(4) { animation-delay: 0.50s; }
+.section-block:nth-child(5) { animation-delay: 0.60s; }
+.section-block:nth-child(6) { animation-delay: 0.70s; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.section-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+.section-lede {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin-bottom: 22px;
+  max-width: 72ch;
+}
+p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 14px; max-width: 72ch; }
+p strong { font-weight: 600; }
+
+.verdict {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.verdict-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.verdict-text {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+.verdict-text em { font-style: italic; color: var(--accent); }
+
+.numbered { list-style: none; counter-reset: nlist; margin: 0; }
+.numbered li {
+  counter-increment: nlist;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.numbered li:last-child { border-bottom: none; }
+.numbered li::before {
+  content: counter(nlist, decimal-leading-zero);
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--border-s);
+  line-height: 1.2;
+}
+.numbered .li-title { font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.numbered .li-body { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+
+.compare { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+.compare th, .compare td {
+  text-align: left; padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.compare th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-2); font-weight: 500; background: var(--surface);
+}
+.compare td.label { font-weight: 600; color: var(--text); width: 28%; }
+.compare td.num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); }
+.compare .strike { text-decoration: line-through; color: var(--text-3); margin-right: 8px; }
+.compare .correct { color: var(--accent); font-weight: 500; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 6px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+}
+.card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.18em;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px; font-weight: 700;
+  letter-spacing: -0.01em; line-height: 1.2;
+  margin-bottom: 8px; color: var(--text);
+}
+.card-body { font-size: 13px; line-height: 1.5; color: var(--text-2); }
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border-s);
+  color: var(--text-2);
+  margin-right: 6px;
+}
+.pill.warn { color: var(--amber); border-color: var(--amber); }
+.pill.go   { color: var(--green); border-color: var(--green); }
+.pill.stop { color: var(--accent); border-color: var(--accent); }
+
+footer {
+  padding: 16px 48px;
+  border-top: 1.5px solid var(--text);
+  display: flex;
+  justify-content: space-between;
+  animation: fadeUp 0.5s ease 0.85s both;
+}
+footer span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3);
+}
+
+@media (max-width: 720px) {
+  header, main { padding-left: 24px; padding-right: 24px; }
+  footer { padding: 14px 24px; }
+  .cards { grid-template-columns: 1fr; }
+  .compare th, .compare td { padding: 10px 8px; font-size: 12px; }
+  .compare td.label { width: 40%; }
+}
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="mast-top-rule"></div>
+    <div class="mast-brand-row">
+      <div class="mast-wordmark">Conduit Alternatives · Decision Brief</div>
+      <a href="./" class="back-link">← Shared-Airnest</a>
+    </div>
+    <div class="doc-title">Replacing Conduit for unified guest messaging on Mews — vendor scan and recommendation</div>
+    <div class="mast-strip">
+      <span class="mast-meta">From Luis Navarro · 20 May 2026 · Internal · 5-min read</span>
+      <span class="mast-status">For Javier — decision needed before Poem cutover (w/c 25 May)</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 01  THE CALL ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§01</span>
+        <span class="section-name">The Call</span>
+      </div>
+      <h2 class="section-title">Drop Conduit. Pilot HelloShift.</h2>
+
+      <div class="verdict">
+        <div class="verdict-eyebrow">Recommendation</div>
+        <div class="verdict-text">
+          Move OTA + WhatsApp + SMS messaging to <em>HelloShift</em> at the Mews cutover.
+          ≈€315/mo vs Conduit's ≈€900/mo — <em>≈€7,000/yr saved</em>.
+          Run a 60-day overlap on Poem + Bandama, then switch the rest of the portfolio.
+        </div>
+      </div>
+
+      <p>Conduit costs ≈€900/mo for 137 listings (~€10.8k/yr). Three Mews-native platforms deliver the same unified-inbox job — OTA messaging, WhatsApp, SMS, email — at materially lower cost. The best fit for our portfolio shape (many small units, lean team, no need for enterprise AI) is <strong>HelloShift</strong> at roughly one-third Conduit's price. Bookboost and Trengo are the runners-up if HelloShift's AI proves too light in pilot.</p>
+    </section>
+
+    <!-- ── 02  WHY MOVE NOW ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§02</span>
+        <span class="section-name">Why Move Now</span>
+      </div>
+      <h2 class="section-title">The Mews cutover is the moment.</h2>
+      <p class="section-lede">Conduit was the obvious choice on Guesty because of the native integration. On Mews, that lock-in is gone — we have to re-point Conduit anyway, so the switching cost to a cheaper vendor is the same switching cost. If we don't decide now, we'll pay Conduit prices by default for another year.</p>
+
+      <ol class="numbered">
+        <li>
+          <div>
+            <div class="li-title">Conduit's €900/mo is a 3% drag on 2026 EBITDA.</div>
+            <div class="li-body">On the 12% EBITDA target against €3.6M booking sales (≈€432k), €10.8k/yr in messaging fees is recoverable margin — not catastrophic, but it compounds against every other vendor line we don't push back on.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Poem cutover is the natural switch point.</div>
+            <div class="li-body">Guest-comms is already flagged as the blocker for w/c 25 May. Whatever we choose has to be wired up before Poem goes live. Defaulting to "re-point Conduit" locks in the price for another renewal cycle.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">The market caught up to Conduit on features.</div>
+            <div class="li-body">Mews integration, OTA aggregation, WhatsApp, AI suggested replies — all available at €2–4 per unit/mo from multiple vendors. Conduit's edge was packaging, not capability.</div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ── 03  THE NUMBERS ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§03</span>
+        <span class="section-name">The Numbers</span>
+      </div>
+      <h2 class="section-title">Three real alternatives, one outlier.</h2>
+
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Pricing model</th>
+            <th>137 listings · monthly</th>
+            <th>vs Conduit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Conduit (baseline)</td>
+            <td class="num">flat fee</td>
+            <td class="num">≈€900</td>
+            <td class="num">—</td>
+          </tr>
+          <tr>
+            <td class="label">HelloShift</td>
+            <td class="num">~$2.50 per room/mo (Starter + Guest+)</td>
+            <td class="num"><span class="correct">≈€315</span></td>
+            <td class="num"><span class="correct">−€585 / mo · −65%</span></td>
+          </tr>
+          <tr>
+            <td class="label">Trengo (Pro)</td>
+            <td class="num">team-based, ~20 users, 18k convos</td>
+            <td class="num">≈€499</td>
+            <td class="num">−€401 / mo · −45%</td>
+          </tr>
+          <tr>
+            <td class="label">Bookboost</td>
+            <td class="num">€3.6–4 per unit/mo + €180–199 min</td>
+            <td class="num">≈€493–548</td>
+            <td class="num">−€350–410 / mo · −40%</td>
+          </tr>
+          <tr>
+            <td class="label">Duve</td>
+            <td class="num">~€5 per room/mo</td>
+            <td class="num">≈€685</td>
+            <td class="num">−€215 / mo · −24%</td>
+          </tr>
+          <tr>
+            <td class="label">Chatlyn</td>
+            <td class="num">opaque · Mews connector free</td>
+            <td class="num">≈€49+/property</td>
+            <td class="num">unclear — needs quote</td>
+          </tr>
+          <tr>
+            <td class="label">Enso Connect</td>
+            <td class="num">$9–16 per listing/mo + ~$300 setup</td>
+            <td class="num">≈€1,125–1,987</td>
+            <td class="num">flat or worse</td>
+          </tr>
+          <tr>
+            <td class="label">Breezeway</td>
+            <td class="num">$19.99 per unit/mo (Host Essentials)</td>
+            <td class="num">≈€2,521</td>
+            <td class="num">+€1,621 / mo · worse</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:20px;"><strong>Read the bottom three rows as "out."</strong> Enso, Breezeway and per-unit-heavy vendors are priced for owners with high ADR or rich upsell programs. At our portfolio shape (many sub-€200 ADR units, lean ops), they don't pay back. Pricing comparisons drawn from public vendor sources, May 2026.</p>
+    </section>
+
+    <!-- ── 04  WHY HELLOSHIFT ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§04</span>
+        <span class="section-name">Why HelloShift Wins</span>
+      </div>
+      <h2 class="section-title">Cheapest per room that still does the full job.</h2>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-num">A · Coverage</div>
+          <div class="card-title">SMS + WhatsApp + FB Messenger + email</div>
+          <div class="card-body">Unified inbox across the channels we actually use. Mews data syncs automatically — staff see reservation + guest context next to each conversation. OTA messaging via the Mews-Booking.com/Airbnb pipes covers the rest.</div>
+        </div>
+        <div class="card">
+          <div class="card-num">B · Operations</div>
+          <div class="card-title">Built-in housekeeping & maintenance</div>
+          <div class="card-body">Includes staff collaboration, task assignment, and housekeeping/maintenance modules at the same price. Adjacent to AOS — same workflow surface our Colombia team already lives in. No extra tool sprawl.</div>
+        </div>
+        <div class="card">
+          <div class="card-num">C · Economics</div>
+          <div class="card-title">Linear per-room price</div>
+          <div class="card-body">$1.25/room Starter + $1.25/room Guest+ = ~€2.30/room. No minimum-property fee, no setup fee, free trial. The price scales cleanly from 137 → 180 units without renegotiation.</div>
+        </div>
+      </div>
+
+      <p style="margin-top:20px;"><strong>The trade-off:</strong> HelloShift's AI is "suggested replies + snippets," not a full conversational agent. If 2027's voice-AI build subsumes guest-messaging, HelloShift becomes a feeder — that's a feature, not a bug. We don't want to over-invest in vendor AI we'll cannibalise with our own AOS module.</p>
+    </section>
+
+    <!-- ── 05  RUNNERS-UP ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§05</span>
+        <span class="section-name">If HelloShift Stumbles</span>
+      </div>
+      <h2 class="section-title">Two backup picks, one upsell-focused option.</h2>
+
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Cost · monthly</th>
+            <th>When to pick it</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Bookboost</td>
+            <td class="num">≈€493–548</td>
+            <td>If marketing-automation and segmented campaigns become a 2026 priority (e.g. direct-booking growth push).</td>
+            <td><span class="pill go">Backup A</span></td>
+          </tr>
+          <tr>
+            <td class="label">Trengo Pro</td>
+            <td class="num">≈€499</td>
+            <td>If team-based (not per-unit) pricing matters as we scale to 180 units — flat-rate ceiling on conversation volume.</td>
+            <td><span class="pill go">Backup B</span></td>
+          </tr>
+          <tr>
+            <td class="label">Chatlyn</td>
+            <td class="num">opaque, likely ≈€49+/property</td>
+            <td>If pre-arrival WhatsApp upsells (claimed 10–15% revenue uplift) become a Hotels-side initiative. Mews connector is free.</td>
+            <td><span class="pill warn">Pilot worth requesting a quote</span></td>
+          </tr>
+          <tr>
+            <td class="label">Stay on Conduit</td>
+            <td class="num">≈€900</td>
+            <td>Only if Mews cutover bandwidth makes any vendor switch genuinely risky in the next 60 days.</td>
+            <td><span class="pill stop">Default-bad</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ── 06  ASK ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§06</span>
+        <span class="section-name">What I'm Asking</span>
+      </div>
+      <h2 class="section-title">Three decisions before Poem goes live.</h2>
+
+      <ol class="numbered">
+        <li>
+          <div>
+            <div class="li-title">Greenlight a 60-day HelloShift pilot on Poem + Bandama.</div>
+            <div class="li-body">Free trial → Starter+Guest+ at ~€5/mo for the two pilot properties. We measure: OTA-message coverage, response latency vs Conduit baseline, staff adoption, AI-reply quality in Canarias-Spanish. Clean exit at day 60.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Authorise me to give Conduit 30-day notice once Poem is live and stable.</div>
+            <div class="li-body">If pilot KPIs hold, I cancel Conduit at the next monthly cycle and migrate the rest of the portfolio in week 3 of the pilot. If KPIs miss, we pivot to Bookboost or Trengo within the same 60-day window. Either way, no second renewal.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Confirm: vendor AI stays "good enough" — we build the differentiated layer ourselves.</div>
+            <div class="li-body">Same logic as the voice-AI brief: don't pay enterprise prices for vendor AI we'll cannibalise with the 2027 AOS/ElevenLabs build. HelloShift's lighter AI is the right level for a 2026 commodity tool.</div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Airnest Homes SL · Conduit Alternatives Decision Brief · 2026-05-20</span>
+    <span>Internal · Not for external distribution</span>
+  </footer>
+
+</body>
+</html>
