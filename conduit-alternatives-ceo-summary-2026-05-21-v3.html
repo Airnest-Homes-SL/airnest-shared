@@ -342,7 +342,7 @@ footer span {
       <div class="mast-wordmark">Conduit Alternatives v3</div>
       <a href="./" class="back-link">← Shared-Airnest</a>
     </div>
-    <div class="doc-title">Replacing Conduit on Mews — one vendor for the whole portfolio, after collapsing the hotel/VR split</div>
+    <div class="doc-title">Picking the OTA omninbox for the post-Guesty stack — one vendor across all properties</div>
     <div class="mast-strip">
       <span class="mast-meta">From Luis Navarro · 21 May 2026 · Internal · 7-min read · Supersedes v2</span>
       <span class="mast-status">Decision needed before Poem cutover · w/c 25 May</span>
@@ -357,20 +357,20 @@ footer span {
         <span class="section-num">§01</span>
         <span class="section-name">The Call</span>
       </div>
-      <h2 class="section-title">All ~100 units, one OTA-inbox vendor. Pilot two, commit to one.</h2>
+      <h2 class="section-title">Pick Duve. Pilot on Poem at cutover, then roll across the portfolio.</h2>
 
       <div class="verdict">
         <div class="verdict-eyebrow">Recommendation</div>
         <div class="verdict-text">
-          Every Airnest property — four hotels plus five VR buildings plus scattered VRs —
-          needs the same unified OTA inbox. Run a <em>60-day dual pilot of Duve and Akia</em>
-          on Bandama Hotel + Poem, two of our highest-OTA-volume properties. Kill the loser
-          on day 60, roll the winner across the portfolio, give Conduit 30-day notice on
-          pilot day 45.
+          One vendor for all ~100 units across both lines: <em>Duve</em>. Pilot on Edificio Poem
+          starting w/c 25 May (first VR cutover anyway), give the team four weeks of real-world
+          use, sign the contract at day 30 if KPIs hold, then roll Duve onto each subsequent
+          property as it migrates to Mews. Akia stays in reserve as the fall-back if the Poem
+          pilot disappoints.
         </div>
       </div>
 
-      <p>Yesterday's v2 brief recommended a hotel/VR split based on Guesty channel data showing Hotel Masanet and Hotel Emeté on Expedia + Google only. That data was stale — those hotels were already migrated to Mews, so the real OTA mix (which includes Airbnb and Booking.com) lives in Mews now, not Guesty. With all four hotels distributing on the full OTA stack — and industry data confirming this is the right posture for boutique hotels in leisure markets — the cleanest move is one vendor for everyone.</p>
+      <p>Two pieces of context shape this brief. <strong>First:</strong> Conduit was never actually implemented — we negotiated, the price came in too high, we walked away. So this isn't a Conduit-replacement exercise. It's a from-scratch procurement to backfill the unified inbox we lose when Guesty's PMS goes away. <strong>Second:</strong> yesterday's v2 brief recommended a hotel/VR split based on stale Guesty channel data for Masanet and Emeté. Those hotels are already on Mews — their live Airbnb and Booking connections moved with them, and Guesty no longer shows the truth. With all four hotels distributing on the full OTA stack, the cleanest move is one vendor for everyone.</p>
     </section>
 
     <!-- ── 02  WHAT v2 GOT WRONG ── -->
@@ -398,7 +398,7 @@ footer span {
         <li>
           <div>
             <div class="li-title">The split-strategy saved €0 once both hotels actually need OTA inbox.</div>
-            <div class="li-body">v2's headline number ("€450–700/mo across 89 units") assumed ~9 hotel rooms paid €0/mo. With those rooms back in scope the math shifts to ~100 units — still cheaper than Conduit, but the savings shrink and the operational complexity of running two messaging stacks (one Mews-native for hotels, one third-party for VRs) disappears as a benefit.</div>
+            <div class="li-body">v2's headline number ("€450–700/mo across 89 units") assumed ~9 hotel rooms paid €0/mo. With those rooms back in scope the math shifts to ~100 units. The operational complexity of running two messaging stacks (one Mews-native for hotels, one third-party for VRs) disappears as a benefit — one vendor is also simpler for the team to onboard and maintain.</div>
           </div>
         </li>
       </ol>
@@ -554,7 +554,7 @@ footer span {
         <span class="section-num">§05</span>
         <span class="section-name">The Real Shortlist</span>
       </div>
-      <h2 class="section-title">Four vendors. Two worth piloting.</h2>
+      <h2 class="section-title">Four vendors pass the Airbnb test. Duve wins on Mews + Europe.</h2>
 
       <table class="compare">
         <thead>
@@ -570,13 +570,13 @@ footer span {
             <td class="label">Duve</td>
             <td class="num">Plans $120–200/mo + add-ons<span class="note">OTA messaging is a paid add-on across all tiers — real number requires quote</span></td>
             <td class="num">All three via direct API</td>
-            <td><span class="pill go">Pilot</span> Strong Mews depth; Airbnb partner; pricing opens up in negotiation</td>
+            <td><span class="pill go">Recommended</span> Strong Mews depth (cited in 3 of 4 research docs); active Airbnb partner; European hospitality footprint matches our market</td>
           </tr>
           <tr>
             <td class="label">Akia</td>
             <td class="num">"Talk to Sales"<span class="note">Basic tier publicly confirms Airbnb + Booking + Expedia messaging bundled</span></td>
             <td class="num">All three bundled in Basic</td>
-            <td><span class="pill go">Pilot</span> Only vendor that publicly confirms 3-OTA in entry tier; quote sensitivity matters</td>
+            <td><span class="pill warn">Fall-back</span> Bundled OTA inbox is attractive, but the vendor is North-America-anchored and pricing is opaque. Reserve as Plan B.</td>
           </tr>
           <tr>
             <td class="label">Trengo</td>
@@ -596,17 +596,11 @@ footer span {
             <td class="num"><span class="strike">Airbnb claimed</span> — broken post 30 Sep 2023</td>
             <td><span class="pill stop">Out</span> Cannot deliver three-OTA inbox today</td>
           </tr>
-          <tr>
-            <td class="label">Conduit (baseline)</td>
-            <td class="num">≈€900/mo flat</td>
-            <td class="num">All three (current state)</td>
-            <td><span class="pill stop">Replace</span> Priced for a larger portfolio than we run</td>
-          </tr>
         </tbody>
       </table>
 
       <div class="callout">
-        <strong>Pricing honesty:</strong> three of the four shortlisted vendors hide OTA-inbox pricing behind "talk to sales." Any list-price math we put in a deck before talking to them is fiction. That's the entire reason for the dual pilot — let the vendors price against our real 100-unit RFQ.
+        <strong>Why Duve over Akia, even with opaque pricing:</strong> Akia's bundled-OTA Basic tier is genuinely appealing on paper, but Akia's sales motion, support hours, and case-study customer base are North-America-focused. Duve has the European boutique-hotel and VR market it actually serves, sales reps in our time zone, and the deepest Mews integration of the shortlist. The Basic-tier bundle saving doesn't outweigh those operational fits. If Duve quotes prove uncompetitive, Akia is the fall-back.
       </div>
     </section>
 
@@ -616,30 +610,30 @@ footer span {
         <span class="section-num">§06</span>
         <span class="section-name">Numbers, Honest</span>
       </div>
-      <h2 class="section-title">A range, not a hero number.</h2>
+      <h2 class="section-title">A new line item, sized to ~100 units.</h2>
+
+      <p class="section-lede">Conduit was negotiated and rejected — we never paid for it. So this isn't a "vs Conduit" saving exercise. It's a new operating cost to backfill the unified inbox we lose when Guesty's PMS goes away, sized to our actual portfolio shape rather than Conduit's quoted €900/mo (which was already too high).</p>
 
       <div class="cards">
         <div class="card">
-          <div class="card-num">Today</div>
-          <div class="card-title">Conduit baseline</div>
-          <div class="card-body">Flat ≈€900/mo regardless of unit count. ≈€10,800/yr. Doesn't scale down as we migrate properties off Guesty — same fee, fewer wired-in OTAs each month.</div>
-          <div class="card-stat">€10,800 / yr</div>
+          <div class="card-num">Without it</div>
+          <div class="card-title">Four-vendor swivel-chair</div>
+          <div class="card-body">Post-Guesty, the team would handle Airbnb messages in Airbnb's app, Booking messages in Booking's extranet, Expedia in Expedia Partner Central, and direct emails in a separate client. Slower response times, fragmented guest history, harder onboarding for Colombia ops. The cost of <em>not</em> picking a vendor is operational, not financial.</div>
         </div>
         <div class="card">
-          <div class="card-num">Expected</div>
-          <div class="card-title">Vendor range, 100 units</div>
-          <div class="card-body">Based on Duve/Akia/Trengo public pricing scaled to 100 units (Trengo's team-pricing model is the lower bound; per-unit vendors with OTA add-ons land higher). Real number sits in a sales quote.</div>
-          <div class="card-stat">€500 – €800 / mo</div>
+          <div class="card-num">Duve, expected</div>
+          <div class="card-title">Cost envelope, 100 units</div>
+          <div class="card-body">Public Duve tiers ($120–200/mo) plus the OTA-inbox add-on at our scale lands roughly in this range. Real number sits in the sales quote — but this is the budget envelope to set against the 2026 ops line.</div>
+          <div class="card-stat">€500 – €800 / mo · €6k – €9.6k / yr</div>
         </div>
         <div class="card">
-          <div class="card-num">Annual saving</div>
-          <div class="card-title">Realistic range</div>
-          <div class="card-body">€100–400/mo savings vs Conduit. €1,200 – €4,800/yr. Less than v1 claimed (€7k) and less than v2 claimed (€2.4–5.4k), but the v3 number is the first one grounded in the actual portfolio shape.</div>
-          <div class="card-stat">€1,200 – €4,800 / yr</div>
+          <div class="card-num">Anchor</div>
+          <div class="card-title">Under the Conduit quote</div>
+          <div class="card-body">Conduit's €900/mo flat-fee quote (the one we walked away from) is a useful upper bound — Duve at our 100-unit shape should land below it. If a quote comes in above €900/mo, that's a signal something's off in the scoping, not a reason to revisit Conduit.</div>
         </div>
       </div>
 
-      <p style="margin-top:20px;"><strong>The real prize isn't cost.</strong> Conduit is a 2.5% drag on 2026 EBITDA — meaningful, not catastrophic. The bigger reasons to switch are: (a) Mews-native depth from a vendor that integrates properly, (b) AI capabilities none of the current Conduit configuration uses, (c) avoiding a 12-month renewal lock-in at the same flat fee. Treat the €100–400/mo as the floor benefit, not the ceiling.</p>
+      <p style="margin-top:20px;"><strong>The prize is operational, not financial.</strong> The team gets one inbox instead of four; guest history travels with the conversation; AI suggestions cut response latency. Treat the cost envelope as the price of running the post-Guesty operation properly — not as a saving against an alternative we never bought.</p>
     </section>
 
     <!-- ── 07  THE ASK ── -->
@@ -653,23 +647,27 @@ footer span {
       <ol class="numbered">
         <li>
           <div>
-            <div class="li-title">Approve all-properties scope.</div>
-            <div class="li-body">Whatever vendor wins the pilot serves every hotel and every VR. No more split-strategy, no Mews-native carve-out for the hotels. This is the v3 correction.</div>
+            <div class="li-title">Approve Duve as the OTA omninbox across all properties.</div>
+            <div class="li-body">One vendor, four hotels and every VR. No split-strategy, no Mews-native carve-out. If the Poem pilot uncovers a deal-breaker, Akia is the fall-back and we run a second 30-day pilot against it before committing. Both vendor pipelines stay warm during the Poem pilot so the fall-back move is fast.</div>
           </div>
         </li>
         <li>
           <div>
-            <div class="li-title">Authorise a 60-day dual pilot: Duve + Akia, on Bandama Hotel + Poem.</div>
-            <div class="li-body">Bandama because it's our highest-OTA-volume hotel and a real test of the inbox under hotel-style booking patterns. Poem because it's the next migration anyway and a fair VR-side benchmark. Total pilot spend &lt; €1,500. Measure: OTA-message coverage across all three channels actually arriving, Canarias-Spanish reply quality, staff adoption, response latency vs the Conduit baseline. Day 60: kill loser, commit winner.</div>
+            <div class="li-title">Authorise a 30-day Duve pilot on Edificio Poem starting w/c 25 May.</div>
+            <div class="li-body">Poem is the next migration anyway — the pilot rides on the cutover work, no extra coordination cost. Measure: OTA-message coverage across Airbnb + Booking + Expedia actually arriving, Canarias-Spanish reply quality, staff adoption from the Colombia ops team, response latency. Day 30: sign the Duve contract for the whole portfolio if KPIs hold, or pivot to Akia for a second pilot if they don't.</div>
           </div>
         </li>
         <li>
           <div>
-            <div class="li-title">Give Conduit 30-day notice at pilot day 45, not before.</div>
-            <div class="li-body">If both pilots fail (unlikely but possible) we stay on Conduit — don't burn the bridge prematurely. Day-45 timing means we exit Conduit roughly at day 75 of the pilot, with the winner already wired in for the rest of the portfolio.</div>
+            <div class="li-title">Roll Duve onto each property at its own cutover.</div>
+            <div class="li-body">Bandama → Emeté → Eleven → Vegueta → BlueBalcony → Casa Vivar. One property per week, same as the Mews migration sequence. Each cutover already involves channel reconnection — folding Duve onboarding into that touch point means zero additional onboarding events for the team.</div>
           </div>
         </li>
       </ol>
+
+      <div class="callout" style="margin-top:24px;">
+        <strong>If you want to de-risk further:</strong> a parallel 30-day pilot of Duve <em>and</em> Akia on Poem would let us see both in action against the same property and same staff, picking the winner on data rather than reputation. The trade-off is real: it would mean two vendor onboardings simultaneously, two sets of staff training, two integrations to monitor — meaningfully more for our Colombia ops team to absorb in the same week as a property cutover. My recommendation is the sequential approach above; the dual pilot is the right answer only if Javier or Anna want maximum pricing leverage and we have the bandwidth to spare.
+      </div>
     </section>
 
     <!-- ── 08  SOURCES & ASSUMPTIONS ── -->
