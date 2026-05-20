@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conduit Alternatives v3 — Decision Summary for CEO · Airnest</title>
+<title>Conduit Alternatives — Decision Summary for CEO · Airnest</title>
 <script src="gate.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -339,12 +339,12 @@ footer span {
   <header>
     <div class="mast-top-rule"></div>
     <div class="mast-brand-row">
-      <div class="mast-wordmark">Conduit Alternatives v3</div>
+      <div class="mast-wordmark">Conduit Alternatives</div>
       <a href="./" class="back-link">← Shared-Airnest</a>
     </div>
     <div class="doc-title">Picking the OTA omninbox for the post-Guesty stack — one vendor across all properties</div>
     <div class="mast-strip">
-      <span class="mast-meta">From Luis Navarro · 21 May 2026 · Internal · 7-min read · Supersedes v2</span>
+      <span class="mast-meta">From Luis Navarro · 21 May 2026 · Internal · 6-min read</span>
       <span class="mast-status">Decision needed before Poem cutover · w/c 25 May</span>
     </div>
   </header>
@@ -357,57 +357,27 @@ footer span {
         <span class="section-num">§01</span>
         <span class="section-name">The Call</span>
       </div>
-      <h2 class="section-title">Pick Duve. Pilot on Poem at cutover, then roll across the portfolio.</h2>
+      <h2 class="section-title">Request quotes from Duve and Akia. Decide on data, not reputation.</h2>
 
       <div class="verdict">
         <div class="verdict-eyebrow">Recommendation</div>
         <div class="verdict-text">
-          One vendor for all ~100 units across both lines: <em>Duve</em>. Pilot on Edificio Poem
-          starting w/c 25 May (first VR cutover anyway), give the team four weeks of real-world
-          use, sign the contract at day 30 if KPIs hold, then roll Duve onto each subsequent
-          property as it migrates to Mews. Akia stays in reserve as the fall-back if the Poem
-          pilot disappoints.
+          The Guesty → Mews migration removes our unified inbox. We need to replace it across
+          all <em>137 listings</em> — every hotel room and every vacation rental. Two vendors clear
+          the bar on functionality: <em>Duve</em> and <em>Akia</em>. Both require a sales conversation
+          to price properly against our footprint. Request quotes from both this week,
+          assess on cost + Mews-integration depth + AI quality, then pilot the winner on
+          Edificio Poem at its cutover.
         </div>
       </div>
 
-      <p>Two pieces of context shape this brief. <strong>First:</strong> Conduit was never actually implemented — we negotiated, the price came in too high, we walked away. So this isn't a Conduit-replacement exercise. It's a from-scratch procurement to backfill the unified inbox we lose when Guesty's PMS goes away. <strong>Second:</strong> yesterday's v2 brief recommended a hotel/VR split based on stale Guesty channel data for Masanet and Emeté. Those hotels are already on Mews — their live Airbnb and Booking connections moved with them, and Guesty no longer shows the truth. With all four hotels distributing on the full OTA stack, the cleanest move is one vendor for everyone.</p>
+      <p>Guesty's unified inbox — the one place our team handles guest messages from Airbnb, Booking.com, Expedia and direct email — disappears with the Mews migration. Mews has only limited native messaging. Conduit was the obvious replacement on paper, but the quote came in too high, so we walked. The market has two viable alternatives with a working three-OTA inbox today (Airbnb's 2023 API change ruled out most others). The right move is a real RFQ to both, then a four-week pilot of whichever quotes better.</p>
     </section>
 
-    <!-- ── 02  WHAT v2 GOT WRONG ── -->
+    <!-- ── 02  DO BOUTIQUE HOTELS USE AIRBNB ── -->
     <section class="section-block">
       <div class="section-label">
         <span class="section-num">§02</span>
-        <span class="section-name">What v2 Got Wrong</span>
-      </div>
-      <h2 class="section-title">Stale data, masquerading as ground truth.</h2>
-      <p class="section-lede">v2 leaned on a per-property channel-mix query against Guesty to justify keeping Masanet &amp; Emeté on Mews-native messaging. That query missed the obvious: once a property migrates to Mews, the live channel connections move with it. The Guesty rows I read were legacy artifacts, not the current state.</p>
-
-      <ol class="numbered">
-        <li>
-          <div>
-            <div class="li-title">The Guesty MT* listings showed only Expedia + Google because they're deprecated.</div>
-            <div class="li-body">Hotel Masanet and Hotel Emeté went live on Mews earlier this month. Mews is where the production Booking.com, Airbnb, and Expedia connections now run. The Guesty channel field for those listings only reflects what Guesty itself still has wired up — not the truth on the ground.</div>
-          </div>
-        </li>
-        <li>
-          <div>
-            <div class="li-title">Boutique hotels in leisure markets do use Airbnb. The "no" assumption was speculation.</div>
-            <div class="li-body">See §03 for the evidence. Short version: Airbnb is now actively recruiting boutique hotels, the channel is single-digit % of an Airbnb-side total but growing 2× the platform rate, and Gran Canaria specifically sits in Airbnb's strong leisure footprint. There was never a defensible reason to exclude our hotels.</div>
-          </div>
-        </li>
-        <li>
-          <div>
-            <div class="li-title">The split-strategy saved €0 once both hotels actually need OTA inbox.</div>
-            <div class="li-body">v2's headline number ("€450–700/mo across 89 units") assumed ~9 hotel rooms paid €0/mo. With those rooms back in scope the math shifts to ~100 units. The operational complexity of running two messaging stacks (one Mews-native for hotels, one third-party for VRs) disappears as a benefit — one vendor is also simpler for the team to onboard and maintain.</div>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ── 03  DO BOUTIQUE HOTELS USE AIRBNB ── -->
-    <section class="section-block">
-      <div class="section-label">
-        <span class="section-num">§03</span>
         <span class="section-name">Do Boutique Hotels Use Airbnb?</span>
       </div>
       <h2 class="section-title">Yes — and the trend points sharply upward.</h2>
@@ -450,196 +420,218 @@ footer span {
         </tbody>
       </table>
 
-      <p style="margin-top:18px;"><strong>Conclusion:</strong> none of our four hotels (Masanet, Veintiuno, Bandama, Emeté) should be off Airbnb in 2026. Whatever messaging stack we pick has to handle Airbnb inbound chat for the hotels just as it does for the VRs — the previously assumed split doesn't exist in the market.</p>
+      <p style="margin-top:18px;"><strong>Conclusion:</strong> none of our four hotels (Masanet, Veintiuno, Bandama, Emeté) should be off Airbnb in 2026 — and most boutique competitors in our market aren't. The vendor we pick has to handle Airbnb inbound chat for hotels just as it does for VRs.</p>
     </section>
 
-    <!-- ── 04  THE PORTFOLIO, UNIFIED ── -->
+    <!-- ── 03  THE PORTFOLIO ── -->
     <section class="section-block">
       <div class="section-label">
-        <span class="section-num">§04</span>
-        <span class="section-name">The Portfolio, Unified</span>
+        <span class="section-num">§03</span>
+        <span class="section-name">The Portfolio</span>
       </div>
-      <h2 class="section-title">~100 active units. All need the same inbox.</h2>
+      <h2 class="section-title">137 listings. All need the same inbox.</h2>
 
       <table class="compare">
         <thead>
           <tr>
-            <th>Property</th>
-            <th>Type</th>
-            <th>~Units</th>
-            <th>OTA stack expected on Mews</th>
+            <th>Bucket</th>
+            <th>Properties</th>
+            <th>Listings</th>
+            <th>OTA stack</th>
             <th>Needs OTA inbox?</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="label">Hotel Masanet</td>
-            <td>Boutique hotel (Mews-live)</td>
-            <td class="num">TBC</td>
+            <td class="label">Boutique hotels (rooms)</td>
+            <td>Masanet · Veintiuno · Bandama Golf · Emeté Las Canteras</td>
+            <td class="num">~50</td>
+            <td>Airbnb · Booking · Expedia · SiteMinder · Google</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">VR multi-unit buildings</td>
+            <td>Poem · Eleven · Vegueta Rooftop · BlueBalcony · Casa Vivar</td>
+            <td class="num">~65</td>
             <td>Airbnb · Booking · Expedia · Google</td>
             <td><span class="pill stop">Yes</span></td>
           </tr>
           <tr>
-            <td class="label">Hotel Veintiuno</td>
-            <td>Boutique hotel (Mews-live)</td>
-            <td class="num">TBC</td>
-            <td>Airbnb · Booking · Expedia · Google</td>
-            <td><span class="pill stop">Yes</span></td>
-          </tr>
-          <tr>
-            <td class="label">Hotel Bandama Golf</td>
-            <td>Boutique hotel</td>
-            <td class="num">~17</td>
-            <td>Airbnb · Booking · Expedia · SiteMinder · Google (confirmed in Guesty)</td>
-            <td><span class="pill stop">Yes</span></td>
-          </tr>
-          <tr>
-            <td class="label">Hotel Emeté Las Canteras</td>
-            <td>Boutique hotel (Mews-live)</td>
-            <td class="num">~9</td>
-            <td>Airbnb · Booking · Expedia · Google</td>
-            <td><span class="pill stop">Yes</span></td>
-          </tr>
-          <tr>
-            <td class="label">Edificio Poem</td>
-            <td>VR multi-unit</td>
-            <td class="num">~30</td>
-            <td>Airbnb · Booking · Expedia · Google</td>
-            <td><span class="pill stop">Yes</span></td>
-          </tr>
-          <tr>
-            <td class="label">Edificio Eleven</td>
-            <td>VR multi-unit</td>
-            <td class="num">~8</td>
-            <td>Airbnb · Booking · Expedia · Google</td>
-            <td><span class="pill stop">Yes</span></td>
-          </tr>
-          <tr>
-            <td class="label">Edificio Vegueta Rooftop</td>
-            <td>VR multi-unit</td>
-            <td class="num">~12</td>
-            <td>Airbnb · Booking · Google</td>
-            <td><span class="pill stop">Yes</span></td>
-          </tr>
-          <tr>
-            <td class="label">Edificio BlueBalcony</td>
-            <td>VR multi-unit</td>
-            <td class="num">~3</td>
-            <td>Airbnb · Booking · Google</td>
-            <td><span class="pill stop">Yes</span></td>
-          </tr>
-          <tr>
-            <td class="label">Edificio Casa Vivar</td>
-            <td>VR multi-unit</td>
-            <td class="num">TBC</td>
-            <td>Airbnb · Booking · Google (expected)</td>
-            <td><span class="pill stop">Yes</span></td>
-          </tr>
-          <tr>
-            <td class="label">Scattered single VRs<br><span style="font-weight:400; color:var(--text-2); font-size:12px;">(Nautilus, NE, Las_Nasas, DAna, Cid, Castano, Nieves, DJN, Balcon, Seaside Villa, etc.)</span></td>
-            <td>Single-unit VRs</td>
-            <td class="num">~19</td>
+            <td class="label">Scattered single VRs</td>
+            <td>Nautilus · NE · Las_Nasas · DAna · Cid · Castano · Nieves · DJN · Balcon · Seaside Villa · etc.</td>
+            <td class="num">~22</td>
             <td>Airbnb · Booking · Google (Expedia rare)</td>
             <td><span class="pill stop">Yes</span></td>
           </tr>
-        </tbody>
-      </table>
-
-      <p style="margin-top:18px;"><strong>Working total: ~100 active units</strong> (range 95–110 once Mews-side counts firm up for Masanet, Veintiuno and Casa Vivar). That's the number we should be RFQ'ing vendors against — not the 137 Guesty listings, which double-count via umbrella/inventory listings, and not the 89 of v2, which excluded the hotels.</p>
-    </section>
-
-    <!-- ── 05  THE REAL SHORTLIST ── -->
-    <section class="section-block">
-      <div class="section-label">
-        <span class="section-num">§05</span>
-        <span class="section-name">The Real Shortlist</span>
-      </div>
-      <h2 class="section-title">Four vendors pass the Airbnb test. Duve wins on Mews + Europe.</h2>
-
-      <table class="compare">
-        <thead>
           <tr>
-            <th>Vendor</th>
-            <th>Public pricing (verified May 2026)</th>
-            <th>OTA inbox: Airbnb · Booking · Expedia</th>
-            <th>Verdict</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="label">Duve</td>
-            <td class="num">Plans $120–200/mo + add-ons<span class="note">OTA messaging is a paid add-on across all tiers — real number requires quote</span></td>
-            <td class="num">All three via direct API</td>
-            <td><span class="pill go">Recommended</span> Strong Mews depth (cited in 3 of 4 research docs); active Airbnb partner; European hospitality footprint matches our market</td>
-          </tr>
-          <tr>
-            <td class="label">Akia</td>
-            <td class="num">"Talk to Sales"<span class="note">Basic tier publicly confirms Airbnb + Booking + Expedia messaging bundled</span></td>
-            <td class="num">All three bundled in Basic</td>
-            <td><span class="pill warn">Fall-back</span> Bundled OTA inbox is attractive, but the vendor is North-America-anchored and pricing is opaque. Reserve as Plan B.</td>
-          </tr>
-          <tr>
-            <td class="label">Trengo</td>
-            <td class="num">Pro €499/mo + €0.30/conv AI surcharge<span class="note">20 users, 18k convo/yr cap</span></td>
-            <td class="num">Airbnb + Booking via API; Expedia is email-forward only</td>
-            <td><span class="pill warn">Backup</span> Cheapest list price but degraded Expedia experience</td>
-          </tr>
-          <tr>
-            <td class="label">Enso Connect</td>
-            <td class="num">"Request quote"<span class="note">2025 docs cited $9–16 per listing/mo; per-listing pricing scales poorly past ~60 units</span></td>
-            <td class="num">All three via direct API (Airbnb partner)</td>
-            <td><span class="pill warn">Backup</span> Best on VR-side features; expensive at 100 units</td>
-          </tr>
-          <tr>
-            <td class="label">HelloShift, Bookboost, HiJiffy, Chatlyn</td>
-            <td class="num">various</td>
-            <td class="num"><span class="strike">Airbnb claimed</span> — broken post 30 Sep 2023</td>
-            <td><span class="pill stop">Out</span> Cannot deliver three-OTA inbox today</td>
+            <td class="label" style="background: var(--surface);"><strong>Total</strong></td>
+            <td style="background: var(--surface);"><strong>9 properties + scattered VRs</strong></td>
+            <td class="num" style="background: var(--surface);"><strong>137 listings</strong></td>
+            <td style="background: var(--surface);">Full OTA stack across the portfolio</td>
+            <td style="background: var(--surface);">—</td>
           </tr>
         </tbody>
       </table>
 
       <div class="callout">
-        <strong>Why Duve over Akia, even with opaque pricing:</strong> Akia's bundled-OTA Basic tier is genuinely appealing on paper, but Akia's sales motion, support hours, and case-study customer base are North-America-focused. Duve has the European boutique-hotel and VR market it actually serves, sales reps in our time zone, and the deepest Mews integration of the shortlist. The Basic-tier bundle saving doesn't outweigh those operational fits. If Duve quotes prove uncompetitive, Akia is the fall-back.
+        <strong>Pricing wrinkle vendors will ask about:</strong> our 137 listings split unevenly between hotel rooms and standalone vacation rentals. Some vendors price the same way regardless (Duve charges per room/unit), some bill differently for hotel inventory vs VR inventory (Akia has historically used a hybrid per-property + per-room model), and some are flat-team pricing (Trengo). The RFQ has to spell out the breakdown — hotel rooms ~50, VR units ~87 — or we'll get apples-to-oranges quotes.
       </div>
     </section>
 
-    <!-- ── 06  NUMBERS, HONEST ── -->
+    <!-- ── 04  THE TWO FINALISTS ── -->
     <section class="section-block">
       <div class="section-label">
-        <span class="section-num">§06</span>
-        <span class="section-name">Numbers, Honest</span>
+        <span class="section-num">§04</span>
+        <span class="section-name">The Two Finalists</span>
       </div>
-      <h2 class="section-title">A new line item, sized to ~100 units.</h2>
-
-      <p class="section-lede">Conduit was negotiated and rejected — we never paid for it. So this isn't a "vs Conduit" saving exercise. It's a new operating cost to backfill the unified inbox we lose when Guesty's PMS goes away, sized to our actual portfolio shape rather than Conduit's quoted €900/mo (which was already too high).</p>
+      <h2 class="section-title">Duve and Akia — what each one is actually good at.</h2>
+      <p class="section-lede">Both vendors integrate with Mews, both deliver the three-OTA unified inbox we need, and both have an active Airbnb API integration (which is the filter that disqualifies HelloShift, Bookboost, HiJiffy and Chatlyn post the Sept-2023 Airbnb relay shutdown). The differences are about pricing model, geography, AI depth, and where each one's product is strongest.</p>
 
       <div class="cards">
         <div class="card">
-          <div class="card-num">Without it</div>
-          <div class="card-title">Four-vendor swivel-chair</div>
-          <div class="card-body">Post-Guesty, the team would handle Airbnb messages in Airbnb's app, Booking messages in Booking's extranet, Expedia in Expedia Partner Central, and direct emails in a separate client. Slower response times, fragmented guest history, harder onboarding for Colombia ops. The cost of <em>not</em> picking a vendor is operational, not financial.</div>
+          <div class="card-num">Vendor A · Duve</div>
+          <div class="card-title">Per-room platform with deep Mews fit</div>
+          <div class="card-body">
+            <p style="font-size:13px; line-height:1.5; margin-bottom:8px;"><strong>Pricing model:</strong> tiered minimums ($120 Basic / $150 Pro / $200 Premium / Enterprise custom) plus per-room rate from $6/room/mo. Unified inbox lives in Pro tier and above. OTA-messaging is positioned as an add-on across all tiers, billed separately.</p>
+            <p style="font-size:13px; line-height:1.5; margin-bottom:8px;"><strong>Strengths:</strong> ranked #2 Guest Messaging Software in the 2025 HotelTechAwards. Connects to Mews and 150+ other hospitality systems. European hospitality footprint (founded Israel, strong EU customer base). One large group cut its guest-comms team from 200 → 24 staff using Duve's automation. Implementation in ~10 days.</p>
+            <p style="font-size:13px; line-height:1.5;"><strong>Weaknesses:</strong> 76% user satisfaction (good, not great). Specific reviewer complaints around subscription-management UX and support responsiveness. OTA messaging is an add-on, not bundled — quote will be the truth.</p>
+          </div>
+          <div class="card-stat">Indicative at 137 listings: €750–900/mo + add-on (RFQ)</div>
         </div>
         <div class="card">
-          <div class="card-num">Duve, expected</div>
-          <div class="card-title">Cost envelope, 100 units</div>
-          <div class="card-body">Public Duve tiers ($120–200/mo) plus the OTA-inbox add-on at our scale lands roughly in this range. Real number sits in the sales quote — but this is the budget envelope to set against the 2026 ops line.</div>
-          <div class="card-stat">€500 – €800 / mo · €6k – €9.6k / yr</div>
-        </div>
-        <div class="card">
-          <div class="card-num">Anchor</div>
-          <div class="card-title">Under the Conduit quote</div>
-          <div class="card-body">Conduit's €900/mo flat-fee quote (the one we walked away from) is a useful upper bound — Duve at our 100-unit shape should land below it. If a quote comes in above €900/mo, that's a signal something's off in the scoping, not a reason to revisit Conduit.</div>
+          <div class="card-num">Vendor B · Akia</div>
+          <div class="card-title">AI-first messaging, bundled OTAs in entry tier</div>
+          <div class="card-body">
+            <p style="font-size:13px; line-height:1.5; margin-bottom:8px;"><strong>Pricing model:</strong> "Talk to Sales." Bronze → Silver → Gold → Platinum tiers without public pricing. Capterra reports a $43/mo Basic flat (likely small-property scale). Industry sources cite ~$200/property/mo for advanced plans. Implementation $500–$3,000 plus training $500–$2,500 on top.</p>
+            <p style="font-size:13px; line-height:1.5; margin-bottom:8px;"><strong>Strengths:</strong> AI agents for early-check-in / upgrade / pricing-rule responses without staff in the loop — described as the most autonomous AI in this shortlist. Mews integration depth confirmed (15+ operations, bidirectional). OTA messaging (Airbnb + Booking + Expedia) bundled into the Basic tier per research docs. UI praised in reviews (4.3/5 customer-service rating).</p>
+            <p style="font-size:13px; line-height:1.5;"><strong>Weaknesses:</strong> North-America-anchored sales motion and customer base — fewer European boutique-hotel case studies. Capterra reviews flag integration friction with some PMS systems and occasional AI auto-response errors. Pricing opacity makes apples-to-apples comparison harder.</p>
+          </div>
+          <div class="card-stat">Indicative at 137 listings: €900–1,800/mo + implementation (RFQ)</div>
         </div>
       </div>
 
-      <p style="margin-top:20px;"><strong>The prize is operational, not financial.</strong> The team gets one inbox instead of four; guest history travels with the conversation; AI suggestions cut response latency. Treat the cost envelope as the price of running the post-Guesty operation properly — not as a saving against an alternative we never bought.</p>
+      <h3 style="font-family:'Fraunces',serif; font-size:20px; font-weight:700; margin:32px 0 14px;">The honest scorecard</h3>
+
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Duve</th>
+            <th>Akia</th>
+            <th>Edge</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Pricing transparency</td>
+            <td>Tiers + per-room rate public</td>
+            <td>"Talk to Sales" for everything above $43</td>
+            <td class="num">Duve</td>
+          </tr>
+          <tr>
+            <td class="label">OTA inbox bundling</td>
+            <td>Add-on across tiers</td>
+            <td>Bundled in Basic per research</td>
+            <td class="num">Akia</td>
+          </tr>
+          <tr>
+            <td class="label">AI depth</td>
+            <td>Suggested replies, automations</td>
+            <td>Autonomous agents (check-in, upgrades, pricing)</td>
+            <td class="num">Akia</td>
+          </tr>
+          <tr>
+            <td class="label">Mews integration</td>
+            <td>Direct + 150+ other integrations</td>
+            <td>15+ bidirectional operations</td>
+            <td class="num">≈ tie</td>
+          </tr>
+          <tr>
+            <td class="label">European fit / time zone</td>
+            <td>EU customer base, EU support</td>
+            <td>North-America-anchored</td>
+            <td class="num">Duve</td>
+          </tr>
+          <tr>
+            <td class="label">Boutique-hotel + VR mix</td>
+            <td>Strong on both — case studies on each</td>
+            <td>Hotel-leaning</td>
+            <td class="num">Duve</td>
+          </tr>
+          <tr>
+            <td class="label">Implementation effort</td>
+            <td>~10 days, no setup fee mentioned</td>
+            <td>$500–3,000 implementation + training</td>
+            <td class="num">Duve</td>
+          </tr>
+          <tr>
+            <td class="label">User satisfaction (public reviews)</td>
+            <td>76% / HotelTechAwards #2 messaging</td>
+            <td>4.2/5 Capterra (small n=5)</td>
+            <td class="num">Duve (better signal)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:18px;"><strong>Net read:</strong> Duve looks better on most operational dimensions — transparency, EU fit, implementation simplicity, breadth of customer references. Akia's edges are the bundled OTAs and the genuinely impressive autonomous-AI demo. Until both vendors quote the actual 137-listing footprint with the hotel-rooms / VR-units split spelled out, the cost picture isn't decided. A quote-driven decision is the right move; reputation alone isn't enough.</p>
     </section>
 
-    <!-- ── 07  THE ASK ── -->
+    <!-- ── 05  NUMBERS ── -->
     <section class="section-block">
       <div class="section-label">
-        <span class="section-num">§07</span>
+        <span class="section-num">§05</span>
+        <span class="section-name">Numbers</span>
+      </div>
+      <h2 class="section-title">Two pricing shapes, one cost envelope.</h2>
+
+      <p class="section-lede">Conduit was negotiated and rejected — we never paid for it. So this isn't a "vs Conduit" saving exercise. It's a new operating cost to backfill the inbox we lose when Guesty's PMS goes away. The cost depends heavily on which pricing model each vendor lands on, which is why the RFQ matters more than any list-price math.</p>
+
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Vendor</th>
+            <th>Pricing model</th>
+            <th>137-listing estimate · €/mo</th>
+            <th>One-time fees</th>
+            <th>Annual envelope</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Duve</td>
+            <td>$6/room base + tier minimum ($120–200) + OTA add-on</td>
+            <td class="num">€750–900</td>
+            <td class="num">None disclosed</td>
+            <td class="num">€9k–11k</td>
+          </tr>
+          <tr>
+            <td class="label">Akia</td>
+            <td>Per-property tiers (~$100–200/property for 9 properties + 22 scattered VRs handled separately)</td>
+            <td class="num">€900–1,800</td>
+            <td class="num">€450–2,750 implementation + training</td>
+            <td class="num">€11k–22k</td>
+          </tr>
+          <tr>
+            <td class="label" style="background: var(--surface);"><strong>Conduit anchor</strong></td>
+            <td style="background: var(--surface);">Flat fee at 137-listing scope (negotiated, walked away)</td>
+            <td class="num" style="background: var(--surface);">~€900</td>
+            <td class="num" style="background: var(--surface);">N/A</td>
+            <td class="num" style="background: var(--surface);">~€11k</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Numbers are envelopes, not quotes.</strong> Duve's per-room model maps reasonably cleanly to 137 listings (treating each hotel room and VR as a "room"). Akia's per-property model is more sensitive to how they count our portfolio — 9 named properties plus 22 scattered VRs gets billed very differently depending on whether scattered VRs are bundled with the nearest property or counted as standalone. The RFQ has to spell this out or both quotes will be misleading.
+      </div>
+
+      <p><strong>The prize is operational, not financial.</strong> Either vendor will probably price within 30% of what Conduit quoted — the real difference is which one our team will actually want to use day-to-day, and which one has the AI depth to keep response latency low as we grow to 180 units in 2026. Treat the cost envelope as the floor; the quality of the integration is the ceiling.</p>
+    </section>
+
+    <!-- ── 06  THE ASK ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§06</span>
         <span class="section-name">The Ask</span>
       </div>
       <h2 class="section-title">Three decisions before Poem goes live.</h2>
@@ -647,63 +639,33 @@ footer span {
       <ol class="numbered">
         <li>
           <div>
-            <div class="li-title">Approve Duve as the OTA omninbox across all properties.</div>
-            <div class="li-body">One vendor, four hotels and every VR. No split-strategy, no Mews-native carve-out. If the Poem pilot uncovers a deal-breaker, Akia is the fall-back and we run a second 30-day pilot against it before committing. Both vendor pipelines stay warm during the Poem pilot so the fall-back move is fast.</div>
+            <div class="li-title">Approve an OTA omninbox as a 2026 ops line item.</div>
+            <div class="li-body">The Guesty → Mews migration removes our unified inbox. Without a replacement, the team handles Airbnb, Booking.com, Expedia and direct messages in four separate places — slower responses, fragmented guest history, harder Colombia-ops onboarding. The expected envelope is €750–1,800/mo across 137 listings, depending on which vendor and which pricing model wins.</div>
           </div>
         </li>
         <li>
           <div>
-            <div class="li-title">Authorise a 30-day Duve pilot on Edificio Poem starting w/c 25 May.</div>
-            <div class="li-body">Poem is the next migration anyway — the pilot rides on the cutover work, no extra coordination cost. Measure: OTA-message coverage across Airbnb + Booking + Expedia actually arriving, Canarias-Spanish reply quality, staff adoption from the Colombia ops team, response latency. Day 30: sign the Duve contract for the whole portfolio if KPIs hold, or pivot to Akia for a second pilot if they don't.</div>
+            <div class="li-title">Authorise me to request quotes from Duve and Akia this week.</div>
+            <div class="li-body">RFQ spells out our footprint with the hotel-rooms / VR-units breakdown (~50 hotel rooms, ~87 VR units, 9 named properties + 22 scattered single VRs). Asks each vendor for: total monthly fee, OTA-add-on cost if separate, implementation + training one-time, contract length and exit terms, list of comparable European customers. Quotes back within 7–10 days. Decision matrix: 60% cost, 25% AI/integration quality, 15% reference quality. We pilot the winner.</div>
           </div>
         </li>
         <li>
           <div>
-            <div class="li-title">Roll Duve onto each property at its own cutover.</div>
-            <div class="li-body">Bandama → Emeté → Eleven → Vegueta → BlueBalcony → Casa Vivar. One property per week, same as the Mews migration sequence. Each cutover already involves channel reconnection — folding Duve onboarding into that touch point means zero additional onboarding events for the team.</div>
+            <div class="li-title">Pilot the winning vendor on Edificio Poem at its cutover.</div>
+            <div class="li-body">Poem is the next migration anyway — the pilot rides on the cutover work, no extra coordination cost. Four weeks of real-world use. Measure: OTA-message coverage across all three channels, Canarias-Spanish reply quality, staff adoption, response latency. Day 30: sign the portfolio contract if KPIs hold, or fall back to the runner-up for a second pilot if not. Roll the chosen vendor onto each subsequent property at its own Mews cutover, one per week.</div>
           </div>
         </li>
       </ol>
 
       <div class="callout" style="margin-top:24px;">
-        <strong>If you want to de-risk further:</strong> a parallel 30-day pilot of Duve <em>and</em> Akia on Poem would let us see both in action against the same property and same staff, picking the winner on data rather than reputation. The trade-off is real: it would mean two vendor onboardings simultaneously, two sets of staff training, two integrations to monitor — meaningfully more for our Colombia ops team to absorb in the same week as a property cutover. My recommendation is the sequential approach above; the dual pilot is the right answer only if Javier or Anna want maximum pricing leverage and we have the bandwidth to spare.
+        <strong>Alternative — parallel pilot of both vendors:</strong> we could run Duve and Akia simultaneously on Poem for 30 days and pick on real data instead of just quote-quality. The upside is genuine: side-by-side, same property, same staff, same guests — the strongest possible decision basis, and it sharpens the pricing leverage against both vendors. The downside is real too: two vendor onboardings the same week as a property cutover, two sets of staff training, two integrations to monitor. For the Colombia ops team in the middle of the broader migration sequence, that's a meaningful load. Worth doing only if the quote-stage analysis is genuinely too close to call, or if Javier wants the maximum negotiation leverage.
       </div>
-    </section>
-
-    <!-- ── 08  SOURCES & ASSUMPTIONS ── -->
-    <section class="section-block">
-      <div class="section-label">
-        <span class="section-num">§08</span>
-        <span class="section-name">Sources &amp; Open Assumptions</span>
-      </div>
-      <h2 class="section-title">Where the numbers come from. Where they don't.</h2>
-
-      <div class="sources">
-        <strong>Verified, 21 May 2026:</strong>
-        <ol>
-          <li>Airbnb 2025 hotel strategy — <a href="https://www.rentalscaleup.com/airbnb-q4-2025-results/">RentalScaleUp on Airbnb Q4 2025 earnings</a> (Chesky on "going significantly more aggressively into hotels"; hotels growing 2× platform rate; Oct-2025 pilots in NYC/LA/Madrid).</li>
-          <li>Operator feedback (Sage Hospitality, Arlo Hotels) on Airbnb-for-hotels integration quality — <a href="https://skift.com/2025/12/22/can-airbnb-work-for-hotels-what-early-tests-show/">Skift, Dec 2025</a> (paywall, summary via search aggregator).</li>
-          <li>Las Palmas / Canary Islands Airbnb performance data — <a href="https://airbtics.com/annual-airbnb-revenue-in-las-palmas-de-gran-canaria-las-palmas-spain/">Airbtics 2025 market report</a> (76% average occupancy, June 2024–May 2025).</li>
-          <li>Canary Islands boutique-hotel presence on Airbnb confirmed via live listings (La Casa de La Camelia, Hotel Fonda Central, etc.) and Booking.com region page.</li>
-          <li>Vendor pricing: <a href="https://www.duve.com/pricing">duve.com/pricing</a>; <a href="https://trengo.com/pricing">trengo.com/pricing</a>; Akia and Enso Connect pricing now gated behind "Talk to Sales."</li>
-          <li>Portfolio inventory (148 Guesty listings, hotel + VR breakdown) pulled live from Guesty MCP on 20 May 2026 — account <code>Airnest</code> (id <code>5ee666b8…</code>).</li>
-          <li>Vendor Airbnb-partner status and the Sept 2023 email-relay deprecation: rigorous synthesis in research Doc 2, <code>Projects/Guesty-Mews_Migration/Resources/Omninbox Research/</code>.</li>
-        </ol>
-        <strong>Open assumptions worth closing before signing:</strong>
-        <ol>
-          <li><strong>Mews-side channel data for Masanet, Veintiuno, and Emeté</strong> is not currently queryable via the MCP we have on Guesty — relying on Luis's domain knowledge that those hotels distribute on Airbnb + Booking + Expedia. Post-migration, confirm channel-by-channel from Mews directly. If a hotel turns out to NOT be on Airbnb, the recommendation doesn't change (we still want the same vendor for the rest), but the OTA-volume expectations for the pilot should be adjusted.</li>
-          <li><strong>Unit count ~100</strong> is a working estimate. Real Mews "space" counts after Poem migrates is the number to put in the vendor RFQ. Range is 95–110 depending on how scattered VRs and Casa Vivar resolve.</li>
-          <li><strong>Mews-MCP integration is infra debt.</strong> The v2 mistake — reading stale Guesty channel data for migrated hotels — recurs every time we rely on Guesty post-cutover. Worth a short Mews-MCP scoping conversation with Anna at Mews after the cutover sequence completes.</li>
-        </ol>
-      </div>
-
-      <p style="margin-top:18px; font-size:13px; color: var(--text-2);"><em>This v3 brief supersedes both v1 (HelloShift, 20 May) and v2 (split-strategy, 21 May). The errors compounded: v1 missed the Airbnb-relay 2023 disqualification; v2 caught that but trusted stale Guesty data for migrated hotels. v3 corrects both. Iteration is the design, not the bug — but the time to nail it is before Poem cutover, not after.</em></p>
     </section>
 
   </main>
 
   <footer>
-    <span>Airnest Homes SL · Conduit Alternatives v3 · 2026-05-21</span>
+    <span>Airnest Homes SL · Conduit Alternatives · 2026-05-21</span>
     <span>Internal · Not for external distribution</span>
   </footer>
 
