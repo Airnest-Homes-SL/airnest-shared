@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conduit Alternatives v3 — Decision Summary for CEO · Airnest</title>
+<script src="gate.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F4F1EA;
+  --text:     #141210;
+  --text-2:   #5C5852;
+  --text-3:   #9A9590;
+  --accent:   #B5331A;
+  --border:   #D5D0C8;
+  --border-s: #B0A89E;
+  --surface:  #FDFBF7;
+  --green:    #2E7D4F;
+  --amber:    #9A6008;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+header {
+  padding: 36px 48px 0;
+  animation: fadeUp 0.7s ease 0.05s both;
+}
+.mast-top-rule { height: 1.5px; background: var(--text); }
+.mast-brand-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0 4px;
+}
+.mast-wordmark {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(30px, 4.6vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+.doc-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-2);
+  padding-bottom: 14px;
+}
+.mast-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0 0;
+  border-top: 1.5px solid var(--text);
+}
+.mast-strip span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.mast-meta { color: var(--text-3); }
+.mast-status { color: var(--accent); }
+
+main {
+  flex: 1;
+  padding: 0 48px 72px;
+  max-width: 980px;
+  width: 100%;
+}
+
+.section-block {
+  border-top: 1px solid var(--border);
+  margin-top: 44px;
+  padding-top: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease both;
+}
+.section-block:nth-child(1) { animation-delay: 0.16s; }
+.section-block:nth-child(2) { animation-delay: 0.22s; }
+.section-block:nth-child(3) { animation-delay: 0.28s; }
+.section-block:nth-child(4) { animation-delay: 0.34s; }
+.section-block:nth-child(5) { animation-delay: 0.40s; }
+.section-block:nth-child(6) { animation-delay: 0.46s; }
+.section-block:nth-child(7) { animation-delay: 0.52s; }
+.section-block:nth-child(8) { animation-delay: 0.58s; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.section-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+.section-lede {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin-bottom: 22px;
+  max-width: 72ch;
+}
+p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 14px; max-width: 72ch; }
+p strong { font-weight: 600; }
+
+.verdict {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.verdict-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.verdict-text {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(19px, 2.4vw, 25px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+.verdict-text em { font-style: italic; color: var(--accent); }
+
+.numbered { list-style: none; counter-reset: nlist; margin: 0; }
+.numbered li {
+  counter-increment: nlist;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.numbered li:last-child { border-bottom: none; }
+.numbered li::before {
+  content: counter(nlist, decimal-leading-zero);
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--border-s);
+  line-height: 1.2;
+}
+.numbered .li-title { font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.numbered .li-body { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+
+.compare { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+.compare th, .compare td {
+  text-align: left; padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.compare th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-2); font-weight: 500; background: var(--surface);
+}
+.compare td.label { font-weight: 600; color: var(--text); width: 24%; }
+.compare td.num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); }
+.compare td .note { font-family: 'Schibsted Grotesk', sans-serif; font-size: 12px; color: var(--text-2); display: block; margin-top: 2px; }
+.compare .strike { text-decoration: line-through; color: var(--text-3); margin-right: 8px; }
+.compare .correct { color: var(--accent); font-weight: 500; }
+.compare .row-head { background: var(--surface); font-family: 'Fraunces', serif; font-size: 14px; font-weight: 700; font-style: italic; color: var(--text-2); padding: 8px 14px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 6px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+}
+.card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.18em;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 17px; font-weight: 700;
+  letter-spacing: -0.01em; line-height: 1.2;
+  margin-bottom: 8px; color: var(--text);
+}
+.card-body { font-size: 13px; line-height: 1.5; color: var(--text-2); }
+.card-stat { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text); margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border-s);
+  color: var(--text-2);
+  margin-right: 6px;
+}
+.pill.warn { color: var(--amber); border-color: var(--amber); }
+.pill.go   { color: var(--green); border-color: var(--green); }
+.pill.stop { color: var(--accent); border-color: var(--accent); }
+
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--amber);
+  border-left: 3px solid var(--amber);
+  padding: 18px 22px;
+  margin: 12px 0 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.callout strong { color: var(--amber); }
+
+.quote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--text-2);
+  border-left: 2px solid var(--border-s);
+  padding: 6px 0 6px 18px;
+  margin: 14px 0;
+  max-width: 68ch;
+}
+.quote-cite {
+  display: block;
+  margin-top: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.sources {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px 22px;
+  margin-top: 8px;
+}
+.sources ol { padding-left: 22px; margin: 4px 0; }
+.sources li { margin-bottom: 6px; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.sources code { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: var(--bg); padding: 1px 5px; border-radius: 3px; }
+
+footer {
+  padding: 16px 48px;
+  border-top: 1.5px solid var(--text);
+  display: flex;
+  justify-content: space-between;
+  animation: fadeUp 0.5s ease 0.85s both;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3);
+}
+
+@media (max-width: 720px) {
+  header, main { padding-left: 24px; padding-right: 24px; }
+  footer { padding: 14px 24px; }
+  .cards { grid-template-columns: 1fr; }
+  .compare th, .compare td { padding: 10px 8px; font-size: 12px; }
+  .compare td.label { width: 38%; }
+}
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="mast-top-rule"></div>
+    <div class="mast-brand-row">
+      <div class="mast-wordmark">Conduit Alternatives v3</div>
+      <a href="./" class="back-link">← Shared-Airnest</a>
+    </div>
+    <div class="doc-title">Replacing Conduit on Mews — one vendor for the whole portfolio, after collapsing the hotel/VR split</div>
+    <div class="mast-strip">
+      <span class="mast-meta">From Luis Navarro · 21 May 2026 · Internal · 7-min read · Supersedes v2</span>
+      <span class="mast-status">Decision needed before Poem cutover · w/c 25 May</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 01  THE CALL ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§01</span>
+        <span class="section-name">The Call</span>
+      </div>
+      <h2 class="section-title">All ~100 units, one OTA-inbox vendor. Pilot two, commit to one.</h2>
+
+      <div class="verdict">
+        <div class="verdict-eyebrow">Recommendation</div>
+        <div class="verdict-text">
+          Every Airnest property — four hotels plus five VR buildings plus scattered VRs —
+          needs the same unified OTA inbox. Run a <em>60-day dual pilot of Duve and Akia</em>
+          on Bandama Hotel + Poem, two of our highest-OTA-volume properties. Kill the loser
+          on day 60, roll the winner across the portfolio, give Conduit 30-day notice on
+          pilot day 45.
+        </div>
+      </div>
+
+      <p>Yesterday's v2 brief recommended a hotel/VR split based on Guesty channel data showing Hotel Masanet and Hotel Emeté on Expedia + Google only. That data was stale — those hotels were already migrated to Mews, so the real OTA mix (which includes Airbnb and Booking.com) lives in Mews now, not Guesty. With all four hotels distributing on the full OTA stack — and industry data confirming this is the right posture for boutique hotels in leisure markets — the cleanest move is one vendor for everyone.</p>
+    </section>
+
+    <!-- ── 02  WHAT v2 GOT WRONG ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§02</span>
+        <span class="section-name">What v2 Got Wrong</span>
+      </div>
+      <h2 class="section-title">Stale data, masquerading as ground truth.</h2>
+      <p class="section-lede">v2 leaned on a per-property channel-mix query against Guesty to justify keeping Masanet &amp; Emeté on Mews-native messaging. That query missed the obvious: once a property migrates to Mews, the live channel connections move with it. The Guesty rows I read were legacy artifacts, not the current state.</p>
+
+      <ol class="numbered">
+        <li>
+          <div>
+            <div class="li-title">The Guesty MT* listings showed only Expedia + Google because they're deprecated.</div>
+            <div class="li-body">Hotel Masanet and Hotel Emeté went live on Mews earlier this month. Mews is where the production Booking.com, Airbnb, and Expedia connections now run. The Guesty channel field for those listings only reflects what Guesty itself still has wired up — not the truth on the ground.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Boutique hotels in leisure markets do use Airbnb. The "no" assumption was speculation.</div>
+            <div class="li-body">See §03 for the evidence. Short version: Airbnb is now actively recruiting boutique hotels, the channel is single-digit % of an Airbnb-side total but growing 2× the platform rate, and Gran Canaria specifically sits in Airbnb's strong leisure footprint. There was never a defensible reason to exclude our hotels.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">The split-strategy saved €0 once both hotels actually need OTA inbox.</div>
+            <div class="li-body">v2's headline number ("€450–700/mo across 89 units") assumed ~9 hotel rooms paid €0/mo. With those rooms back in scope the math shifts to ~100 units — still cheaper than Conduit, but the savings shrink and the operational complexity of running two messaging stacks (one Mews-native for hotels, one third-party for VRs) disappears as a benefit.</div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ── 03  DO BOUTIQUE HOTELS USE AIRBNB ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§03</span>
+        <span class="section-name">Do Boutique Hotels Use Airbnb?</span>
+      </div>
+      <h2 class="section-title">Yes — and the trend points sharply upward.</h2>
+      <p class="section-lede">Booking.com is non-negotiable for any European hotel — that's the easy half. The harder question is whether Airbnb is worth wiring up for our four hotels. The 2025 industry data says yes, especially in our market.</p>
+
+      <div class="quote">
+        "Airbnb is going significantly more aggressively into hotels," targeting bed-and-breakfasts, inns, and boutique hotels rather than large chains. Hotel-pilot programs launched October 2025 in New York, Los Angeles, and Madrid.
+        <span class="quote-cite">— Brian Chesky, Airbnb Q4 2025 earnings call · summarised in RentalScaleUp</span>
+      </div>
+
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Status for boutique hotels (2025–2026)</th>
+            <th>Implication for Airnest hotels</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Booking.com</td>
+            <td>Near-universal for European hotels; ~25–40% of inventory revenue typical for boutique segment.</td>
+            <td class="num">Required</td>
+          </tr>
+          <tr>
+            <td class="label">Expedia</td>
+            <td>Mature hotel channel; strong for US/UK inbound to Mediterranean leisure markets.</td>
+            <td class="num">Required</td>
+          </tr>
+          <tr>
+            <td class="label">Airbnb</td>
+            <td>Hotels still single-digit % of Airbnb nights, but growing at <strong>2× the platform rate</strong>. Operators (Sage, Arlo) report seamless tech integration and favourable commissions. Madrid is one of three global pilot cities.</td>
+            <td class="num">Strongly recommended</td>
+          </tr>
+          <tr>
+            <td class="label">Airbnb · Canary Islands cohort</td>
+            <td>Las Palmas listings reported <strong>76% average occupancy</strong> June 2024 – May 2025; boutique-hotel listings already present (e.g. La Casa de La Camelia, Hotel Fonda Central) — competitor set is live on the channel.</td>
+            <td class="num">Compelling</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:18px;"><strong>Conclusion:</strong> none of our four hotels (Masanet, Veintiuno, Bandama, Emeté) should be off Airbnb in 2026. Whatever messaging stack we pick has to handle Airbnb inbound chat for the hotels just as it does for the VRs — the previously assumed split doesn't exist in the market.</p>
+    </section>
+
+    <!-- ── 04  THE PORTFOLIO, UNIFIED ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§04</span>
+        <span class="section-name">The Portfolio, Unified</span>
+      </div>
+      <h2 class="section-title">~100 active units. All need the same inbox.</h2>
+
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>~Units</th>
+            <th>OTA stack expected on Mews</th>
+            <th>Needs OTA inbox?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Hotel Masanet</td>
+            <td>Boutique hotel (Mews-live)</td>
+            <td class="num">TBC</td>
+            <td>Airbnb · Booking · Expedia · Google</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">Hotel Veintiuno</td>
+            <td>Boutique hotel (Mews-live)</td>
+            <td class="num">TBC</td>
+            <td>Airbnb · Booking · Expedia · Google</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">Hotel Bandama Golf</td>
+            <td>Boutique hotel</td>
+            <td class="num">~17</td>
+            <td>Airbnb · Booking · Expedia · SiteMinder · Google (confirmed in Guesty)</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">Hotel Emeté Las Canteras</td>
+            <td>Boutique hotel (Mews-live)</td>
+            <td class="num">~9</td>
+            <td>Airbnb · Booking · Expedia · Google</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">Edificio Poem</td>
+            <td>VR multi-unit</td>
+            <td class="num">~30</td>
+            <td>Airbnb · Booking · Expedia · Google</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">Edificio Eleven</td>
+            <td>VR multi-unit</td>
+            <td class="num">~8</td>
+            <td>Airbnb · Booking · Expedia · Google</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">Edificio Vegueta Rooftop</td>
+            <td>VR multi-unit</td>
+            <td class="num">~12</td>
+            <td>Airbnb · Booking · Google</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">Edificio BlueBalcony</td>
+            <td>VR multi-unit</td>
+            <td class="num">~3</td>
+            <td>Airbnb · Booking · Google</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">Edificio Casa Vivar</td>
+            <td>VR multi-unit</td>
+            <td class="num">TBC</td>
+            <td>Airbnb · Booking · Google (expected)</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="label">Scattered single VRs<br><span style="font-weight:400; color:var(--text-2); font-size:12px;">(Nautilus, NE, Las_Nasas, DAna, Cid, Castano, Nieves, DJN, Balcon, Seaside Villa, etc.)</span></td>
+            <td>Single-unit VRs</td>
+            <td class="num">~19</td>
+            <td>Airbnb · Booking · Google (Expedia rare)</td>
+            <td><span class="pill stop">Yes</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:18px;"><strong>Working total: ~100 active units</strong> (range 95–110 once Mews-side counts firm up for Masanet, Veintiuno and Casa Vivar). That's the number we should be RFQ'ing vendors against — not the 137 Guesty listings, which double-count via umbrella/inventory listings, and not the 89 of v2, which excluded the hotels.</p>
+    </section>
+
+    <!-- ── 05  THE REAL SHORTLIST ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§05</span>
+        <span class="section-name">The Real Shortlist</span>
+      </div>
+      <h2 class="section-title">Four vendors. Two worth piloting.</h2>
+
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Vendor</th>
+            <th>Public pricing (verified May 2026)</th>
+            <th>OTA inbox: Airbnb · Booking · Expedia</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Duve</td>
+            <td class="num">Plans $120–200/mo + add-ons<span class="note">OTA messaging is a paid add-on across all tiers — real number requires quote</span></td>
+            <td class="num">All three via direct API</td>
+            <td><span class="pill go">Pilot</span> Strong Mews depth; Airbnb partner; pricing opens up in negotiation</td>
+          </tr>
+          <tr>
+            <td class="label">Akia</td>
+            <td class="num">"Talk to Sales"<span class="note">Basic tier publicly confirms Airbnb + Booking + Expedia messaging bundled</span></td>
+            <td class="num">All three bundled in Basic</td>
+            <td><span class="pill go">Pilot</span> Only vendor that publicly confirms 3-OTA in entry tier; quote sensitivity matters</td>
+          </tr>
+          <tr>
+            <td class="label">Trengo</td>
+            <td class="num">Pro €499/mo + €0.30/conv AI surcharge<span class="note">20 users, 18k convo/yr cap</span></td>
+            <td class="num">Airbnb + Booking via API; Expedia is email-forward only</td>
+            <td><span class="pill warn">Backup</span> Cheapest list price but degraded Expedia experience</td>
+          </tr>
+          <tr>
+            <td class="label">Enso Connect</td>
+            <td class="num">"Request quote"<span class="note">2025 docs cited $9–16 per listing/mo; per-listing pricing scales poorly past ~60 units</span></td>
+            <td class="num">All three via direct API (Airbnb partner)</td>
+            <td><span class="pill warn">Backup</span> Best on VR-side features; expensive at 100 units</td>
+          </tr>
+          <tr>
+            <td class="label">HelloShift, Bookboost, HiJiffy, Chatlyn</td>
+            <td class="num">various</td>
+            <td class="num"><span class="strike">Airbnb claimed</span> — broken post 30 Sep 2023</td>
+            <td><span class="pill stop">Out</span> Cannot deliver three-OTA inbox today</td>
+          </tr>
+          <tr>
+            <td class="label">Conduit (baseline)</td>
+            <td class="num">≈€900/mo flat</td>
+            <td class="num">All three (current state)</td>
+            <td><span class="pill stop">Replace</span> Priced for a larger portfolio than we run</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Pricing honesty:</strong> three of the four shortlisted vendors hide OTA-inbox pricing behind "talk to sales." Any list-price math we put in a deck before talking to them is fiction. That's the entire reason for the dual pilot — let the vendors price against our real 100-unit RFQ.
+      </div>
+    </section>
+
+    <!-- ── 06  NUMBERS, HONEST ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§06</span>
+        <span class="section-name">Numbers, Honest</span>
+      </div>
+      <h2 class="section-title">A range, not a hero number.</h2>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-num">Today</div>
+          <div class="card-title">Conduit baseline</div>
+          <div class="card-body">Flat ≈€900/mo regardless of unit count. ≈€10,800/yr. Doesn't scale down as we migrate properties off Guesty — same fee, fewer wired-in OTAs each month.</div>
+          <div class="card-stat">€10,800 / yr</div>
+        </div>
+        <div class="card">
+          <div class="card-num">Expected</div>
+          <div class="card-title">Vendor range, 100 units</div>
+          <div class="card-body">Based on Duve/Akia/Trengo public pricing scaled to 100 units (Trengo's team-pricing model is the lower bound; per-unit vendors with OTA add-ons land higher). Real number sits in a sales quote.</div>
+          <div class="card-stat">€500 – €800 / mo</div>
+        </div>
+        <div class="card">
+          <div class="card-num">Annual saving</div>
+          <div class="card-title">Realistic range</div>
+          <div class="card-body">€100–400/mo savings vs Conduit. €1,200 – €4,800/yr. Less than v1 claimed (€7k) and less than v2 claimed (€2.4–5.4k), but the v3 number is the first one grounded in the actual portfolio shape.</div>
+          <div class="card-stat">€1,200 – €4,800 / yr</div>
+        </div>
+      </div>
+
+      <p style="margin-top:20px;"><strong>The real prize isn't cost.</strong> Conduit is a 2.5% drag on 2026 EBITDA — meaningful, not catastrophic. The bigger reasons to switch are: (a) Mews-native depth from a vendor that integrates properly, (b) AI capabilities none of the current Conduit configuration uses, (c) avoiding a 12-month renewal lock-in at the same flat fee. Treat the €100–400/mo as the floor benefit, not the ceiling.</p>
+    </section>
+
+    <!-- ── 07  THE ASK ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§07</span>
+        <span class="section-name">The Ask</span>
+      </div>
+      <h2 class="section-title">Three decisions before Poem goes live.</h2>
+
+      <ol class="numbered">
+        <li>
+          <div>
+            <div class="li-title">Approve all-properties scope.</div>
+            <div class="li-body">Whatever vendor wins the pilot serves every hotel and every VR. No more split-strategy, no Mews-native carve-out for the hotels. This is the v3 correction.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Authorise a 60-day dual pilot: Duve + Akia, on Bandama Hotel + Poem.</div>
+            <div class="li-body">Bandama because it's our highest-OTA-volume hotel and a real test of the inbox under hotel-style booking patterns. Poem because it's the next migration anyway and a fair VR-side benchmark. Total pilot spend &lt; €1,500. Measure: OTA-message coverage across all three channels actually arriving, Canarias-Spanish reply quality, staff adoption, response latency vs the Conduit baseline. Day 60: kill loser, commit winner.</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="li-title">Give Conduit 30-day notice at pilot day 45, not before.</div>
+            <div class="li-body">If both pilots fail (unlikely but possible) we stay on Conduit — don't burn the bridge prematurely. Day-45 timing means we exit Conduit roughly at day 75 of the pilot, with the winner already wired in for the rest of the portfolio.</div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ── 08  SOURCES & ASSUMPTIONS ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§08</span>
+        <span class="section-name">Sources &amp; Open Assumptions</span>
+      </div>
+      <h2 class="section-title">Where the numbers come from. Where they don't.</h2>
+
+      <div class="sources">
+        <strong>Verified, 21 May 2026:</strong>
+        <ol>
+          <li>Airbnb 2025 hotel strategy — <a href="https://www.rentalscaleup.com/airbnb-q4-2025-results/">RentalScaleUp on Airbnb Q4 2025 earnings</a> (Chesky on "going significantly more aggressively into hotels"; hotels growing 2× platform rate; Oct-2025 pilots in NYC/LA/Madrid).</li>
+          <li>Operator feedback (Sage Hospitality, Arlo Hotels) on Airbnb-for-hotels integration quality — <a href="https://skift.com/2025/12/22/can-airbnb-work-for-hotels-what-early-tests-show/">Skift, Dec 2025</a> (paywall, summary via search aggregator).</li>
+          <li>Las Palmas / Canary Islands Airbnb performance data — <a href="https://airbtics.com/annual-airbnb-revenue-in-las-palmas-de-gran-canaria-las-palmas-spain/">Airbtics 2025 market report</a> (76% average occupancy, June 2024–May 2025).</li>
+          <li>Canary Islands boutique-hotel presence on Airbnb confirmed via live listings (La Casa de La Camelia, Hotel Fonda Central, etc.) and Booking.com region page.</li>
+          <li>Vendor pricing: <a href="https://www.duve.com/pricing">duve.com/pricing</a>; <a href="https://trengo.com/pricing">trengo.com/pricing</a>; Akia and Enso Connect pricing now gated behind "Talk to Sales."</li>
+          <li>Portfolio inventory (148 Guesty listings, hotel + VR breakdown) pulled live from Guesty MCP on 20 May 2026 — account <code>Airnest</code> (id <code>5ee666b8…</code>).</li>
+          <li>Vendor Airbnb-partner status and the Sept 2023 email-relay deprecation: rigorous synthesis in research Doc 2, <code>Projects/Guesty-Mews_Migration/Resources/Omninbox Research/</code>.</li>
+        </ol>
+        <strong>Open assumptions worth closing before signing:</strong>
+        <ol>
+          <li><strong>Mews-side channel data for Masanet, Veintiuno, and Emeté</strong> is not currently queryable via the MCP we have on Guesty — relying on Luis's domain knowledge that those hotels distribute on Airbnb + Booking + Expedia. Post-migration, confirm channel-by-channel from Mews directly. If a hotel turns out to NOT be on Airbnb, the recommendation doesn't change (we still want the same vendor for the rest), but the OTA-volume expectations for the pilot should be adjusted.</li>
+          <li><strong>Unit count ~100</strong> is a working estimate. Real Mews "space" counts after Poem migrates is the number to put in the vendor RFQ. Range is 95–110 depending on how scattered VRs and Casa Vivar resolve.</li>
+          <li><strong>Mews-MCP integration is infra debt.</strong> The v2 mistake — reading stale Guesty channel data for migrated hotels — recurs every time we rely on Guesty post-cutover. Worth a short Mews-MCP scoping conversation with Anna at Mews after the cutover sequence completes.</li>
+        </ol>
+      </div>
+
+      <p style="margin-top:18px; font-size:13px; color: var(--text-2);"><em>This v3 brief supersedes both v1 (HelloShift, 20 May) and v2 (split-strategy, 21 May). The errors compounded: v1 missed the Airbnb-relay 2023 disqualification; v2 caught that but trusted stale Guesty data for migrated hotels. v3 corrects both. Iteration is the design, not the bug — but the time to nail it is before Poem cutover, not after.</em></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Airnest Homes SL · Conduit Alternatives v3 · 2026-05-21</span>
+    <span>Internal · Not for external distribution</span>
+  </footer>
+
+</body>
+</html>
