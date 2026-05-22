@@ -93,8 +93,8 @@
       gap: 16px;
       padding: 12px 0 0;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.22em;
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--faint);
       animation: fadeUp 0.7s ease 0.25s both;
@@ -135,8 +135,8 @@
       padding: 12px 0 0;
       border-top: 1px solid var(--rule);
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.18em;
+      font-size: 11px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--faint);
       animation: fadeUp 0.7s ease 0.56s both;
@@ -175,9 +175,9 @@
     #archive .band-mark { background: var(--faint); }
     .band-name {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 10.5px;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--paper);
     }
@@ -185,8 +185,8 @@
     .band-count {
       margin-left: auto;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.14em;
+      font-size: 11px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--faint);
     }
@@ -223,11 +223,11 @@
 
     .row-idx {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 500;
       letter-spacing: 0.04em;
       color: var(--faint);
-      padding-top: 9px;
+      padding-top: 8px;
       transition: color 0.22s ease;
     }
     .row:hover .row-idx { color: var(--ember); }
@@ -235,30 +235,30 @@
     .row-cat {
       display: inline-block;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 9px;
+      font-size: 10.5px;
       font-weight: 500;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--ember);
       background: rgba(230,138,60,0.10);
       border: 1px solid var(--ember-line);
-      padding: 3px 8px 2px;
+      padding: 3px 9px 2px;
       border-radius: 3px;
-      margin-bottom: 9px;
+      margin-bottom: 10px;
       vertical-align: middle;
     }
     .row-new {
       display: none;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 9px;
+      font-size: 10.5px;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--ink);
       background: var(--ember);
-      padding: 3px 8px 2px;
+      padding: 3px 9px 2px;
       border-radius: 3px;
-      margin: 0 0 9px 7px;
+      margin: 0 0 10px 7px;
       vertical-align: middle;
     }
     .row.is-new .row-new { display: inline-block; }
@@ -266,11 +266,11 @@
     .row-title {
       font-family: 'Instrument Serif', serif;
       font-weight: 400;
-      font-size: clamp(21px, 2.5vw, 27px);
-      line-height: 1.16;
+      font-size: clamp(19px, 2vw, 23px);
+      line-height: 1.18;
       letter-spacing: 0.005em;
       color: var(--paper);
-      margin-bottom: 8px;
+      margin-bottom: 9px;
     }
     .row-title .chk {
       color: var(--sage);
@@ -281,10 +281,14 @@
     }
 
     .row-desc {
-      font-size: 13px;
-      line-height: 1.62;
-      color: var(--mute);
-      max-width: 66ch;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #B4AA99;
+      max-width: 76ch;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .row-meta {
@@ -297,16 +301,16 @@
     }
     .row-date {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.06em;
+      font-size: 12.5px;
+      letter-spacing: 0.05em;
       color: var(--paper);
     }
     .row-tag {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 8.5px;
-      letter-spacing: 0.14em;
+      font-size: 10px;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
-      color: var(--faint);
+      color: var(--mute);
     }
 
     .row-arrow {
@@ -344,8 +348,8 @@
     }
     footer span {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.16em;
+      font-size: 10.5px;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--faint);
     }
@@ -447,7 +451,7 @@
           <div class="row-main">
             <span class="row-cat">Ops</span><span class="row-new">New</span>
             <h2 class="row-title">Poem Suites Go-Live — Risk Alert</h2>
-            <p class="row-desc">Risk alert for the CEO ahead of the Poem Suites go-live (w/c 25 May). Three items put the Monday date at risk — KYB verification, per-channel rates, Yacan smart-lock integration — plus four more closing over the weekend. Asks: decide whether to hold the date, and confirm the cancellation policy term.</p>
+            <p class="row-desc">Three items put the Poem Suites Monday go-live at risk — KYB, per-channel rates, Yacan locks. Asks the CEO whether to hold the date.</p>
           </div>
           <div class="row-meta">
             <span class="row-date">22 May 2026</span>
@@ -461,7 +465,7 @@
           <div class="row-main">
             <span class="row-cat">Ops</span><span class="row-new">New</span>
             <h2 class="row-title">Mews Meeting Brief — Kenya Call, 22 May</h2>
-            <p class="row-desc">Prep notes for the migration call with Kenya at Mews: four go-live blockers (Mews Payments provisioning, restriction-create bug, rate pricing, guest-comms inbox), config questions, setup items needing Mews input, proactive discussion points, and a follow-up checklist. Drives the cutover before Poem goes live w/c 25 May.</p>
+            <p class="row-desc">Prep notes for the Kenya @ Mews migration call: four go-live blockers, config questions, and a follow-up checklist before the Poem cutover.</p>
           </div>
           <div class="row-meta">
             <span class="row-date">22 May 2026</span>
@@ -475,7 +479,7 @@
           <div class="row-main">
             <span class="row-cat">Strategic</span><span class="row-new">New</span>
             <h2 class="row-title">Conduit Alternatives — Decision Brief for CEO</h2>
-            <p class="row-desc">Replacing Guesty's unified inbox after the Mews migration. Two finalists — Duve and Akia — with a balanced pros/cons analysis across pricing, AI depth, Mews integration, and European fit. The ask: request quotes from both this week, pilot the winner on Poem at cutover.</p>
+            <p class="row-desc">Replacing Guesty's unified inbox after the Mews migration: Duve vs Akia, with a recommendation to quote both and pilot the winner on Poem.</p>
           </div>
           <div class="row-meta">
             <span class="row-date">21 May 2026</span>
@@ -489,7 +493,7 @@
           <div class="row-main">
             <span class="row-cat">Strategic</span><span class="row-new">New</span>
             <h2 class="row-title">Voice AI — The Four Options</h2>
-            <p class="row-desc">Focused companion to the CEO brief: A/B/C/D laid out, with Luis's preference (A) and the AI co-recommendation (A + C, with D as the 2028+ endgame).</p>
+            <p class="row-desc">The four voice-AI options laid out side by side, with Luis's preference and the AI co-recommendation.</p>
           </div>
           <div class="row-meta">
             <span class="row-date">16 May 2026</span>
@@ -503,7 +507,7 @@
           <div class="row-main">
             <span class="row-cat">Strategic</span><span class="row-new">New</span>
             <h2 class="row-title">Voice AI — Decision Brief for CEO</h2>
-            <p class="row-desc">Response to Javier's build/buy/stay memo. Recommendation: 90-day Conduit pilot, defer build to 2027 as AOS module, "fully autonomous + emergency contact" as 2028 endgame for Collection.</p>
+            <p class="row-desc">Response to Javier's build/buy/stay memo: run a 90-day Conduit pilot and defer the in-house build to 2027.</p>
           </div>
           <div class="row-meta">
             <span class="row-date">16 May 2026</span>
@@ -531,7 +535,7 @@
           <div class="row-main">
             <span class="row-cat">Ops</span><span class="row-new">New</span>
             <h2 class="row-title">Operations Briefing — Week of 8 May 2026</h2>
-            <p class="row-desc">Mews certification submitted, review call booked, mail template pipeline progress, open blockers.</p>
+            <p class="row-desc">Mews certification submitted, review call booked, mail-template pipeline progressing, open blockers noted.</p>
           </div>
           <div class="row-meta">
             <span class="row-date">8 May 2026</span>
@@ -545,7 +549,7 @@
           <div class="row-main">
             <span class="row-cat">Ops</span><span class="row-new">New</span>
             <h2 class="row-title">Mews Certification Submission — Status Report<span class="chk">✓</span></h2>
-            <p class="row-desc">What was submitted in the Mews Private Integration form — endpoints, webhooks, flagged gaps, questions. Completed.</p>
+            <p class="row-desc">What was submitted in the Mews Private Integration form — endpoints, webhooks, gaps, questions. Completed.</p>
           </div>
           <div class="row-meta">
             <span class="row-date">8 May 2026</span>
@@ -559,7 +563,7 @@
           <div class="row-main">
             <span class="row-cat">Ops</span><span class="row-new">New</span>
             <h2 class="row-title">Mews Integration Report — CEO Status</h2>
-            <p class="row-desc">CEO status report for the Guesty → Mews integration: scope, progress against the certification milestones, and open risks.</p>
+            <p class="row-desc">CEO status report for the Guesty → Mews integration: scope, progress against certification milestones, open risks.</p>
           </div>
           <div class="row-meta">
             <span class="row-date">7 May 2026</span>
