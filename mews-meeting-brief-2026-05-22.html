@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mews Meeting Brief — Kenya call, 22 May 2026 · Airnest</title>
+<script src="gate.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F4F1EA;
+  --text:     #141210;
+  --text-2:   #5C5852;
+  --text-3:   #9A9590;
+  --accent:   #B5331A;
+  --border:   #D5D0C8;
+  --border-s: #B0A89E;
+  --surface:  #FDFBF7;
+  --green:    #2E7D4F;
+  --amber:    #9A6008;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+header {
+  padding: 36px 48px 0;
+  animation: fadeUp 0.7s ease 0.05s both;
+}
+.mast-top-rule { height: 1.5px; background: var(--text); }
+.mast-brand-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0 4px;
+}
+.mast-wordmark {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(30px, 4.6vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+.doc-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-2);
+  padding-bottom: 14px;
+}
+.mast-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0 0;
+  border-top: 1.5px solid var(--text);
+}
+.mast-strip span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.mast-meta { color: var(--text-3); }
+.mast-status { color: var(--accent); }
+
+main {
+  flex: 1;
+  padding: 0 48px 72px;
+  max-width: 980px;
+  width: 100%;
+}
+
+.section-block {
+  border-top: 1px solid var(--border);
+  margin-top: 44px;
+  padding-top: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease both;
+}
+.section-block:nth-child(1) { animation-delay: 0.16s; }
+.section-block:nth-child(2) { animation-delay: 0.22s; }
+.section-block:nth-child(3) { animation-delay: 0.28s; }
+.section-block:nth-child(4) { animation-delay: 0.34s; }
+.section-block:nth-child(5) { animation-delay: 0.40s; }
+.section-block:nth-child(6) { animation-delay: 0.46s; }
+.section-block:nth-child(7) { animation-delay: 0.52s; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.section-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+.section-lede {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin-bottom: 22px;
+  max-width: 72ch;
+}
+p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 14px; max-width: 72ch; }
+p strong { font-weight: 600; }
+
+.verdict {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.verdict-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.verdict-text {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(19px, 2.4vw, 25px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+.verdict-text em { font-style: italic; color: var(--accent); }
+
+/* item — one question/blocker block */
+.item {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+.item:last-child { border-bottom: none; }
+.item-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.item-ref {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--border-s);
+  flex-shrink: 0;
+}
+.item-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--text);
+}
+.item-ctx { font-size: 14px; line-height: 1.55; color: var(--text-2); margin-bottom: 8px; max-width: 74ch; }
+.item-ask {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 74ch;
+  padding-left: 14px;
+  border-left: 2px solid var(--accent);
+}
+.item-ask strong { font-weight: 600; }
+.item-ask.q { border-left-color: var(--amber); }
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border-s);
+  color: var(--text-2);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.pill.warn { color: var(--amber); border-color: var(--amber); }
+.pill.go   { color: var(--green); border-color: var(--green); }
+.pill.stop { color: var(--accent); border-color: var(--accent); }
+
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--amber);
+  border-left: 3px solid var(--amber);
+  padding: 18px 22px;
+  margin: 12px 0 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.callout strong { color: var(--amber); }
+
+.checklist { list-style: none; counter-reset: clist; margin: 4px 0 0; }
+.checklist li {
+  counter-increment: clist;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li::before {
+  content: "";
+  display: block;
+  width: 14px; height: 14px;
+  margin-top: 2px;
+  border: 1.5px solid var(--border-s);
+  border-radius: 2px;
+}
+.check-title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.check-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-3);
+}
+
+footer {
+  padding: 16px 48px;
+  border-top: 1.5px solid var(--text);
+  display: flex;
+  justify-content: space-between;
+  animation: fadeUp 0.5s ease 0.85s both;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3);
+}
+
+@media (max-width: 720px) {
+  header, main { padding-left: 24px; padding-right: 24px; }
+  footer { padding: 14px 24px; }
+  .item-ask { padding-left: 10px; }
+}
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="mast-top-rule"></div>
+    <div class="mast-brand-row">
+      <div class="mast-wordmark">Mews Meeting Brief</div>
+      <a href="./" class="back-link">← Shared-Airnest</a>
+    </div>
+    <div class="doc-title">Open questions, blockers and discussion points for the Kenya @ Mews call</div>
+    <div class="mast-strip">
+      <span class="mast-meta">From Luis Navarro · 22 May 2026 · Internal · prep notes</span>
+      <span class="mast-status">Poem cutover · w/c 25 May</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 01  WHERE WE ARE ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§01</span>
+        <span class="section-name">Where We Are</span>
+      </div>
+      <h2 class="section-title">Poem is configured. This call clears the runway for the rest.</h2>
+
+      <div class="verdict">
+        <div class="verdict-eyebrow">Purpose of the call</div>
+        <div class="verdict-text">
+          Hotel Masanet's full configuration is now replicated onto <em>Edificio Poem</em> —
+          accounting, policies, rate groups, rates, age categories, products. Poem is the first
+          go-live, <em>w/c 25 May</em>, then roughly one property per week through early July.
+          This call is to clear four go-live blockers and confirm a dozen configuration points
+          before we repeat the process across the remaining five properties.
+        </div>
+      </div>
+
+      <p>Replicated to Poem so far (Masanet as source of truth): Accounting Configuration (general settings, the 23 payment/charge → category mappings, billing management), Enterprise/property settings, the Stay service landing config, 5 age categories, the <em>Cama Extra</em> product, both cancellation and both payment policies, 4 rate groups, and all 10 rates. What is <strong>not</strong> done — and what this brief is about — is everything that needs a Mews answer, a commercial decision, or is currently blocked.</p>
+
+      <div class="callout">
+        <strong>Roll-out queue after Poem:</strong> Airnest Portfolio → Bandama Golf Hotel → Arena &amp; Cielo → Eleven Boutique Apartments → Hotel Emete &amp; Coworking. Whatever Mews tells us today, we apply six times — so it is worth getting precise answers.
+      </div>
+    </section>
+
+    <!-- ── 02  BLOCKERS ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§02</span>
+        <span class="section-name">Blockers — Go-Live Critical</span>
+      </div>
+      <h2 class="section-title">Four things that can stop or compromise the cutover.</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">B1</span>
+          <span class="item-title">Mews Payments not provisioned on Poem</span>
+          <span class="pill stop">Blocker</span>
+        </div>
+        <p class="item-ctx">While replicating Masanet's Accounting Configuration → General settings, every field copied except the <strong>Invoice payment methods</strong> chip-selector — it does not render on Poem's form at all. Masanet has <code>Payment card</code> enabled there. The likely cause is that Mews Payments is not yet provisioned for Poem (still in <code>Settings/Onboarding</code>). Without it, card payments and payment-request links won't work at cutover.</p>
+        <div class="item-ask"><strong>Ask:</strong> What is the trigger for the Invoice payment methods field to appear, and what's the provisioning path + lead time to enable Mews Payments on Poem and the other five properties (go-live w/c 1 Jun → 6 Jul)?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">B2</span>
+          <span class="item-title">Restriction-create wizard not persisting</span>
+          <span class="pill stop">Blocker</span>
+        </div>
+        <p class="item-ctx">On Poem, the <code>/Restriction/Create</code> flow accepts all inputs (type <code>Closed to stay</code>, rate group <code>Non Refundable RO</code>, minimum advance 5 days), proceeds through <em>Continue</em> to the review screen, but clicking <em>Create restrictions</em> leaves the page on the Create URL and the restriction list stays empty. No error message shown. Masanet has two such restrictions (Non Refundable RO and BB, 5-day minimum advance).</p>
+        <div class="item-ask"><strong>Ask:</strong> Is there a hidden required field (date range, currency), a permissions issue, or a known bug blocking restriction creation on a property still in onboarding?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">B3</span>
+          <span class="item-title">Rate pricing — no source of truth yet</span>
+          <span class="pill stop">Blocker</span>
+        </div>
+        <p class="item-ctx">The 10 rates exist on Poem but carry no base prices. Mews onboarding flags "Set up bookable rates" as <em>Required</em> and lists every rate as outdated. This is 10 rates × 6 properties of €/night pricing — a commercial decision, not a template copy.</p>
+        <div class="item-ask"><strong>Ask:</strong> What does Mews expect as the source of pricing — imported from current Guesty rates, driven by Atomize RMS, or manual entry by revenue management? And does "Select tax for all base rates" (IGIC 7%) get handled in the same pricing workflow?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">B4</span>
+          <span class="item-title">Guest communications — no unified inbox after cutover</span>
+          <span class="pill stop">Blocker</span>
+        </div>
+        <p class="item-ctx">Leaving Guesty removes our unified guest inbox. Mews native messaging does <strong>not</strong> receive inbound Airbnb / Booking.com / Expedia chat — a confirmed gap. Conduit was negotiated and rejected on price; this is a from-scratch procurement (Duve vs Akia, RFQ pending). This is the single biggest launch-readiness risk and is not a Mews-config item, but Mews should know it is open.</p>
+        <div class="item-ask"><strong>Ask:</strong> Which messaging/guest-experience partners does Mews recommend or natively integrate with for a working three-OTA inbox? Any Mews Marketplace option we have not considered?</div>
+      </div>
+    </section>
+
+    <!-- ── 03  CONFIGURATION QUESTIONS ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§03</span>
+        <span class="section-name">Configuration Questions</span>
+      </div>
+      <h2 class="section-title">Lower-stakes clarifications — confirm before we repeat ×6.</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">Q1</span>
+          <span class="item-title">"Flexible" cancellation policy semantics</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">Both Masanet and Poem have a policy named <code>Flexible</code> set to: 100% fee / deadline <code>1d after check-in time</code> / fee extent <code>Nights and products</code>. Functionally a guest is fully refundable until one day <em>past</em> check-in, then charged 100%. "Flexible" normally implies a window <em>before</em> check-in.</p>
+        <div class="item-ask q"><strong>Ask:</strong> Is "1d after check-in" the intended Airnest configuration, or should it be <code>1d before check-in time</code> to match the standard Booking.com / Airbnb "Flexible" semantics?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">Q2</span>
+          <span class="item-title">Payment-policy → rate-group assignment workflow</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">A newly-created payment policy shows Status <code>Unassigned</code> until it is linked to a rate group. We found that setting it as a rate group's default settlement rule flips it to <code>Assigned</code>. We want to confirm this is the intended path.</p>
+        <div class="item-ask q"><strong>Ask:</strong> Is assigning the policy via the rate group the canonical workflow, or is there a dedicated "assign policy" action we should be using instead?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">Q3</span>
+          <span class="item-title">Rate primary-name locale stickiness</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">Rates created during onboarding (when the property default culture was en-US) keep their original English name even after the default culture is changed to es-ES and a new <code>names.es-ES</code> value is set. On Poem the renamed "Fully Flexible OTA" rate still displays as "Fully Flexible" in the rate list, the base-rate dropdown, and dependent rates' base-rate column. Short name and external name update correctly.</p>
+        <div class="item-ask q"><strong>Ask:</strong> How do we change the primary stored name so it displays consistently across the UI and to the OTAs?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">Q4</span>
+          <span class="item-title">Age-category price adjustment — additive or independent?</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">We replicated 5 age categories (Adults, Infant, Children, Teenager, Senior). It is unclear how their pricing interacts with a rate's base price.</p>
+        <div class="item-ask q"><strong>Ask:</strong> Is an age-category price adjustment applied <em>on top of</em> the rate base price (additive), or set as an <em>independent</em> standalone price?</div>
+      </div>
+    </section>
+
+    <!-- ── 04  SETUP ITEMS NEEDING MEWS INPUT ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§04</span>
+        <span class="section-name">Setup Items Needing Mews Input</span>
+      </div>
+      <h2 class="section-title">Things we can't replicate until we know what Masanet has.</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">S1</span>
+          <span class="item-title">Travel agency contract</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">Masanet's onboarding shows one travel agency contract complete. We cannot replicate it without knowing the partner and terms.</p>
+        <div class="item-ask q"><strong>Ask:</strong> Which travel agency, and what commission structure? Does it apply to all properties or is it Masanet-specific?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">S2</span>
+          <span class="item-title">Booking engine — which task did Masanet complete?</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">Onboarding shows Masanet at 1 of 3 in Guest Experience → Booking engine. The three tasks are <em>Customize booking engine</em>, <em>Promote a service for booking</em>, and <em>Provide the Booking Engine guide to your web developer</em> (mark-as-pass).</p>
+        <div class="item-ask q"><strong>Ask:</strong> Which one is done, and what's the minimum we need on the booking engine before go-live?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">S3</span>
+          <span class="item-title">Per-room mapping for SES.Hospedajes police registration</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">Spanish police accommodation registration requires a registration code per room/space. We need a per-room mapping so guest registration data submits correctly.</p>
+        <div class="item-ask q"><strong>Ask:</strong> How is the per-room police-registration mapping configured in Mews, and where do the per-room codes live?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">S4</span>
+          <span class="item-title">INE occupancy export — registration number</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">Draft config: name <code>INE occupancy export integration</code>, service <code>Stay</code>, tax identifier TBD, registration number TBD. The registration number is the blocker.</p>
+        <div class="item-ask q"><strong>Ask:</strong> What registration number does the INE occupancy export require, and where do we obtain it — Mews-side or from the Spanish statistics authority?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">S5</span>
+          <span class="item-title">Room access-code storage for check-in emails</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">Automated check-in emails need a per-room access code. We have not decided where these live.</p>
+        <div class="item-ask q"><strong>Ask:</strong> Does Mews support a per-room custom field for access codes that can be merged into check-in email templates, or should codes live in an external store / Airnest tool?</div>
+      </div>
+    </section>
+
+    <!-- ── 05  THINGS TO RAISE ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§05</span>
+        <span class="section-name">Things To Raise — Proactive</span>
+      </div>
+      <h2 class="section-title">Not yet tracked, but worth surfacing while we have Kenya.</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">P1</span>
+          <span class="item-title">Is there a "clone property configuration" feature?</span>
+        </div>
+        <p class="item-ctx">We are manually replicating Masanet's configuration onto six properties, section by section. If Mews has a native copy/clone-settings feature, it would save days of work and remove the human-error risk of hand-copying.</p>
+        <div class="item-ask q"><strong>Ask:</strong> Does Mews support cloning a property's configuration (accounting, policies, rate groups, rates, products) to another property?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">P2</span>
+          <span class="item-title">OTA channel cutover sequencing</span>
+        </div>
+        <p class="item-ctx">When Booking.com / Airbnb / Expedia connections move from Guesty to Mews, there is a window where both PMSs could be live on the same channel.</p>
+        <div class="item-ask q"><strong>Ask:</strong> What's the recommended sequence for switching each OTA connection, and how do we avoid double-bookings or availability gaps during the switch?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">P3</span>
+          <span class="item-title">The onboarding "final countdown" — 5 of 10</span>
+        </div>
+        <p class="item-ctx">Masanet's onboarding dashboard shows a "final countdown" of 5/10 tasks done.</p>
+        <div class="item-ask q"><strong>Ask:</strong> Which of those 10 tasks are hard go-live blockers versus things that can be completed after launch?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">P4</span>
+          <span class="item-title">Connector API for production data migration</span>
+        </div>
+        <p class="item-ctx">We plan to migrate guest/reservation data via the Mews Connector API. We need production credentials and to know the Editable History Window per property (how far back financial/reservation data can be written).</p>
+        <div class="item-ask q"><strong>Ask:</strong> How do we get production Connector API credentials and scopes, and how is the Editable History Window set per property?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">P5</span>
+          <span class="item-title">Is one property per week realistic?</span>
+        </div>
+        <p class="item-ctx">Our committed cadence is one property go-live per week from w/c 25 May. The blockers above (Mews Payments lead time, pricing decisions) could threaten it.</p>
+        <div class="item-ask q"><strong>Ask:</strong> Given the blockers, does the Mews onboarding team consider one-per-week realistic? What's the critical-path item per property?</div>
+      </div>
+    </section>
+
+    <!-- ── 06  FOLLOW-UP CHECKLIST ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§06</span>
+        <span class="section-name">Follow-Up Checklist</span>
+      </div>
+      <h2 class="section-title">Tick during the call — what we need an answer on.</h2>
+
+      <ul class="checklist">
+        <li><div>
+          <div class="check-title">B1 · Mews Payments provisioning path + lead time</div>
+          <div class="check-meta">Owner: Mews · Need: enablement steps + dates for all 6 properties</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">B2 · Restriction-create not saving</div>
+          <div class="check-meta">Owner: Mews · Need: cause + fix or workaround</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">B3 · Rate pricing source of truth</div>
+          <div class="check-meta">Owner: Airnest (Javier / revenue) + Mews · Need: decision on Guesty import vs Atomize vs manual</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">B4 · Guest-comms partner direction</div>
+          <div class="check-meta">Owner: Airnest · Need: Mews recommendation, then RFQ Duve + Akia</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">Q1–Q4 · Config confirmations</div>
+          <div class="check-meta">Owner: Mews · Need: Flexible-policy semantics, policy assignment, rate name fix, age-category pricing</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">S1–S5 · Setup details</div>
+          <div class="check-meta">Owner: Mews + Airnest · Need: TA contract, booking engine task, Hospedajes mapping, INE number, access-code field</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">P1 · Clone-configuration feature</div>
+          <div class="check-meta">Owner: Mews · Need: yes/no — would change our whole roll-out approach</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">P2–P5 · Cutover, countdown, Connector API, cadence</div>
+          <div class="check-meta">Owner: Mews · Need: sequencing guidance + realistic timeline confirmation</div>
+        </div></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Airnest Homes SL · Mews Meeting Brief · 2026-05-22</span>
+    <span>Internal · Not for external distribution</span>
+  </footer>
+
+</body>
+</html>
