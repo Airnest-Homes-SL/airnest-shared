@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poem Suites Go-Live — Risk Alert · Airnest</title>
+<script src="gate.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F4F1EA;
+  --text:     #141210;
+  --text-2:   #5C5852;
+  --text-3:   #9A9590;
+  --accent:   #B5331A;
+  --border:   #D5D0C8;
+  --border-s: #B0A89E;
+  --surface:  #FDFBF7;
+  --green:    #2E7D4F;
+  --amber:    #9A6008;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+header {
+  padding: 36px 48px 0;
+  animation: fadeUp 0.7s ease 0.05s both;
+}
+.mast-top-rule { height: 1.5px; background: var(--text); }
+.mast-brand-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0 4px;
+  gap: 16px;
+}
+.mast-wordmark {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(30px, 4.6vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.back-link:hover { color: var(--accent); }
+.doc-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-2);
+  padding-bottom: 14px;
+}
+.mast-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0 0;
+  border-top: 1.5px solid var(--text);
+  gap: 16px;
+}
+.mast-strip span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.mast-meta { color: var(--text-3); }
+.mast-status { color: var(--accent); }
+
+main {
+  flex: 1;
+  padding: 0 48px 72px;
+  max-width: 980px;
+  width: 100%;
+}
+
+.section-block {
+  border-top: 1px solid var(--border);
+  margin-top: 44px;
+  padding-top: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease both;
+}
+.section-block:nth-child(1) { animation-delay: 0.16s; }
+.section-block:nth-child(2) { animation-delay: 0.24s; }
+.section-block:nth-child(3) { animation-delay: 0.32s; }
+.section-block:nth-child(4) { animation-delay: 0.40s; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.section-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(24px, 3.1vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 14px; max-width: 72ch; }
+p strong { font-weight: 600; }
+
+.verdict {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.verdict-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.verdict-text {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(18px, 2.3vw, 23px);
+  font-weight: 700;
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+.verdict-text em { font-style: italic; color: var(--accent); }
+
+/* item — one risk / action block */
+.item {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+.item:last-child { border-bottom: none; }
+.item-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.item-ref {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--border-s);
+  flex-shrink: 0;
+}
+.item-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--text);
+}
+.item-ctx { font-size: 14px; line-height: 1.55; color: var(--text-2); margin-bottom: 8px; max-width: 74ch; }
+.item-ctx .danger { color: var(--accent); }
+.item-ask {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 74ch;
+  padding-left: 14px;
+  border-left: 2px solid var(--accent);
+}
+.item-ask strong { font-weight: 600; }
+.item-ask.q { border-left-color: var(--amber); }
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border-s);
+  color: var(--text-2);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.pill.warn { color: var(--amber); border-color: var(--amber); }
+.pill.go   { color: var(--green); border-color: var(--green); }
+.pill.stop { color: var(--accent); border-color: var(--accent); }
+
+footer {
+  padding: 16px 48px;
+  border-top: 1.5px solid var(--text);
+  display: flex;
+  justify-content: space-between;
+  animation: fadeUp 0.5s ease 0.85s both;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3);
+}
+
+@media (max-width: 720px) {
+  header, main { padding-left: 24px; padding-right: 24px; }
+  footer { padding: 14px 24px; }
+  .mast-strip { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .item-ask { padding-left: 10px; }
+}
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="mast-top-rule"></div>
+    <div class="mast-brand-row">
+      <div class="mast-wordmark">Risk Alert</div>
+      <a href="./" class="back-link">← Shared-Airnest</a>
+    </div>
+    <div class="doc-title">Poem Suites Go-Live — three items put the Monday date at risk</div>
+    <div class="mast-strip">
+      <span class="mast-meta">From Luis Navarro · For Javier Navarro · 22 May 2026</span>
+      <span class="mast-status">Poem cutover · w/c 25 May</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 01  THE SITUATION ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§01</span>
+        <span class="section-name">The Situation</span>
+      </div>
+      <h2 class="section-title">Poem Suites goes live Monday. Three items could slip the date.</h2>
+
+      <div class="verdict">
+        <div class="verdict-eyebrow">Why this alert</div>
+        <div class="verdict-text">
+          Poem Suites is scheduled to go live <em>w/c 25 May</em> — this Monday. After
+          today's Mews onboarding call, three items put the Monday date at risk and four
+          more must close over the weekend. Flagging now so we can decide whether to
+          <em>hold the date</em>.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 02  AT RISK ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§02</span>
+        <span class="section-name">⚠ At Risk — Could Slip the Monday Go-Live</span>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">R1</span>
+          <span class="item-title">KYB verification not completed</span>
+          <span class="pill warn">At risk</span>
+        </div>
+        <p class="item-ctx">
+          Mews's Know-Your-Business verification for Poem is still open. Mews Partner
+          Success has raised an escalation ticket but warned that a resolution before
+          Monday is <span class="danger">not guaranteed</span> — the upcoming holiday
+          compresses their turnaround.
+        </p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">R2</span>
+          <span class="item-title">Channel rates not yet adjusted per channel</span>
+          <span class="pill warn">At risk</span>
+        </div>
+        <p class="item-ctx">
+          Each OTA — Booking.com, Expedia, Airbnb — needs its own rate plan to carry a
+          different commission. These are not built yet.
+        </p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">R3</span>
+          <span class="item-title">Yacan smart-lock integration unconfirmed</span>
+          <span class="pill warn">At risk</span>
+        </div>
+        <p class="item-ctx">
+          The Mews–Yacan integration is not enabled on Poem's Yacan profile, and Yacan has
+          not responded to the activation request. Mews is chasing an alternate Yacan
+          contact. Until it is activated, automated guest access codes will not flow.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 03  CLOSING BEFORE MONDAY ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§03</span>
+        <span class="section-name">→ Closing Before Monday</span>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">C1</span>
+          <span class="item-title">Airbnb reservation import</span>
+          <span class="pill go">In hand</span>
+        </div>
+        <p class="item-ctx">
+          Airbnb bookings cannot be pulled via integration; they go in through a manual
+          Excel file. I will build this at the last minute to capture every booking right
+          up to cutover.
+        </p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">C2</span>
+          <span class="item-title">Accounting categories for ancillary services</span>
+          <span class="pill warn">Question</span>
+        </div>
+        <p class="item-ctx">
+          Categories for ancillary services (e.g. cleaning) to be set up in the accounting
+          configuration.
+        </p>
+        <div class="item-ask q"><strong>Confirm:</strong> should these be set up in the accounting configuration?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">C3</span>
+          <span class="item-title">Flexible cancellation policy</span>
+          <span class="pill stop">Needs sign-off</span>
+        </div>
+        <p class="item-ctx">
+          To be set to charge 100% of the reservation if not cancelled by one day before
+          check-in time. <span class="danger">Needs your confirmation that this is the
+          intended commercial term.</span> If so, Masanet should be adjusted.
+        </p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">C4</span>
+          <span class="item-title">Spanish police (SES.Hospedajes) room mapping</span>
+          <span class="pill go">In hand</span>
+        </div>
+        <p class="item-ctx">
+          I will have the per-room codes ready by Monday, mapping each room to its owner.
+          Poem's 34 rooms span four owners, so this requires four separate police
+          integrations.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 04  THE ASK ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§04</span>
+        <span class="section-name">The Ask</span>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">A1</span>
+          <span class="item-title">Decide whether to hold the Monday date</span>
+          <span class="pill stop">Decision</span>
+        </div>
+        <div class="item-ask"><strong>Decide:</strong> hold the Monday go-live until KYB clears.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">A2</span>
+          <span class="item-title">Confirm the cancellation policy term</span>
+          <span class="pill stop">Decision</span>
+        </div>
+        <div class="item-ask"><strong>Confirm</strong> the Flexible cancellation policy term: 100% charge if not cancelled one day before check-in.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Airnest Homes SL · Poem Go-Live Risk Alert · 2026-05-22</span>
+    <span>Internal · Not for external distribution</span>
+  </footer>
+
+</body>
+</html>
