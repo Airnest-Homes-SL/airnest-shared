@@ -325,7 +325,7 @@ footer span {
           Hotel Masanet's full configuration is now replicated onto <em>Edificio Poem</em> —
           accounting, policies, rate groups, rates, age categories, products. Poem is the first
           go-live, <em>w/c 25 May</em>, then roughly one property per week through early July.
-          This call is to clear four go-live blockers and confirm a dozen configuration points
+          This call is to clear the go-live blockers and confirm the open configuration points
           before we repeat the process across the remaining five properties.
         </div>
       </div>
@@ -343,7 +343,7 @@ footer span {
         <span class="section-num">§02</span>
         <span class="section-name">Blockers — Go-Live Critical</span>
       </div>
-      <h2 class="section-title">Four things that can stop or compromise the cutover.</h2>
+      <h2 class="section-title">Two things that can stop or compromise the cutover.</h2>
 
       <div class="item">
         <div class="item-head">
@@ -358,16 +358,6 @@ footer span {
       <div class="item">
         <div class="item-head">
           <span class="item-ref">B2</span>
-          <span class="item-title">Restriction-create wizard not persisting</span>
-          <span class="pill stop">Blocker</span>
-        </div>
-        <p class="item-ctx">On Poem, the <code>/Restriction/Create</code> flow accepts all inputs (type <code>Closed to stay</code>, rate group <code>Non Refundable RO</code>, minimum advance 5 days), proceeds through <em>Continue</em> to the review screen, but clicking <em>Create restrictions</em> leaves the page on the Create URL and the restriction list stays empty. No error message shown. Masanet has two such restrictions (Non Refundable RO and BB, 5-day minimum advance).</p>
-        <div class="item-ask"><strong>Ask:</strong> Is there a hidden required field (date range, currency), a permissions issue, or a known bug blocking restriction creation on a property still in onboarding?</div>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <span class="item-ref">B3</span>
           <span class="item-title">Rate pricing — no source of truth yet</span>
           <span class="pill stop">Blocker</span>
         </div>
@@ -375,15 +365,6 @@ footer span {
         <div class="item-ask"><strong>Ask:</strong> What does Mews expect as the source of pricing — imported from current Guesty rates, driven by Atomize RMS, or manual entry by revenue management? And does "Select tax for all base rates" (IGIC 7%) get handled in the same pricing workflow?</div>
       </div>
 
-      <div class="item">
-        <div class="item-head">
-          <span class="item-ref">B4</span>
-          <span class="item-title">Guest communications — no unified inbox after cutover</span>
-          <span class="pill stop">Blocker</span>
-        </div>
-        <p class="item-ctx">Leaving Guesty removes our unified guest inbox. Mews native messaging does <strong>not</strong> receive inbound Airbnb / Booking.com / Expedia chat — a confirmed gap. Conduit was negotiated and rejected on price; this is a from-scratch procurement (Duve vs Akia, RFQ pending). This is the single biggest launch-readiness risk and is not a Mews-config item, but Mews should know it is open.</p>
-        <div class="item-ask"><strong>Ask:</strong> Which messaging/guest-experience partners does Mews recommend or natively integrate with for a working three-OTA inbox? Any Mews Marketplace option we have not considered?</div>
-      </div>
     </section>
 
     <!-- ── 03  CONFIGURATION QUESTIONS ── -->
@@ -407,16 +388,6 @@ footer span {
       <div class="item">
         <div class="item-head">
           <span class="item-ref">Q2</span>
-          <span class="item-title">Payment-policy → rate-group assignment workflow</span>
-          <span class="pill warn">Question</span>
-        </div>
-        <p class="item-ctx">A newly-created payment policy shows Status <code>Unassigned</code> until it is linked to a rate group. We found that setting it as a rate group's default settlement rule flips it to <code>Assigned</code>. We want to confirm this is the intended path.</p>
-        <div class="item-ask q"><strong>Ask:</strong> Is assigning the policy via the rate group the canonical workflow, or is there a dedicated "assign policy" action we should be using instead?</div>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <span class="item-ref">Q3</span>
           <span class="item-title">Rate primary-name locale stickiness</span>
           <span class="pill warn">Question</span>
         </div>
@@ -424,15 +395,6 @@ footer span {
         <div class="item-ask q"><strong>Ask:</strong> How do we change the primary stored name so it displays consistently across the UI and to the OTAs?</div>
       </div>
 
-      <div class="item">
-        <div class="item-head">
-          <span class="item-ref">Q4</span>
-          <span class="item-title">Age-category price adjustment — additive or independent?</span>
-          <span class="pill warn">Question</span>
-        </div>
-        <p class="item-ctx">We replicated 5 age categories (Adults, Infant, Children, Teenager, Senior). It is unclear how their pricing interacts with a rate's base price.</p>
-        <div class="item-ask q"><strong>Ask:</strong> Is an age-category price adjustment applied <em>on top of</em> the rate base price (additive), or set as an <em>independent</em> standalone price?</div>
-      </div>
     </section>
 
     <!-- ── 04  SETUP ITEMS NEEDING MEWS INPUT ── -->
@@ -446,26 +408,6 @@ footer span {
       <div class="item">
         <div class="item-head">
           <span class="item-ref">S1</span>
-          <span class="item-title">Travel agency contract</span>
-          <span class="pill warn">Question</span>
-        </div>
-        <p class="item-ctx">Masanet's onboarding shows one travel agency contract complete. We cannot replicate it without knowing the partner and terms.</p>
-        <div class="item-ask q"><strong>Ask:</strong> Which travel agency, and what commission structure? Does it apply to all properties or is it Masanet-specific?</div>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <span class="item-ref">S2</span>
-          <span class="item-title">Booking engine — which task did Masanet complete?</span>
-          <span class="pill warn">Question</span>
-        </div>
-        <p class="item-ctx">Onboarding shows Masanet at 1 of 3 in Guest Experience → Booking engine. The three tasks are <em>Customize booking engine</em>, <em>Promote a service for booking</em>, and <em>Provide the Booking Engine guide to your web developer</em> (mark-as-pass).</p>
-        <div class="item-ask q"><strong>Ask:</strong> Which one is done, and what's the minimum we need on the booking engine before go-live?</div>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <span class="item-ref">S3</span>
           <span class="item-title">Per-room mapping for SES.Hospedajes police registration</span>
           <span class="pill warn">Question</span>
         </div>
@@ -475,7 +417,7 @@ footer span {
 
       <div class="item">
         <div class="item-head">
-          <span class="item-ref">S4</span>
+          <span class="item-ref">S2</span>
           <span class="item-title">INE occupancy export — registration number</span>
           <span class="pill warn">Question</span>
         </div>
@@ -485,7 +427,7 @@ footer span {
 
       <div class="item">
         <div class="item-head">
-          <span class="item-ref">S5</span>
+          <span class="item-ref">S3</span>
           <span class="item-title">Room access-code storage for check-in emails</span>
           <span class="pill warn">Question</span>
         </div>
@@ -562,24 +504,16 @@ footer span {
           <div class="check-meta">Owner: Mews · Need: enablement steps + dates for all 6 properties</div>
         </div></li>
         <li><div>
-          <div class="check-title">B2 · Restriction-create not saving</div>
-          <div class="check-meta">Owner: Mews · Need: cause + fix or workaround</div>
-        </div></li>
-        <li><div>
-          <div class="check-title">B3 · Rate pricing source of truth</div>
+          <div class="check-title">B2 · Rate pricing source of truth</div>
           <div class="check-meta">Owner: Airnest (Javier / revenue) + Mews · Need: decision on Guesty import vs Atomize vs manual</div>
         </div></li>
         <li><div>
-          <div class="check-title">B4 · Guest-comms partner direction</div>
-          <div class="check-meta">Owner: Airnest · Need: Mews recommendation, then RFQ Duve + Akia</div>
+          <div class="check-title">Q1–Q2 · Config confirmations</div>
+          <div class="check-meta">Owner: Mews · Need: Flexible-policy semantics, rate name fix</div>
         </div></li>
         <li><div>
-          <div class="check-title">Q1–Q4 · Config confirmations</div>
-          <div class="check-meta">Owner: Mews · Need: Flexible-policy semantics, policy assignment, rate name fix, age-category pricing</div>
-        </div></li>
-        <li><div>
-          <div class="check-title">S1–S5 · Setup details</div>
-          <div class="check-meta">Owner: Mews + Airnest · Need: TA contract, booking engine task, Hospedajes mapping, INE number, access-code field</div>
+          <div class="check-title">S1–S3 · Setup details</div>
+          <div class="check-meta">Owner: Mews + Airnest · Need: Hospedajes mapping, INE number, access-code field</div>
         </div></li>
         <li><div>
           <div class="check-title">P1 · Clone-configuration feature</div>
