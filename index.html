@@ -3,435 +3,569 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shared-Airnest</title>
+  <title>Shared·Airnest — Internal Archive</title>
   <script src="gate.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #F4F1EA;
-      --text:    #141210;
-      --text-2:  #5C5852;
-      --text-3:  #9A9590;
-      --accent:  #B5331A;
-      --green:   #2E7D4F;
-      --border:  #D5D0C8;
-      --border-s:#B0A89E;
+      --ink:        #15110C;
+      --ink-2:      #1D1812;
+      --ink-3:      #251E15;
+      --paper:      #ECE4D3;
+      --mute:       #9A9082;
+      --faint:      #615A4C;
+      --ember:      #E68A3C;
+      --ember-line: #7A4A20;
+      --sage:       #8FB98A;
+      --rule:       #2C261D;
+      --pad:        clamp(22px, 5vw, 64px);
     }
 
+    html { background: var(--ink); }
+
     body {
-      font-family: 'Schibsted Grotesk', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'Hanken Grotesk', sans-serif;
+      background: var(--ink);
+      color: var(--paper);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--ember); color: var(--ink); }
+
+    ::-webkit-scrollbar { width: 11px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--rule);
+      border: 3px solid var(--ink);
+      border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--ember-line); }
+
+    /* ── ATMOSPHERE ── */
+    .grain {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 2;
+      opacity: 0.035;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .vignette {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1;
+      background: radial-gradient(125% 75% at 50% -8%, transparent 52%, rgba(0,0,0,0.55) 100%);
     }
 
     /* ── MASTHEAD ── */
     header {
-      padding: 36px 48px 0;
-      animation: fadeUp 0.7s ease 0.05s both;
+      position: relative;
+      padding: clamp(30px, 5vw, 52px) var(--pad) 0;
+      z-index: 3;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 80%; height: 380px;
+      background: radial-gradient(ellipse at center, rgba(230,138,60,0.13), transparent 68%);
+      pointer-events: none;
     }
 
-    .mast-top-rule { height: 1.5px; background: var(--text); }
+    .mast-rule {
+      height: 1.5px;
+      background: var(--paper);
+      transform-origin: left;
+      animation: drawX 0.9s cubic-bezier(.7,0,.2,1) 0.1s both;
+    }
 
-    .mast-wordmark {
-      display: block;
-      font-family: 'Fraunces', serif;
-      font-size: clamp(68px, 11.5vw, 128px);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 0.88;
-      color: var(--text);
-      padding: 14px 0;
+    .mast-eyebrow {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 12px 0 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--faint);
+      animation: fadeUp 0.7s ease 0.25s both;
+    }
+    .mast-eyebrow .key { color: var(--ember); }
+
+    .mast-word {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: clamp(58px, 12.5vw, 158px);
+      line-height: 0.92;
+      letter-spacing: -0.015em;
+      color: var(--paper);
+      padding: 14px 0 6px;
+      animation: fadeUp 0.9s cubic-bezier(.5,.05,.2,1) 0.32s both;
+    }
+    .mast-word .dot {
+      color: var(--ember);
+      font-style: italic;
+    }
+
+    .mast-sub {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(17px, 2.3vw, 25px);
+      line-height: 1.32;
+      color: var(--mute);
+      max-width: 34ch;
+      padding-bottom: 22px;
+      animation: fadeUp 0.8s ease 0.46s both;
     }
 
     .mast-strip {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 11px 0 0;
-      border-top: 1.5px solid var(--text);
-      gap: 16px;
-    }
-
-    .mast-strip span {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-
-    .mast-meta   { color: var(--text-3); }
-    .mast-status { color: var(--accent); }
-
-    /* ── MAIN ── */
-    main { flex: 1; padding: 0 48px 72px; }
-
-    /* ── LIST SECTION ── */
-    .list-section {
-      margin-top: 44px;
-      opacity: 0;
-      animation: fadeUp 0.6s ease both;
-    }
-    .list-section:nth-of-type(1) { animation-delay: 0.26s; }
-    .list-section:nth-of-type(2) { animation-delay: 0.38s; }
-
-    .section-head {
-      display: flex;
       align-items: baseline;
-      justify-content: space-between;
-      gap: 14px;
-      padding-bottom: 8px;
-      border-bottom: 1.5px solid var(--text);
-    }
-
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 500;
+      gap: 16px;
+      padding: 12px 0 0;
+      border-top: 1px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text);
+      color: var(--faint);
+      animation: fadeUp 0.7s ease 0.56s both;
     }
-    #latest .section-label { color: var(--accent); }
+    .mast-strip b { color: var(--paper); font-weight: 500; }
 
-    .section-count {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      color: var(--text-3);
+    /* ── MAIN ── */
+    main {
+      position: relative;
+      z-index: 3;
+      flex: 1;
+      padding: 0 var(--pad) 90px;
     }
 
-    /* hidden until JS decides; avoids empty-band flash */
+    .band {
+      margin-top: clamp(40px, 6vw, 64px);
+      opacity: 0;
+      animation: fadeUp 0.7s ease both;
+    }
+    #latest  { animation-delay: 0.66s; }
+    #archive { animation-delay: 0.78s; }
     #latest[hidden] { display: none; }
 
-    /* ── TOC ENTRY ── */
-    .toc-entry {
-      display: grid;
-      grid-template-columns: 1fr 22px;
-      gap: 0 16px;
-      align-items: start;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: inherit;
-      transition: padding-left 0.2s ease;
-    }
-    .toc-entry:hover { padding-left: 5px; }
-
-    .toc-title-wrap {
-      display: flex;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0 9px;
-      margin-bottom: 6px;
-    }
-
-    .toc-cat {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: rgba(181, 51, 26, 0.08);
-      padding: 3px 7px;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-
-    .toc-title {
-      font-size: 14.5px;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.35;
-      position: relative;
-    }
-    .toc-title::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0;
-      width: 0; height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-    .toc-entry:hover .toc-title::after { width: 100%; }
-
-    .toc-desc {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text-3);
-      line-height: 1.55;
-      margin-bottom: 10px;
-    }
-
-    .toc-meta {
+    .band-head {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 13px;
+      padding-bottom: 13px;
+      border-bottom: 1px solid var(--rule);
     }
-
-    .toc-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-3);
+    .band-mark {
+      width: 8px; height: 8px;
+      background: var(--ember);
+      flex-shrink: 0;
     }
-
-    .toc-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      color: var(--border-s);
-    }
-
-    .toc-arrow {
-      font-size: 14px;
-      color: var(--border);
-      padding-top: 3px;
-      transition: color 0.2s, transform 0.22s ease;
-    }
-    .toc-entry:hover .toc-arrow {
-      color: var(--accent);
-      transform: translateX(3px);
-    }
-
-    /* ── NEW BADGE ── */
-    .toc-new {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8px;
+    #archive .band-mark { background: var(--faint); }
+    .band-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
       font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--paper);
+    }
+    #latest .band-name { color: var(--ember); }
+    .band-count {
+      margin-left: auto;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #fff;
-      background: var(--accent);
-      padding: 3px 6px;
-      border-radius: 4px;
-      white-space: nowrap;
+      color: var(--faint);
+    }
+    #latest .band-head { border-bottom-color: var(--ember-line); }
+
+    /* ── LEDGER ROW ── */
+    .row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 58px 1fr 152px 20px;
+      gap: 0 26px;
+      align-items: start;
+      padding: 26px 18px 26px 14px;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.25s ease, padding-left 0.25s ease;
+    }
+    .row::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--ember);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.28s cubic-bezier(.6,0,.2,1);
+    }
+    .row:hover {
+      background: var(--ink-2);
+      padding-left: 22px;
+    }
+    .row:hover::before { transform: scaleY(1); }
+
+    .row-idx {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--faint);
+      padding-top: 9px;
+      transition: color 0.22s ease;
+    }
+    .row:hover .row-idx { color: var(--ember); }
+
+    .row-cat {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ember);
+      background: rgba(230,138,60,0.10);
+      border: 1px solid var(--ember-line);
+      padding: 3px 8px 2px;
+      border-radius: 3px;
+      margin-bottom: 9px;
+      vertical-align: middle;
+    }
+    .row-new {
+      display: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--ember);
+      padding: 3px 8px 2px;
+      border-radius: 3px;
+      margin: 0 0 9px 7px;
+      vertical-align: middle;
+    }
+    .row.is-new .row-new { display: inline-block; }
+
+    .row-title {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: clamp(21px, 2.5vw, 27px);
+      line-height: 1.16;
+      letter-spacing: 0.005em;
+      color: var(--paper);
+      margin-bottom: 8px;
+    }
+    .row-title .chk {
+      color: var(--sage);
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 0.6em;
+      vertical-align: 0.12em;
+      margin-left: 6px;
+    }
+
+    .row-desc {
+      font-size: 13px;
+      line-height: 1.62;
+      color: var(--mute);
+      max-width: 66ch;
+    }
+
+    .row-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      padding-top: 7px;
+      text-align: right;
+    }
+    .row-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--paper);
+    }
+    .row-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .row-arrow {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 17px;
+      color: var(--faint);
+      padding-top: 8px;
+      transition: color 0.22s ease, transform 0.24s cubic-bezier(.6,0,.2,1);
+    }
+    .row:hover .row-arrow {
+      color: var(--ember);
+      transform: translateX(4px);
     }
 
     /* ── STATUS STATES ── */
-    .toc-check {
-      color: var(--green);
-      font-weight: 700;
-      margin-left: 2px;
-    }
-
-    .toc-entry.is-completed .toc-title,
-    .toc-entry.is-stale     .toc-title { color: var(--text-2); }
-    .toc-entry.is-stale {
-      opacity: 0.62;
-    }
-    .toc-entry.is-stale .toc-cat {
-      color: var(--text-3);
-      background: rgba(154, 149, 144, 0.14);
+    .row.is-completed .row-title { color: var(--mute); }
+    .row.is-stale { opacity: 0.5; }
+    .row.is-stale .row-cat {
+      color: var(--faint);
+      border-color: var(--rule);
+      background: transparent;
     }
 
     /* ── FOOTER ── */
     footer {
-      padding: 16px 48px;
-      border-top: 1.5px solid var(--text);
+      position: relative;
+      z-index: 3;
+      padding: 18px var(--pad);
+      border-top: 1.5px solid var(--paper);
       display: flex;
       justify-content: space-between;
-      animation: fadeUp 0.5s ease 0.58s both;
+      gap: 12px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.9s both;
     }
     footer span {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'IBM Plex Mono', monospace;
       font-size: 9px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-3);
+      color: var(--faint);
     }
+    footer .mark { color: var(--ember); }
 
     /* ── ANIMATION ── */
     @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes drawX {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes rowIn {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    .row { opacity: 0; }
+    .row.shown { animation: rowIn 0.55s ease both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before { animation-duration: 0.01ms !important; animation-delay: 0ms !important; }
+      .row { opacity: 1; }
+    }
 
     /* ── MOBILE ── */
-    @media (max-width: 620px) {
-      header, main { padding-left: 24px; padding-right: 24px; }
-      footer { padding: 14px 24px; }
-      .mast-strip { flex-direction: column; align-items: flex-start; gap: 4px; }
-      .toc-desc { display: none; }
+    @media (max-width: 680px) {
+      .row {
+        grid-template-columns: 36px 1fr;
+        gap: 0 16px;
+        padding: 22px 6px;
+      }
+      .row:hover { padding-left: 12px; }
+      .row-idx { font-size: 11px; padding-top: 7px; }
+      .row-meta {
+        grid-column: 2;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        text-align: left;
+        margin-top: 11px;
+        padding-top: 0;
+      }
+      .row-arrow { display: none; }
+      .row-desc { max-width: none; }
+      .mast-sub { max-width: none; }
     }
   </style>
 </head>
 <body>
 
+  <div class="vignette"></div>
+  <div class="grain"></div>
+
   <header>
-    <div class="mast-top-rule"></div>
-    <span class="mast-wordmark">SHARED-AIRNEST</span>
+    <div class="mast-rule"></div>
+    <div class="mast-eyebrow">
+      <span>Airnest Homes SL <span class="key">/</span> Internal Archive</span>
+      <span>Restricted Access</span>
+    </div>
+    <h1 class="mast-word">Shared<span class="dot">·</span>Airnest</h1>
+    <p class="mast-sub">A standing archive of operating briefs, decision memos and migration records.</p>
     <div class="mast-strip">
-      <span class="mast-meta">Vol.&nbsp;01 &nbsp;·&nbsp; Shared Documents &nbsp;·&nbsp; <span id="mast-count">—</span></span>
-      <span class="mast-status">Internal · Restricted</span>
+      <span><b id="mast-count">—</b> &nbsp;in catalogue</span>
+      <span>Vol.&nbsp;01 &nbsp;—&nbsp; Maintained May 2026</span>
     </div>
   </header>
 
   <main>
 
     <!-- ════ LATEST ADDITIONS ════ -->
-    <!-- JS moves any "new" entry here. Hidden when empty. -->
-    <section class="list-section" id="latest" hidden>
-      <div class="section-head">
-        <span class="section-label">Latest Additions</span>
-        <span class="section-count" id="latest-count"></span>
+    <!-- JS moves any "new" entry (≤ NEW_WINDOW_DAYS old) here. Hidden when empty. -->
+    <section class="band" id="latest" hidden>
+      <div class="band-head">
+        <span class="band-mark"></span>
+        <span class="band-name">Latest Additions</span>
+        <span class="band-count" id="latest-count"></span>
       </div>
-      <div class="list-body" id="latest-body"></div>
+      <div class="ledger" id="latest-body"></div>
     </section>
 
     <!-- ════ ALL DOCUMENTS ════ -->
-    <!-- Author new docs here as a .toc-entry. Required: data-date="YYYY-MM-DD".
-         Optional: data-status="completed" or "stale" (default is active).
-         JS sorts newest-first, promotes recent ones to Latest Additions,
-         and pushes stale ones to the bottom. -->
-    <section class="list-section" id="archive">
-      <div class="section-head">
-        <span class="section-label">All Documents</span>
-        <span class="section-count" id="archive-count"></span>
+    <!-- Author new docs here as a .row. Required: data-date="YYYY-MM-DD".
+         Optional: data-status="completed" or "stale" (default: active).
+         JS sorts newest-first, auto-numbers, promotes recent docs to
+         Latest Additions, and pushes stale ones to the bottom. -->
+    <section class="band" id="archive">
+      <div class="band-head">
+        <span class="band-mark"></span>
+        <span class="band-name">All Documents</span>
+        <span class="band-count" id="archive-count"></span>
       </div>
-      <div class="list-body" id="archive-body">
+      <div class="ledger" id="archive-body">
 
-        <a href="poem-go-live-risk-alert-2026-05-22.html" class="toc-entry" data-date="2026-05-22">
-          <div>
-            <div class="toc-title-wrap">
-              <span class="toc-cat">Ops</span>
-              <span class="toc-title">Poem Suites Go-Live — Risk Alert</span>
-            </div>
-            <div class="toc-desc">Risk alert for the CEO ahead of the Poem Suites go-live (w/c 25 May). Three items put the Monday date at risk — KYB verification, per-channel rates, Yacan smart-lock integration — plus four more closing over the weekend. Asks: decide whether to hold the date, and confirm the cancellation policy term.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Risk alert</span>
-              <span class="toc-date">22 May 2026</span>
-            </div>
+        <a href="poem-go-live-risk-alert-2026-05-22.html" class="row" data-date="2026-05-22">
+          <span class="row-idx"></span>
+          <div class="row-main">
+            <span class="row-cat">Ops</span><span class="row-new">New</span>
+            <h2 class="row-title">Poem Suites Go-Live — Risk Alert</h2>
+            <p class="row-desc">Risk alert for the CEO ahead of the Poem Suites go-live (w/c 25 May). Three items put the Monday date at risk — KYB verification, per-channel rates, Yacan smart-lock integration — plus four more closing over the weekend. Asks: decide whether to hold the date, and confirm the cancellation policy term.</p>
           </div>
-          <div class="toc-arrow">→</div>
+          <div class="row-meta">
+            <span class="row-date">22 May 2026</span>
+            <span class="row-tag">Risk alert</span>
+          </div>
+          <span class="row-arrow">→</span>
         </a>
 
-        <a href="mews-meeting-brief-2026-05-22.html" class="toc-entry" data-date="2026-05-22">
-          <div>
-            <div class="toc-title-wrap">
-              <span class="toc-cat">Ops</span>
-              <span class="toc-title">Mews Meeting Brief — Kenya call, 22 May</span>
-            </div>
-            <div class="toc-desc">Prep notes for the migration call with Kenya at Mews: four go-live blockers (Mews Payments provisioning, restriction-create bug, rate pricing, guest-comms inbox), config questions, setup items needing Mews input, proactive discussion points, and a follow-up checklist. Drives the cutover before Poem goes live w/c 25 May.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Meeting brief</span>
-              <span class="toc-date">22 May 2026</span>
-            </div>
+        <a href="mews-meeting-brief-2026-05-22.html" class="row" data-date="2026-05-22">
+          <span class="row-idx"></span>
+          <div class="row-main">
+            <span class="row-cat">Ops</span><span class="row-new">New</span>
+            <h2 class="row-title">Mews Meeting Brief — Kenya Call, 22 May</h2>
+            <p class="row-desc">Prep notes for the migration call with Kenya at Mews: four go-live blockers (Mews Payments provisioning, restriction-create bug, rate pricing, guest-comms inbox), config questions, setup items needing Mews input, proactive discussion points, and a follow-up checklist. Drives the cutover before Poem goes live w/c 25 May.</p>
           </div>
-          <div class="toc-arrow">→</div>
+          <div class="row-meta">
+            <span class="row-date">22 May 2026</span>
+            <span class="row-tag">Meeting brief</span>
+          </div>
+          <span class="row-arrow">→</span>
         </a>
 
-        <a href="conduit-alternatives-ceo-summary-2026-05-21-v3.html" class="toc-entry" data-date="2026-05-21">
-          <div>
-            <div class="toc-title-wrap">
-              <span class="toc-cat">Strategic</span>
-              <span class="toc-title">Conduit Alternatives — Decision Brief for CEO</span>
-            </div>
-            <div class="toc-desc">Replacing Guesty's unified inbox after the Mews migration. Two finalists — Duve and Akia — with a balanced pros/cons analysis across pricing, AI depth, Mews integration, and European fit. The ask: request quotes from both this week, pilot the winner on Poem at cutover. §02 grounds the boutique-hotel-on-Airbnb claim in 2025 industry data.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Decision brief</span>
-              <span class="toc-date">21 May 2026</span>
-            </div>
+        <a href="conduit-alternatives-ceo-summary-2026-05-21-v3.html" class="row" data-date="2026-05-21">
+          <span class="row-idx"></span>
+          <div class="row-main">
+            <span class="row-cat">Strategic</span><span class="row-new">New</span>
+            <h2 class="row-title">Conduit Alternatives — Decision Brief for CEO</h2>
+            <p class="row-desc">Replacing Guesty's unified inbox after the Mews migration. Two finalists — Duve and Akia — with a balanced pros/cons analysis across pricing, AI depth, Mews integration, and European fit. The ask: request quotes from both this week, pilot the winner on Poem at cutover.</p>
           </div>
-          <div class="toc-arrow">→</div>
+          <div class="row-meta">
+            <span class="row-date">21 May 2026</span>
+            <span class="row-tag">Decision brief</span>
+          </div>
+          <span class="row-arrow">→</span>
         </a>
 
-        <a href="voice-ai-options-2026-05-16.html" class="toc-entry" data-date="2026-05-16">
-          <div>
-            <div class="toc-title-wrap">
-              <span class="toc-cat">Strategic</span>
-              <span class="toc-title">Voice AI — The Four Options</span>
-            </div>
-            <div class="toc-desc">Focused companion to the CEO brief: A/B/C/D laid out, with Luis's preference (A) and the AI co-recommendation (A + C, with D as the 2028+ endgame).</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Options summary</span>
-              <span class="toc-date">16 May 2026</span>
-            </div>
+        <a href="voice-ai-options-2026-05-16.html" class="row" data-date="2026-05-16">
+          <span class="row-idx"></span>
+          <div class="row-main">
+            <span class="row-cat">Strategic</span><span class="row-new">New</span>
+            <h2 class="row-title">Voice AI — The Four Options</h2>
+            <p class="row-desc">Focused companion to the CEO brief: A/B/C/D laid out, with Luis's preference (A) and the AI co-recommendation (A + C, with D as the 2028+ endgame).</p>
           </div>
-          <div class="toc-arrow">→</div>
+          <div class="row-meta">
+            <span class="row-date">16 May 2026</span>
+            <span class="row-tag">Options summary</span>
+          </div>
+          <span class="row-arrow">→</span>
         </a>
 
-        <a href="voice-ai-ceo-summary-2026-05-16.html" class="toc-entry" data-date="2026-05-16">
-          <div>
-            <div class="toc-title-wrap">
-              <span class="toc-cat">Strategic</span>
-              <span class="toc-title">Voice AI — Decision Brief for CEO</span>
-            </div>
-            <div class="toc-desc">Response to Javier's build/buy/stay memo. Recommendation: 90-day Conduit pilot, defer build to 2027 as AOS module, "fully autonomous + emergency contact" as 2028 endgame for Collection.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Decision brief</span>
-              <span class="toc-date">16 May 2026</span>
-            </div>
+        <a href="voice-ai-ceo-summary-2026-05-16.html" class="row" data-date="2026-05-16">
+          <span class="row-idx"></span>
+          <div class="row-main">
+            <span class="row-cat">Strategic</span><span class="row-new">New</span>
+            <h2 class="row-title">Voice AI — Decision Brief for CEO</h2>
+            <p class="row-desc">Response to Javier's build/buy/stay memo. Recommendation: 90-day Conduit pilot, defer build to 2027 as AOS module, "fully autonomous + emergency contact" as 2028 endgame for Collection.</p>
           </div>
-          <div class="toc-arrow">→</div>
+          <div class="row-meta">
+            <span class="row-date">16 May 2026</span>
+            <span class="row-tag">Decision brief</span>
+          </div>
+          <span class="row-arrow">→</span>
         </a>
 
-        <a href="ops-briefing-2026-05-11.html" class="toc-entry" data-date="2026-05-11">
-          <div>
-            <div class="toc-title-wrap">
-              <span class="toc-cat">Ops</span>
-              <span class="toc-title">Operations Briefing — Week of 11 May 2026</span>
-            </div>
-            <div class="toc-desc">Mews certification complete, Airnest Ops Connector live in production, connector build started.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">CEO briefing</span>
-              <span class="toc-date">11 May 2026</span>
-            </div>
+        <a href="ops-briefing-2026-05-11.html" class="row" data-date="2026-05-11">
+          <span class="row-idx"></span>
+          <div class="row-main">
+            <span class="row-cat">Ops</span><span class="row-new">New</span>
+            <h2 class="row-title">Operations Briefing — Week of 11 May 2026</h2>
+            <p class="row-desc">Mews certification complete, Airnest Ops Connector live in production, connector build started.</p>
           </div>
-          <div class="toc-arrow">→</div>
+          <div class="row-meta">
+            <span class="row-date">11 May 2026</span>
+            <span class="row-tag">CEO briefing</span>
+          </div>
+          <span class="row-arrow">→</span>
         </a>
 
-        <a href="mews-certification-submission-2026-05-08.html" class="toc-entry" data-date="2026-05-08" data-status="completed">
-          <div>
-            <div class="toc-title-wrap">
-              <span class="toc-cat">Ops</span>
-              <span class="toc-title">Mews Certification Submission — Status Report<span class="toc-check">✓</span></span>
-            </div>
-            <div class="toc-desc">What was submitted in the Mews Private Integration form — endpoints, webhooks, flagged gaps, questions. Completed.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Status report · Completed</span>
-              <span class="toc-date">8 May 2026</span>
-            </div>
+        <a href="ops-briefing-2026-05-08.html" class="row" data-date="2026-05-08">
+          <span class="row-idx"></span>
+          <div class="row-main">
+            <span class="row-cat">Ops</span><span class="row-new">New</span>
+            <h2 class="row-title">Operations Briefing — Week of 8 May 2026</h2>
+            <p class="row-desc">Mews certification submitted, review call booked, mail template pipeline progress, open blockers.</p>
           </div>
-          <div class="toc-arrow">→</div>
+          <div class="row-meta">
+            <span class="row-date">8 May 2026</span>
+            <span class="row-tag">CEO briefing</span>
+          </div>
+          <span class="row-arrow">→</span>
         </a>
 
-        <a href="ops-briefing-2026-05-08.html" class="toc-entry" data-date="2026-05-08">
-          <div>
-            <div class="toc-title-wrap">
-              <span class="toc-cat">Ops</span>
-              <span class="toc-title">Operations Briefing — Week of 8 May 2026</span>
-            </div>
-            <div class="toc-desc">Mews certification submitted, review call booked, mail template pipeline progress, open blockers.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">CEO briefing</span>
-              <span class="toc-date">8 May 2026</span>
-            </div>
+        <a href="mews-certification-submission-2026-05-08.html" class="row" data-date="2026-05-08" data-status="completed">
+          <span class="row-idx"></span>
+          <div class="row-main">
+            <span class="row-cat">Ops</span><span class="row-new">New</span>
+            <h2 class="row-title">Mews Certification Submission — Status Report<span class="chk">✓</span></h2>
+            <p class="row-desc">What was submitted in the Mews Private Integration form — endpoints, webhooks, flagged gaps, questions. Completed.</p>
           </div>
-          <div class="toc-arrow">→</div>
+          <div class="row-meta">
+            <span class="row-date">8 May 2026</span>
+            <span class="row-tag">Completed</span>
+          </div>
+          <span class="row-arrow">→</span>
         </a>
 
-        <a href="mews-integration-report-2026-05-07.html" class="toc-entry" data-date="2026-05-07">
-          <div>
-            <div class="toc-title-wrap">
-              <span class="toc-cat">Ops</span>
-              <span class="toc-title">Mews Integration Report — CEO Status</span>
-            </div>
-            <div class="toc-desc">CEO status report for the Guesty → Mews integration: scope, progress against the certification milestones, and open risks.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Status report</span>
-              <span class="toc-date">7 May 2026</span>
-            </div>
+        <a href="mews-integration-report-2026-05-07.html" class="row" data-date="2026-05-07">
+          <span class="row-idx"></span>
+          <div class="row-main">
+            <span class="row-cat">Ops</span><span class="row-new">New</span>
+            <h2 class="row-title">Mews Integration Report — CEO Status</h2>
+            <p class="row-desc">CEO status report for the Guesty → Mews integration: scope, progress against the certification milestones, and open risks.</p>
           </div>
-          <div class="toc-arrow">→</div>
+          <div class="row-meta">
+            <span class="row-date">7 May 2026</span>
+            <span class="row-tag">Status report</span>
+          </div>
+          <span class="row-arrow">→</span>
         </a>
 
         <!-- Add new documents above this line -->
@@ -442,13 +576,14 @@
   </main>
 
   <footer>
-    <span>Airnest Homes SL</span>
+    <span>Airnest Homes SL <span class="mark">·</span> Internal Archive</span>
     <span>Not for external distribution</span>
   </footer>
 
   <script>
-    /* Index behaviour: sort newest-first, promote recent docs to a
-       "Latest Additions" band, demote stale docs. Authoring stays plain HTML. */
+    /* The Night Ledger — sort newest-first, auto-number, promote recent
+       docs to a "Latest Additions" band, demote stale ones. Authoring
+       stays plain HTML: one <a class="row"> per document. */
     (function () {
       var NEW_WINDOW_DAYS = 3;
 
@@ -457,14 +592,12 @@
       var latestBody  = document.getElementById('latest-body');
       var today       = new Date();
 
-      var entries = Array.prototype.slice.call(
-        archiveBody.querySelectorAll('.toc-entry')
+      var rows = Array.prototype.slice.call(
+        archiveBody.querySelectorAll('.row')
       );
 
-      function dateOf(el) { return new Date(el.dataset.date + 'T00:00:00'); }
-      function ageDays(el) {
-        return Math.floor((today - dateOf(el)) / 86400000);
-      }
+      function dateOf(el)  { return new Date(el.dataset.date + 'T00:00:00'); }
+      function ageDays(el) { return Math.floor((today - dateOf(el)) / 86400000); }
       function rank(el) {
         var s = el.dataset.status;
         if (s === 'stale')     return 2;
@@ -472,21 +605,21 @@
         return 0;
       }
 
-      entries.forEach(function (el) {
+      rows.forEach(function (el) {
         var s = el.dataset.status;
         if (s === 'completed') el.classList.add('is-completed');
         if (s === 'stale')     el.classList.add('is-stale');
       });
 
-      /* main list: active before completed before stale, then newest-first */
-      entries.sort(function (a, b) {
+      /* sort: active, then completed, then stale — each newest-first */
+      rows.sort(function (a, b) {
         var r = rank(a) - rank(b);
         return r !== 0 ? r : dateOf(b) - dateOf(a);
       });
-      entries.forEach(function (el) { archiveBody.appendChild(el); });
+      rows.forEach(function (el) { archiveBody.appendChild(el); });
 
-      /* promote "new" entries (recent + not completed/stale) to the top band */
-      var newOnes = entries
+      /* promote "new" rows: recent and not completed/stale */
+      var newOnes = rows
         .filter(function (el) {
           return !el.dataset.status &&
                  ageDays(el) >= 0 &&
@@ -495,25 +628,33 @@
         .sort(function (a, b) { return dateOf(b) - dateOf(a); });
 
       newOnes.forEach(function (el) {
-        var meta  = el.querySelector('.toc-meta');
-        var badge = document.createElement('span');
-        badge.className = 'toc-new';
-        badge.textContent = 'New';
-        meta.insertBefore(badge, meta.firstChild);
+        el.classList.add('is-new');
         latestBody.appendChild(el);
       });
 
       if (newOnes.length) {
         latest.hidden = false;
-        document.getElementById('latest-count').textContent =
-          newOnes.length + (newOnes.length === 1 ? ' doc' : ' docs');
+        latest.querySelector('#latest-count').textContent =
+          newOnes.length + (newOnes.length === 1 ? ' new' : ' new');
       }
 
-      var total = entries.length;
+      /* auto-number every row in final visual order; stagger reveal */
+      var ordered = []
+        .concat(Array.prototype.slice.call(latestBody.children))
+        .concat(Array.prototype.slice.call(archiveBody.children));
+
+      ordered.forEach(function (el, i) {
+        var idx = el.querySelector('.row-idx');
+        if (idx) idx.textContent = String(i + 1).padStart(2, '0');
+        el.style.animationDelay = (0.84 + i * 0.05) + 's';
+        el.classList.add('shown');
+      });
+
+      var total = rows.length;
       document.getElementById('archive-count').textContent =
-        total + (total === 1 ? ' doc' : ' docs');
+        total + ' total';
       document.getElementById('mast-count').textContent =
-        total + ' Documents';
+        String(total).padStart(2, '0') + ' Documents';
     })();
   </script>
 

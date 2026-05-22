@@ -24,11 +24,40 @@ Shared_Airnest/
 ├── CLAUDE.md         # this file
 ├── MEMORY.md         # project memory + status
 ├── Resources/        # internal docs (not served via Pages by name, but DO NOT put secrets here either)
-├── index.html        # landing page (warm editorial minimalist design — see git history for redesign)
+├── index.html        # landing page — "Night Ledger" house style (dark editorial archive)
 ├── gate.js           # access gate / passcode handling for index
 ├── *.html            # published artifacts — ops briefings, reports
+├── Resources/
+│   └── document-template.html  # starting point for every NEW artifact (see House Style)
 └── .git/             # git metadata (lives in iCloud — see Risks below)
 ```
+
+## House Style — "Night Ledger" (since 2026-05-22)
+
+All **new** artifacts use the dark editorial "Night Ledger" style: warm near-black
+background, parchment text, ember accent, Instrument Serif display / Hanken Grotesk
+body / IBM Plex Mono labels, paper-grain + vignette atmosphere.
+
+- **Start every new document by copying `Resources/document-template.html`** to the repo
+  root as `<name>-YYYY-MM-DD.html`, then fill the `{{PLACEHOLDERS}}`.
+- The template ships the shared components: `.verdict` (hero callout), `.sec` (section),
+  `.item` + `.pill` (risk/action rows), `.callout` (inline note). Delete what's unused.
+- Keep `<script src="gate.js">` in the `<head>`.
+- **Existing pre-2026-05-22 artifacts keep their old warm-paper style — do not migrate them.**
+  The index links both old and new docs; the divergence is accepted.
+
+### index.html authoring
+
+The index is a single flat, newest-first list — no category sections. To list a new doc,
+add an `<a class="row">` inside `#archive-body` (above the `Add new documents` comment):
+
+- `data-date="YYYY-MM-DD"` — **required**; drives sort order, auto-numbering, new/stale logic.
+- `data-status="completed"` or `"stale"` — optional; default (omit) is active.
+- `<span class="row-cat">` — category prefix chip (e.g. `Ops`, `Strategic`, `General`).
+
+Inline JS handles the rest: docs ≤3 days old (`NEW_WINDOW_DAYS`) auto-promote to the
+"Latest Additions" band with a `New` tag; everything else falls into the auto-numbered
+newest-first list; `completed`/`stale` sink to the bottom.
 
 ## How to publish a file
 

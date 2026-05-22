@@ -16,7 +16,7 @@ Last reviewed: 2026-05-15
 
 | File | Purpose | First published |
 |---|---|---|
-| `index.html` | Landing page (SHARED-AIRNEST, warm editorial design) | 2026-05-11 redesign; 2026-05-22 overhaul |
+| `index.html` | Landing page — "Night Ledger" dark editorial style | 2026-05-11 redesign; 2026-05-22 Night Ledger restyle |
 | `gate.js` | Access gate / passcode for landing page | 2026-05-08 |
 | `mews-certification-submission-2026-05-08.html` | Frozen snapshot of Mews cert form submission | 2026-05-08 |
 | `mews-integration-report-2026-05-07.html` | CEO status report for Mews integration | 2026-05-07 |
@@ -24,20 +24,18 @@ Last reviewed: 2026-05-15
 | `ops-briefing-2026-05-11.html` | Weekly ops briefing | 2026-05-11 |
 | `poem-go-live-risk-alert-2026-05-22.html` | CEO risk alert for Poem Suites go-live | 2026-05-22 |
 
-## index.html — Authoring Convention (2026-05-22 overhaul)
+## House Style — "Night Ledger" (2026-05-22)
 
-The index is a single flat, newest-first list of documents — no category sections.
-To add a document, hand-author a `.toc-entry` block inside `#archive-body`
-(above the `Add new documents above this line` comment):
+All **new** artifacts use the dark editorial "Night Ledger" style. Full convention is in
+`CLAUDE.md` → House Style. Key points:
 
-- `data-date="YYYY-MM-DD"` — **required**; drives sort order and new/stale logic.
-- `data-status="completed"` or `"stale"` — optional; default (omit) is active.
-- `<span class="toc-cat">` — category prefix chip (e.g. `Ops`, `Strategic`, `General`).
-
-Inline JS handles the rest: docs ≤3 days old (`NEW_WINDOW_DAYS`) and not
-completed/stale are auto-promoted to a "Latest Additions" band at the top with a
-`New` badge; everything else falls into the newest-first "All Documents" list;
-`completed`/`stale` sort to the bottom. No manual numbering — `.toc-num` was removed.
+- New documents start from `Resources/document-template.html` (dark bg, ember accent,
+  Instrument Serif / Hanken Grotesk / IBM Plex Mono, grain + vignette).
+- Pre-2026-05-22 artifacts keep their old warm-paper style — **not migrated**.
+- `index.html` is a flat, newest-first, auto-numbered list (no category sections). Add a
+  doc as an `<a class="row">` in `#archive-body` with required `data-date="YYYY-MM-DD"`,
+  optional `data-status="completed"|"stale"`, and a `.row-cat` chip. Docs ≤3 days old
+  (`NEW_WINDOW_DAYS`) auto-promote to "Latest Additions" with a `New` tag.
 
 ## Wired-In Consumers
 
