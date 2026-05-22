@@ -34,7 +34,7 @@ To add a document, hand-author a `.toc-entry` block inside `#archive-body`
 - `data-status="completed"` or `"stale"` — optional; default (omit) is active.
 - `<span class="toc-cat">` — category prefix chip (e.g. `Ops`, `Strategic`, `General`).
 
-Inline JS handles the rest: docs ≤14 days old (`NEW_WINDOW_DAYS`) and not
+Inline JS handles the rest: docs ≤3 days old (`NEW_WINDOW_DAYS`) and not
 completed/stale are auto-promoted to a "Latest Additions" band at the top with a
 `New` badge; everything else falls into the newest-first "All Documents" list;
 `completed`/`stale` sort to the bottom. No manual numbering — `.toc-num` was removed.
