@@ -22,6 +22,7 @@ Last reviewed: 2026-05-15
 | `mews-integration-report-2026-05-07.html` | CEO status report for Mews integration | 2026-05-07 |
 | `ops-briefing-2026-05-08.html` | Weekly ops briefing | 2026-05-08 |
 | `ops-briefing-2026-05-11.html` | Weekly ops briefing | 2026-05-11 |
+| `poem-go-live-risk-alert-2026-05-22.html` | CEO risk alert for Poem Suites go-live | 2026-05-22 |
 
 ## index.html — Authoring Convention (2026-05-22 overhaul)
 
