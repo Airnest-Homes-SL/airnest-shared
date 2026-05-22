@@ -12,13 +12,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:     #F4F1EA;
-      --text:   #141210;
-      --text-2: #5C5852;
-      --text-3: #9A9590;
-      --accent: #B5331A;
-      --border: #D5D0C8;
-      --border-s: #B0A89E;
+      --bg:      #F4F1EA;
+      --text:    #141210;
+      --text-2:  #5C5852;
+      --text-3:  #9A9590;
+      --accent:  #B5331A;
+      --green:   #2E7D4F;
+      --border:  #D5D0C8;
+      --border-s:#B0A89E;
     }
 
     body {
@@ -56,6 +57,7 @@
       justify-content: space-between;
       padding: 11px 0 0;
       border-top: 1.5px solid var(--text);
+      gap: 16px;
     }
 
     .mast-strip span {
@@ -65,52 +67,55 @@
       text-transform: uppercase;
     }
 
-    .mast-meta { color: var(--text-3); }
+    .mast-meta   { color: var(--text-3); }
     .mast-status { color: var(--accent); }
 
     /* ── MAIN ── */
     main { flex: 1; padding: 0 48px 72px; }
 
-    .content-block {
-      display: grid;
-      grid-template-columns: 172px 1fr;
-      border-top: 1px solid var(--border);
+    /* ── LIST SECTION ── */
+    .list-section {
       margin-top: 44px;
       opacity: 0;
       animation: fadeUp 0.6s ease both;
     }
-    .content-block:nth-child(1) { animation-delay: 0.28s; }
-    .content-block:nth-child(2) { animation-delay: 0.42s; }
+    .list-section:nth-of-type(1) { animation-delay: 0.26s; }
+    .list-section:nth-of-type(2) { animation-delay: 0.38s; }
 
-    .col-side {
-      padding: 26px 22px 0 0;
-      border-right: 1px solid var(--border);
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--text);
     }
 
-    .col-sname {
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-2);
-      line-height: 1.65;
-      margin-bottom: 14px;
+      color: var(--text);
     }
+    #latest .section-label { color: var(--accent); }
 
-    .col-scode {
+    .section-count {
       font-family: 'JetBrains Mono', monospace;
       font-size: 9px;
-      color: var(--accent);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
+      color: var(--text-3);
     }
 
-    .col-docs { padding-left: 40px; }
+    /* hidden until JS decides; avoids empty-band flash */
+    #latest[hidden] { display: none; }
 
     /* ── TOC ENTRY ── */
     .toc-entry {
       display: grid;
-      grid-template-columns: 50px 1fr 22px;
-      gap: 0 14px;
+      grid-template-columns: 1fr 22px;
+      gap: 0 16px;
       align-items: start;
       padding: 22px 0;
       border-bottom: 1px solid var(--border);
@@ -118,27 +123,31 @@
       color: inherit;
       transition: padding-left 0.2s ease;
     }
-    .toc-entry:last-child { border-bottom: none; }
-    .toc-entry:hover { padding-left: 4px; }
+    .toc-entry:hover { padding-left: 5px; }
 
-    .toc-num {
-      font-family: 'Fraunces', serif;
-      font-size: 30px;
-      font-weight: 700;
-      color: var(--border-s);
-      line-height: 1;
-      padding-top: 1px;
-      transition: color 0.2s, transform 0.22s ease;
+    .toc-title-wrap {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0 9px;
+      margin-bottom: 6px;
     }
-    .toc-entry:hover .toc-num {
+
+    .toc-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--accent);
-      transform: translateX(5px);
+      background: rgba(181, 51, 26, 0.08);
+      padding: 3px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
     }
-
-    .toc-title-wrap { margin-bottom: 5px; }
 
     .toc-title {
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 500;
       color: var(--text);
       line-height: 1.35;
@@ -193,6 +202,37 @@
       transform: translateX(3px);
     }
 
+    /* ── NEW BADGE ── */
+    .toc-new {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      padding: 3px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* ── STATUS STATES ── */
+    .toc-check {
+      color: var(--green);
+      font-weight: 700;
+      margin-left: 2px;
+    }
+
+    .toc-entry.is-completed .toc-title,
+    .toc-entry.is-stale     .toc-title { color: var(--text-2); }
+    .toc-entry.is-stale {
+      opacity: 0.62;
+    }
+    .toc-entry.is-stale .toc-cat {
+      color: var(--text-3);
+      background: rgba(154, 149, 144, 0.14);
+    }
+
     /* ── FOOTER ── */
     footer {
       padding: 16px 48px;
@@ -219,10 +259,7 @@
     @media (max-width: 620px) {
       header, main { padding-left: 24px; padding-right: 24px; }
       footer { padding: 14px 24px; }
-      .content-block { grid-template-columns: 1fr; }
-      .col-side { border-right: none; border-bottom: 1px solid var(--border); padding: 18px 0 12px; }
-      .col-docs { padding-left: 0; padding-top: 4px; }
-      .toc-entry { grid-template-columns: 40px 1fr 20px; }
+      .mast-strip { flex-direction: column; align-items: flex-start; gap: 4px; }
       .toc-desc { display: none; }
     }
   </style>
@@ -233,73 +270,41 @@
     <div class="mast-top-rule"></div>
     <span class="mast-wordmark">SHARED-AIRNEST</span>
     <div class="mast-strip">
-      <span class="mast-meta">Vol.&nbsp;01 &nbsp;·&nbsp; Shared Documents &nbsp;·&nbsp; May 2026</span>
+      <span class="mast-meta">Vol.&nbsp;01 &nbsp;·&nbsp; Shared Documents &nbsp;·&nbsp; <span id="mast-count">—</span></span>
       <span class="mast-status">Internal · Restricted</span>
     </div>
   </header>
 
   <main>
 
-    <div class="content-block">
-      <div class="col-side">
-        <div class="col-sname">Strategic<br>Decision</div>
-        <div class="col-scode">S·01</div>
+    <!-- ════ LATEST ADDITIONS ════ -->
+    <!-- JS moves any "new" entry here. Hidden when empty. -->
+    <section class="list-section" id="latest" hidden>
+      <div class="section-head">
+        <span class="section-label">Latest Additions</span>
+        <span class="section-count" id="latest-count"></span>
       </div>
-      <div class="col-docs">
+      <div class="list-body" id="latest-body"></div>
+    </section>
 
-        <a href="conduit-alternatives-ceo-summary-2026-05-21-v3.html" class="toc-entry">
-          <div class="toc-num">01</div>
-          <div>
-            <div class="toc-title-wrap"><span class="toc-title">Conduit Alternatives — Decision Brief for CEO</span></div>
-            <div class="toc-desc">Replacing Guesty's unified inbox after the Mews migration. Two finalists — Duve and Akia — with a balanced pros/cons analysis across pricing, AI depth, Mews integration, and European fit. The ask: request quotes from both this week, pilot the winner on Poem at cutover. §02 grounds the boutique-hotel-on-Airbnb claim in 2025 industry data.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Decision brief</span>
-              <span class="toc-date">21 May 2026</span>
-            </div>
-          </div>
-          <div class="toc-arrow">→</div>
-        </a>
-
-        <a href="voice-ai-options-2026-05-16.html" class="toc-entry">
-          <div class="toc-num">02</div>
-          <div>
-            <div class="toc-title-wrap"><span class="toc-title">Voice AI — The Four Options</span></div>
-            <div class="toc-desc">Focused companion to the CEO brief: A/B/C/D laid out, with Luis's preference (A) and the AI co-recommendation (A + C, with D as the 2028+ endgame).</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Options summary</span>
-              <span class="toc-date">16 May 2026</span>
-            </div>
-          </div>
-          <div class="toc-arrow">→</div>
-        </a>
-
-        <a href="voice-ai-ceo-summary-2026-05-16.html" class="toc-entry">
-          <div class="toc-num">03</div>
-          <div>
-            <div class="toc-title-wrap"><span class="toc-title">Voice AI — Decision Brief for CEO</span></div>
-            <div class="toc-desc">Response to Javier's build/buy/stay memo. Recommendation: 90-day Conduit pilot, defer build to 2027 as AOS module, "fully autonomous + emergency contact" as 2028 endgame for Collection.</div>
-            <div class="toc-meta">
-              <span class="toc-tag">Decision brief</span>
-              <span class="toc-date">16 May 2026</span>
-            </div>
-          </div>
-          <div class="toc-arrow">→</div>
-        </a>
-
+    <!-- ════ ALL DOCUMENTS ════ -->
+    <!-- Author new docs here as a .toc-entry. Required: data-date="YYYY-MM-DD".
+         Optional: data-status="completed" or "stale" (default is active).
+         JS sorts newest-first, promotes recent ones to Latest Additions,
+         and pushes stale ones to the bottom. -->
+    <section class="list-section" id="archive">
+      <div class="section-head">
+        <span class="section-label">All Documents</span>
+        <span class="section-count" id="archive-count"></span>
       </div>
-    </div>
+      <div class="list-body" id="archive-body">
 
-    <div class="content-block">
-      <div class="col-side">
-        <div class="col-sname">Mews<br>Certification</div>
-        <div class="col-scode">S·02</div>
-      </div>
-      <div class="col-docs">
-
-        <a href="mews-meeting-brief-2026-05-22.html" class="toc-entry">
-          <div class="toc-num">06</div>
+        <a href="mews-meeting-brief-2026-05-22.html" class="toc-entry" data-date="2026-05-22">
           <div>
-            <div class="toc-title-wrap"><span class="toc-title">Mews Meeting Brief — Kenya call, 22 May</span></div>
+            <div class="toc-title-wrap">
+              <span class="toc-cat">Ops</span>
+              <span class="toc-title">Mews Meeting Brief — Kenya call, 22 May</span>
+            </div>
             <div class="toc-desc">Prep notes for the migration call with Kenya at Mews: four go-live blockers (Mews Payments provisioning, restriction-create bug, rate pricing, guest-comms inbox), config questions, setup items needing Mews input, proactive discussion points, and a follow-up checklist. Drives the cutover before Poem goes live w/c 25 May.</div>
             <div class="toc-meta">
               <span class="toc-tag">Meeting brief</span>
@@ -309,33 +314,57 @@
           <div class="toc-arrow">→</div>
         </a>
 
-        <a href="mews-certification-submission-2026-05-08.html" class="toc-entry">
-          <div class="toc-num">03</div>
+        <a href="conduit-alternatives-ceo-summary-2026-05-21-v3.html" class="toc-entry" data-date="2026-05-21">
           <div>
-            <div class="toc-title-wrap"><span class="toc-title">Certification Submission — Status Report <span style="color: var(--green, #2E7D4F); font-weight: 700; margin-left: 4px;">✓</span></span></div>
-            <div class="toc-desc">What was submitted in the Mews Private Integration form — endpoints, webhooks, flagged gaps, questions. <strong style="color: var(--green, #2E7D4F);">Completed.</strong></div>
+            <div class="toc-title-wrap">
+              <span class="toc-cat">Strategic</span>
+              <span class="toc-title">Conduit Alternatives — Decision Brief for CEO</span>
+            </div>
+            <div class="toc-desc">Replacing Guesty's unified inbox after the Mews migration. Two finalists — Duve and Akia — with a balanced pros/cons analysis across pricing, AI depth, Mews integration, and European fit. The ask: request quotes from both this week, pilot the winner on Poem at cutover. §02 grounds the boutique-hotel-on-Airbnb claim in 2025 industry data.</div>
             <div class="toc-meta">
-              <span class="toc-tag">Status report · Completed</span>
-              <span class="toc-date">8 May 2026</span>
+              <span class="toc-tag">Decision brief</span>
+              <span class="toc-date">21 May 2026</span>
             </div>
           </div>
           <div class="toc-arrow">→</div>
         </a>
 
-      </div>
-    </div>
-
-    <div class="content-block">
-      <div class="col-side">
-        <div class="col-sname">Operations<br>Briefing</div>
-        <div class="col-scode">S·03</div>
-      </div>
-      <div class="col-docs">
-
-        <a href="ops-briefing-2026-05-11.html" class="toc-entry">
-          <div class="toc-num">04</div>
+        <a href="voice-ai-options-2026-05-16.html" class="toc-entry" data-date="2026-05-16">
           <div>
-            <div class="toc-title-wrap"><span class="toc-title">Operations Briefing — Week of 11 May 2026</span></div>
+            <div class="toc-title-wrap">
+              <span class="toc-cat">Strategic</span>
+              <span class="toc-title">Voice AI — The Four Options</span>
+            </div>
+            <div class="toc-desc">Focused companion to the CEO brief: A/B/C/D laid out, with Luis's preference (A) and the AI co-recommendation (A + C, with D as the 2028+ endgame).</div>
+            <div class="toc-meta">
+              <span class="toc-tag">Options summary</span>
+              <span class="toc-date">16 May 2026</span>
+            </div>
+          </div>
+          <div class="toc-arrow">→</div>
+        </a>
+
+        <a href="voice-ai-ceo-summary-2026-05-16.html" class="toc-entry" data-date="2026-05-16">
+          <div>
+            <div class="toc-title-wrap">
+              <span class="toc-cat">Strategic</span>
+              <span class="toc-title">Voice AI — Decision Brief for CEO</span>
+            </div>
+            <div class="toc-desc">Response to Javier's build/buy/stay memo. Recommendation: 90-day Conduit pilot, defer build to 2027 as AOS module, "fully autonomous + emergency contact" as 2028 endgame for Collection.</div>
+            <div class="toc-meta">
+              <span class="toc-tag">Decision brief</span>
+              <span class="toc-date">16 May 2026</span>
+            </div>
+          </div>
+          <div class="toc-arrow">→</div>
+        </a>
+
+        <a href="ops-briefing-2026-05-11.html" class="toc-entry" data-date="2026-05-11">
+          <div>
+            <div class="toc-title-wrap">
+              <span class="toc-cat">Ops</span>
+              <span class="toc-title">Operations Briefing — Week of 11 May 2026</span>
+            </div>
             <div class="toc-desc">Mews certification complete, Airnest Ops Connector live in production, connector build started.</div>
             <div class="toc-meta">
               <span class="toc-tag">CEO briefing</span>
@@ -345,10 +374,27 @@
           <div class="toc-arrow">→</div>
         </a>
 
-        <a href="ops-briefing-2026-05-08.html" class="toc-entry">
-          <div class="toc-num">05</div>
+        <a href="mews-certification-submission-2026-05-08.html" class="toc-entry" data-date="2026-05-08" data-status="completed">
           <div>
-            <div class="toc-title-wrap"><span class="toc-title">Operations Briefing — Week of 8 May 2026</span></div>
+            <div class="toc-title-wrap">
+              <span class="toc-cat">Ops</span>
+              <span class="toc-title">Mews Certification Submission — Status Report<span class="toc-check">✓</span></span>
+            </div>
+            <div class="toc-desc">What was submitted in the Mews Private Integration form — endpoints, webhooks, flagged gaps, questions. Completed.</div>
+            <div class="toc-meta">
+              <span class="toc-tag">Status report · Completed</span>
+              <span class="toc-date">8 May 2026</span>
+            </div>
+          </div>
+          <div class="toc-arrow">→</div>
+        </a>
+
+        <a href="ops-briefing-2026-05-08.html" class="toc-entry" data-date="2026-05-08">
+          <div>
+            <div class="toc-title-wrap">
+              <span class="toc-cat">Ops</span>
+              <span class="toc-title">Operations Briefing — Week of 8 May 2026</span>
+            </div>
             <div class="toc-desc">Mews certification submitted, review call booked, mail template pipeline progress, open blockers.</div>
             <div class="toc-meta">
               <span class="toc-tag">CEO briefing</span>
@@ -358,10 +404,25 @@
           <div class="toc-arrow">→</div>
         </a>
 
-      </div>
-    </div>
+        <a href="mews-integration-report-2026-05-07.html" class="toc-entry" data-date="2026-05-07">
+          <div>
+            <div class="toc-title-wrap">
+              <span class="toc-cat">Ops</span>
+              <span class="toc-title">Mews Integration Report — CEO Status</span>
+            </div>
+            <div class="toc-desc">CEO status report for the Guesty → Mews integration: scope, progress against the certification milestones, and open risks.</div>
+            <div class="toc-meta">
+              <span class="toc-tag">Status report</span>
+              <span class="toc-date">7 May 2026</span>
+            </div>
+          </div>
+          <div class="toc-arrow">→</div>
+        </a>
 
-    <!-- Add new sections above this line -->
+        <!-- Add new documents above this line -->
+
+      </div>
+    </section>
 
   </main>
 
@@ -369,6 +430,77 @@
     <span>Airnest Homes SL</span>
     <span>Not for external distribution</span>
   </footer>
+
+  <script>
+    /* Index behaviour: sort newest-first, promote recent docs to a
+       "Latest Additions" band, demote stale docs. Authoring stays plain HTML. */
+    (function () {
+      var NEW_WINDOW_DAYS = 14;
+
+      var archiveBody = document.getElementById('archive-body');
+      var latest      = document.getElementById('latest');
+      var latestBody  = document.getElementById('latest-body');
+      var today       = new Date();
+
+      var entries = Array.prototype.slice.call(
+        archiveBody.querySelectorAll('.toc-entry')
+      );
+
+      function dateOf(el) { return new Date(el.dataset.date + 'T00:00:00'); }
+      function ageDays(el) {
+        return Math.floor((today - dateOf(el)) / 86400000);
+      }
+      function rank(el) {
+        var s = el.dataset.status;
+        if (s === 'stale')     return 2;
+        if (s === 'completed') return 1;
+        return 0;
+      }
+
+      entries.forEach(function (el) {
+        var s = el.dataset.status;
+        if (s === 'completed') el.classList.add('is-completed');
+        if (s === 'stale')     el.classList.add('is-stale');
+      });
+
+      /* main list: active before completed before stale, then newest-first */
+      entries.sort(function (a, b) {
+        var r = rank(a) - rank(b);
+        return r !== 0 ? r : dateOf(b) - dateOf(a);
+      });
+      entries.forEach(function (el) { archiveBody.appendChild(el); });
+
+      /* promote "new" entries (recent + not completed/stale) to the top band */
+      var newOnes = entries
+        .filter(function (el) {
+          return !el.dataset.status &&
+                 ageDays(el) >= 0 &&
+                 ageDays(el) <= NEW_WINDOW_DAYS;
+        })
+        .sort(function (a, b) { return dateOf(b) - dateOf(a); });
+
+      newOnes.forEach(function (el) {
+        var meta  = el.querySelector('.toc-meta');
+        var badge = document.createElement('span');
+        badge.className = 'toc-new';
+        badge.textContent = 'New';
+        meta.insertBefore(badge, meta.firstChild);
+        latestBody.appendChild(el);
+      });
+
+      if (newOnes.length) {
+        latest.hidden = false;
+        document.getElementById('latest-count').textContent =
+          newOnes.length + (newOnes.length === 1 ? ' doc' : ' docs');
+      }
+
+      var total = entries.length;
+      document.getElementById('archive-count').textContent =
+        total + (total === 1 ? ' doc' : ' docs');
+      document.getElementById('mast-count').textContent =
+        total + ' Documents';
+    })();
+  </script>
 
 </body>
 </html>

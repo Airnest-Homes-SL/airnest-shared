@@ -16,12 +16,27 @@ Last reviewed: 2026-05-15
 
 | File | Purpose | First published |
 |---|---|---|
-| `index.html` | Landing page (SHARED-AIRNEST, warm editorial design) | 2026-05-11 redesign |
+| `index.html` | Landing page (SHARED-AIRNEST, warm editorial design) | 2026-05-11 redesign; 2026-05-22 overhaul |
 | `gate.js` | Access gate / passcode for landing page | 2026-05-08 |
 | `mews-certification-submission-2026-05-08.html` | Frozen snapshot of Mews cert form submission | 2026-05-08 |
 | `mews-integration-report-2026-05-07.html` | CEO status report for Mews integration | 2026-05-07 |
 | `ops-briefing-2026-05-08.html` | Weekly ops briefing | 2026-05-08 |
 | `ops-briefing-2026-05-11.html` | Weekly ops briefing | 2026-05-11 |
+
+## index.html — Authoring Convention (2026-05-22 overhaul)
+
+The index is a single flat, newest-first list of documents — no category sections.
+To add a document, hand-author a `.toc-entry` block inside `#archive-body`
+(above the `Add new documents above this line` comment):
+
+- `data-date="YYYY-MM-DD"` — **required**; drives sort order and new/stale logic.
+- `data-status="completed"` or `"stale"` — optional; default (omit) is active.
+- `<span class="toc-cat">` — category prefix chip (e.g. `Ops`, `Strategic`, `General`).
+
+Inline JS handles the rest: docs ≤14 days old (`NEW_WINDOW_DAYS`) and not
+completed/stale are auto-promoted to a "Latest Additions" band at the top with a
+`New` badge; everything else falls into the newest-first "All Documents" list;
+`completed`/`stale` sort to the bottom. No manual numbering — `.toc-num` was removed.
 
 ## Wired-In Consumers
 
