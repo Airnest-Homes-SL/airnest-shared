@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mews Meeting Brief — Poem Cutover Day, 25 May 2026 · Airnest</title>
+<script src="gate.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F4F1EA;
+  --text:     #141210;
+  --text-2:   #5C5852;
+  --text-3:   #9A9590;
+  --accent:   #B5331A;
+  --border:   #D5D0C8;
+  --border-s: #B0A89E;
+  --surface:  #FDFBF7;
+  --green:    #2E7D4F;
+  --amber:    #9A6008;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+header {
+  padding: 36px 48px 0;
+  animation: fadeUp 0.7s ease 0.05s both;
+}
+.mast-top-rule { height: 1.5px; background: var(--text); }
+.mast-brand-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0 4px;
+}
+.mast-wordmark {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(30px, 4.6vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+.doc-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-2);
+  padding-bottom: 14px;
+}
+.mast-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0 0;
+  border-top: 1.5px solid var(--text);
+}
+.mast-strip span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.mast-meta { color: var(--text-3); }
+.mast-status { color: var(--accent); }
+
+main {
+  flex: 1;
+  padding: 0 48px 72px;
+  max-width: 980px;
+  width: 100%;
+}
+
+.section-block {
+  border-top: 1px solid var(--border);
+  margin-top: 44px;
+  padding-top: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease both;
+}
+.section-block:nth-child(1) { animation-delay: 0.16s; }
+.section-block:nth-child(2) { animation-delay: 0.22s; }
+.section-block:nth-child(3) { animation-delay: 0.28s; }
+.section-block:nth-child(4) { animation-delay: 0.34s; }
+.section-block:nth-child(5) { animation-delay: 0.40s; }
+.section-block:nth-child(6) { animation-delay: 0.46s; }
+.section-block:nth-child(7) { animation-delay: 0.52s; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.section-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+.section-lede {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin-bottom: 22px;
+  max-width: 72ch;
+}
+p { font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 14px; max-width: 72ch; }
+p strong { font-weight: 600; }
+
+.verdict {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.verdict-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.verdict-text {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(19px, 2.4vw, 25px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+.verdict-text em { font-style: italic; color: var(--accent); }
+
+.item {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+.item:last-child { border-bottom: none; }
+.item-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.item-ref {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--border-s);
+  flex-shrink: 0;
+}
+.item-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--text);
+}
+.item-ctx { font-size: 14px; line-height: 1.55; color: var(--text-2); margin-bottom: 8px; max-width: 74ch; }
+.item-ask {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 74ch;
+  padding-left: 14px;
+  border-left: 2px solid var(--accent);
+}
+.item-ask strong { font-weight: 600; }
+.item-ask.q { border-left-color: var(--amber); }
+.item-ask.go { border-left-color: var(--green); }
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border-s);
+  color: var(--text-2);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.pill.warn { color: var(--amber); border-color: var(--amber); }
+.pill.go   { color: var(--green); border-color: var(--green); }
+.pill.stop { color: var(--accent); border-color: var(--accent); }
+
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--amber);
+  border-left: 3px solid var(--amber);
+  padding: 18px 22px;
+  margin: 12px 0 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.callout strong { color: var(--amber); }
+.callout.go { border-color: var(--green); }
+.callout.go strong { color: var(--green); }
+
+.checklist { list-style: none; counter-reset: clist; margin: 4px 0 0; }
+.checklist li {
+  counter-increment: clist;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li::before {
+  content: "";
+  display: block;
+  width: 14px; height: 14px;
+  margin-top: 2px;
+  border: 1.5px solid var(--border-s);
+  border-radius: 2px;
+}
+.check-title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.check-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 6px 18px;
+  margin: 4px 0 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  max-width: 74ch;
+}
+.kv dt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding-top: 3px;
+}
+.kv dd { color: var(--text); }
+
+footer {
+  padding: 16px 48px;
+  border-top: 1.5px solid var(--text);
+  display: flex;
+  justify-content: space-between;
+  animation: fadeUp 0.5s ease 0.85s both;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3);
+}
+
+@media (max-width: 720px) {
+  header, main { padding-left: 24px; padding-right: 24px; }
+  footer { padding: 14px 24px; }
+  .item-ask { padding-left: 10px; }
+  .kv { grid-template-columns: 1fr; gap: 2px; }
+  .kv dt { padding-top: 8px; }
+}
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="mast-top-rule"></div>
+    <div class="mast-brand-row">
+      <div class="mast-wordmark">Mews Meeting Brief</div>
+      <a href="./" class="back-link">← Shared-Airnest</a>
+    </div>
+    <div class="doc-title">Poem cutover day — what to hand over, decide, and walk away with</div>
+    <div class="mast-strip">
+      <span class="mast-meta">From Luis Navarro · 25 May 2026 · Internal · meeting prep</span>
+      <span class="mast-status">Poem go-live · This week</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 01  THE ONE THING ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§01</span>
+        <span class="section-name">The One Thing</span>
+      </div>
+      <h2 class="section-title">Today is cutover day. This meeting closes the last gaps.</h2>
+
+      <div class="verdict">
+        <div class="verdict-eyebrow">Why this meeting matters</div>
+        <div class="verdict-text">
+          Edificio Poem goes live <em>this week</em>. Friday's call with Kenya banked the
+          configuration answers we needed; the weekend built the Airbnb migration file.
+          Today is the working session with Emily — hand over the Airbnb reservations
+          file, lock the channel-rate plumbing, confirm the four Hospedajes integrations,
+          and choose the template property that drives the next six roll-outs.
+        </div>
+      </div>
+
+      <div class="callout go">
+        <strong>What changed since Friday (banked answers):</strong>
+        Flexible cancellation = 1d <em>before</em> check-in, 100% (correct config now known).
+        Per-owner Hospedajes integrations = 4 separate marketplace integrations on Poem,
+        one per owner. Age adjustments are additive on the base rate. Mews <strong>does</strong>
+        have a clone-property feature — confirmed Friday, this is the unlock for the
+        remaining 6 roll-outs.
+      </div>
+
+      <p><strong>Status going in:</strong> Masanet replication complete on Poem (S1–S11). 18 future
+      Airbnb reservations populated into the Mews v2.7.0 import template, ready to hand over.
+      Conduit re-point decision (CEO, 2026-05-23) closes the omninbox question. Roll-out
+      cadence committed to Mews: 1 property per week from this week to w/c 6 Jul.</p>
+    </section>
+
+    <!-- ── 02  HAND-OVERS ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§02</span>
+        <span class="section-name">Hand-Overs — What Moves Today</span>
+      </div>
+      <h2 class="section-title">Files, codes, and decisions exchanged in the room.</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">H1</span>
+          <span class="item-title">Hand to Emily: populated Airbnb import file</span>
+          <span class="pill go">Ready</span>
+        </div>
+        <p class="item-ctx">
+          <code>Importacion Mews v2.7.0 — Poem Airbnb populated 2026-05-24.xlsx</code> — 18 future
+          confirmed Airbnb reservations for Poem only, check-in from 2026-05-29 to 2026-10-26,
+          9 distinct rooms (101, 103, 107, 203, 303, 401, 402, 404, 602), 5 room categories,
+          €3,991.35 host payout, 61 room-nights, EUR.
+        </p>
+        <div class="item-ask"><strong>Confirm with Emily before upload:</strong>
+          (1) Mews room category names match column BI (file uses English Guesty umbrella titles —
+          may need Spanish or Mews-specific wording);
+          (2) Mews room-resource names match column BJ (bare 3-digit strings <code>101</code>, <code>103</code>…
+          no <code>P-101</code> or <code>Room 101</code> prefixes);
+          (3) Total Price source — file uses Airbnb <code>hostPayout</code> (net of commission). If Mews
+          accounting needs gross guest-paid, file must be regenerated.
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">H2</span>
+          <span class="item-title">Receive from Mariana: Hospedajes codes per owner</span>
+          <span class="pill warn">Today</span>
+        </div>
+        <p class="item-ctx">Requested by email Saturday 2026-05-23. Four owners, four
+        SES.Hospedajes registration codes, plus the per-room mapping showing which of Poem's
+        rooms belong to which owner. PS to brief Emily on the 4-integration requirement.</p>
+        <div class="item-ask"><strong>If codes have not arrived:</strong> chase Mariana mid-meeting;
+        agree with Emily a deadline by which the 4 marketplace integrations are configured (this
+        is the only police-registration path).</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">H3</span>
+          <span class="item-title">Receive from Javier: channel rate plans on Poem</span>
+          <span class="pill warn">Today</span>
+        </div>
+        <p class="item-ctx">Reassigned to Javier on 2026-05-23 — he owns adding the per-channel
+        rates (Booking rate, Expedia rate, Airbnb rate) on the Poem account. Names must be clear
+        because commission differs per channel. Emily then maps each channel rate plan to its
+        channel from the Mews side.</p>
+        <div class="item-ask"><strong>Walk Emily through:</strong> rate-plan naming convention,
+        and confirm she can complete the channel mapping the moment Javier's rates land.</div>
+      </div>
+
+    </section>
+
+    <!-- ── 03  DECISIONS NEEDED ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§03</span>
+        <span class="section-name">Decisions Needed In The Room</span>
+      </div>
+      <h2 class="section-title">Three calls that can't wait another week.</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">D1</span>
+          <span class="item-title">Template property: Poem or Masanet?</span>
+          <span class="pill stop">Decision</span>
+        </div>
+        <p class="item-ctx">Mews confirmed Friday that property settings can be cloned to other
+        properties — this is the multiplier for the remaining 6 roll-outs (Airnest Portfolio,
+        Bandama Golf, Arena &amp; Cielo, Eleven Boutique, Hotel Emete, Casa Vivar). Masanet has
+        a longer track record live; Poem now has the full Masanet replication plus the Friday
+        corrections (Flexible policy fix, channel rates, Hospedajes structure).</p>
+        <div class="item-ask"><strong>Decide:</strong> which property is the source-of-truth
+        clone. Tell Emily today so she can schedule the clone operations for the w/c 1 Jun
+        property and onward.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">D2</span>
+          <span class="item-title">KYB resolution before week's end</span>
+          <span class="pill stop">Blocker</span>
+        </div>
+        <p class="item-ctx">Poem's KYB (Know Your Business) is on an escalation ticket with PS;
+        resolution not guaranteed before the holiday. Until KYB clears, Mews Payments cannot
+        provision — the same gap that blocked Friday's <code>Invoice payment methods</code> field
+        on Poem (Friday B1).</p>
+        <div class="item-ask"><strong>Press for:</strong> ticket owner, current ETA, and a fallback
+        if KYB does not clear in time — can Poem accept channel-only reservations at go-live
+        with direct/card payments enabled later, or does that compromise the cutover?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">D3</span>
+          <span class="item-title">Yacan lock integration — Kenya's alt contact</span>
+          <span class="pill stop">Blocker</span>
+        </div>
+        <p class="item-ctx">Yacan side has not enabled the Mews integration on Poem's Yacan
+        profile. Kenya PS was emailing an alternate Yacan contact. Without this, guest access
+        codes don't flow — no automated check-in.</p>
+        <div class="item-ask"><strong>Get from Kenya:</strong> status of the alt-contact reply
+        and whether the activation can be done this week. If not, agree the manual workaround
+        for the first arrivals (W/C 29 May).</div>
+      </div>
+    </section>
+
+    <!-- ── 04  CARRYOVER FROM FRIDAY ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§04</span>
+        <span class="section-name">Carryover — Friday Questions Still Open</span>
+      </div>
+      <h2 class="section-title">Items the Friday call didn't fully close.</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">C1</span>
+          <span class="item-title">Rate pricing source of truth</span>
+          <span class="pill warn">Open</span>
+        </div>
+        <p class="item-ctx">10 rates × 6 properties of €/night base prices. Friday flagged this
+        as B2 — commercial decision, not a template copy. Direct-booking rate prices must be
+        set up to 1 year ahead with a base-price fallback (and never touched on a live property
+        — Friday warned this would shift existing prices).</p>
+        <div class="item-ask q"><strong>Ask Emily:</strong> who has the source data she expects
+        — Guesty export, Atomize RMS, manual? And confirm IGIC 7% handling sits in the same
+        pricing workflow.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">C2</span>
+          <span class="item-title">Rate primary-name locale stickiness</span>
+          <span class="pill warn">Open</span>
+        </div>
+        <p class="item-ctx">Rates created when the property was en-US keep their original
+        English primary name even after the default culture is changed to es-ES. Visible on
+        Poem in the rate list, base-rate dropdown, and dependent rates' base-rate column.</p>
+        <div class="item-ask q"><strong>Ask Emily:</strong> how to change the primary stored
+        name so it displays consistently across the UI and to OTAs.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">C3</span>
+          <span class="item-title">INE registration number</span>
+          <span class="pill warn">Open</span>
+        </div>
+        <p class="item-ctx">INE occupancy export integration draft: service <code>Stay</code>,
+        registration number TBD. The number is the blocker.</p>
+        <div class="item-ask q"><strong>Ask Emily:</strong> what registration number the INE
+        export needs and where we obtain it.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">C4</span>
+          <span class="item-title">Room access-code storage</span>
+          <span class="pill warn">Open</span>
+        </div>
+        <p class="item-ctx">Automated check-in emails need a per-room access code. Decision
+        deferred from the older task list — Mews custom field vs external store vs Airnest tool.</p>
+        <div class="item-ask q"><strong>Ask Emily:</strong> can Mews host a per-room custom
+        field that merges into check-in templates? If not, where does Emily recommend the
+        codes live?</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">C5</span>
+          <span class="item-title">Accounting categories &amp; ledger codes</span>
+          <span class="pill warn">Open</span>
+        </div>
+        <p class="item-ctx">Three remaining accounting setup items: (a) confirm the "required
+        accounting category setup" — enable, or have the onboarding manager override if N/A;
+        (b) accounting categories for additional services like cleaning; (c) ledger account
+        codes for the QuickBooks integration.</p>
+        <div class="item-ask q"><strong>Ask Emily:</strong> can the required-category override
+        be done today, and what does Mews expect for the QuickBooks ledger mapping shape?</div>
+      </div>
+    </section>
+
+    <!-- ── 05  REMAINING POEM CONFIG ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§05</span>
+        <span class="section-name">Poem Config Still To Do</span>
+      </div>
+      <h2 class="section-title">Items I own — but worth surfacing if Emily can accelerate any.</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">T1</span>
+          <span class="item-title">Restrictions — min-night stays, closed dates</span>
+        </div>
+        <p class="item-ctx">Required before opening Poem's calendar. Friday noted a Restriction
+        create wizard bug — confirm it's been resolved before we depend on it.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">T2</span>
+          <span class="item-title">Cancellation policies linked per channel rate</span>
+        </div>
+        <p class="item-ctx">Flexible (1d before, 100%) and Non-refundable (charge at confirmation)
+        need to be attached to the Booking/Expedia/Airbnb rate plans Javier is adding.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <span class="item-ref">T3</span>
+          <span class="item-title">Age adjustments for extra people</span>
+        </div>
+        <p class="item-ctx">Additive on the base rate (Friday confirmed). Configure once, applies
+        to all derived rates.</p>
+      </div>
+
+    </section>
+
+    <!-- ── 06  FOLLOW-UP CHECKLIST ── -->
+    <section class="section-block">
+      <div class="section-label">
+        <span class="section-num">§06</span>
+        <span class="section-name">Walk-Away Checklist</span>
+      </div>
+      <h2 class="section-title">Tick during the meeting — what I need to leave with.</h2>
+
+      <ul class="checklist">
+        <li><div>
+          <div class="check-title">H1 · Airbnb xlsx handed to Emily with the 3 verification points</div>
+          <div class="check-meta">Confirm category names + room numbers + price source before upload</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">H2 · Hospedajes codes from Mariana → 4 marketplace integrations agreed</div>
+          <div class="check-meta">Owner: LN + Mariana + Emily · Need: deadline for the 4 setups</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">H3 · Javier's channel rates landed; Emily's mapping path locked</div>
+          <div class="check-meta">Booking / Expedia / Airbnb rates named clearly; mapping ready to fire</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">D1 · Template-property decision made + told Emily</div>
+          <div class="check-meta">Poem or Masanet — drives the next 6 roll-outs</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">D2 · KYB ticket — owner, ETA, fallback path</div>
+          <div class="check-meta">Direct payments enabled before or after cutover?</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">D3 · Yacan — Kenya's alt-contact status + manual fallback</div>
+          <div class="check-meta">Check-in plan if integration not live by W/C 29 May</div>
+        </div></li>
+        <li><div>
+          <div class="check-title">C1–C5 · Friday carryover answers banked</div>
+          <div class="check-meta">Pricing source · Rate name fix · INE number · Access codes · Accounting overrides</div>
+        </div></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Airnest Homes SL · Mews Meeting Brief · 2026-05-25</span>
+    <span>Internal · Not for external distribution</span>
+  </footer>
+
+</body>
+</html>
