@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mews Meeting Outcomes — Poem Cutover, 25 May 2026 · Airnest</title>
+<script src="gate.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F4F1EA;
+  --text:     #141210;
+  --text-2:   #5C5852;
+  --text-3:   #9A9590;
+  --accent:   #B5331A;
+  --border:   #D5D0C8;
+  --border-s: #B0A89E;
+  --surface:  #FDFBF7;
+  --green:    #2E7D4F;
+  --amber:    #9A6008;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+header { padding: 28px 40px 18px; border-bottom: 1.5px solid var(--text); }
+.mast-brand-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 0 0 8px;
+}
+.mast-wordmark {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-3); text-decoration: none;
+}
+.back-link:hover { color: var(--accent); }
+.mast-strip {
+  display: flex; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  padding-top: 6px;
+}
+.mast-meta { color: var(--text-3); }
+.mast-status { color: var(--green); }
+
+main { padding: 22px 40px 48px; max-width: 1100px; }
+
+.tldr {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  font-family: 'Fraunces', serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text);
+}
+.tldr em { font-style: italic; color: var(--green); }
+.tldr .stop-tag { color: var(--accent); font-style: italic; }
+
+h3.section-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 18px 0 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--text);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  line-height: 1.45;
+  margin-bottom: 4px;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border-bottom: 1px solid var(--border-s);
+  padding-bottom: 6px;
+}
+td.ref {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--border-s);
+  width: 36px;
+}
+td.what { font-weight: 600; color: var(--text); width: 28%; }
+td.ask  { color: var(--text-2); }
+td.who  { width: 110px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-2); }
+td.tag  { width: 92px; }
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 7px;
+  border: 1px solid var(--border-s);
+  color: var(--text-2);
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.pill.warn { color: var(--amber); border-color: var(--amber); }
+.pill.go   { color: var(--green); border-color: var(--green); }
+.pill.stop { color: var(--accent); border-color: var(--accent); }
+.pill.done { color: var(--green); border-color: var(--green); background: rgba(46,125,79,0.07); }
+.pill.urgent { color: var(--accent); border-color: var(--accent); background: rgba(181,51,26,0.07); }
+
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--amber);
+  border-left: 3px solid var(--amber);
+  padding: 14px 18px;
+  margin: 12px 0 18px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.callout strong { color: var(--amber); font-weight: 600; }
+
+.callout.go { border-color: var(--green); }
+.callout.go strong { color: var(--green); }
+
+.strip {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin-top: 4px;
+}
+.strip strong { color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; margin-right: 6px; }
+
+footer {
+  padding: 12px 40px;
+  border-top: 1.5px solid var(--text);
+  display: flex; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3);
+}
+
+@media (max-width: 720px) {
+  header, main, footer { padding-left: 20px; padding-right: 20px; }
+  td.what, td.who { width: auto; }
+  table { font-size: 12.5px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mast-brand-row">
+    <div class="mast-wordmark">Mews Meeting Outcomes</div>
+    <a href="./" class="back-link">← Shared-Airnest</a>
+  </div>
+  <div class="mast-strip">
+    <span class="mast-meta">25 May 2026 · w/ Emilie Veysseix · LN</span>
+    <span class="mast-status">Follow-up Wed 27 May · 14:00 Canarias</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="tldr">
+    Productive call. Channel-rate strategy locked, <em>86% property clone</em> confirmed, Poem chosen as template.
+    Single blocker on critical path: <span class="stop-tag">KYB → Elisa</span>. Send today — it gates both
+    payments and the Airbnb / SiteMinder connection.
+  </div>
+
+  <h3 class="section-title">Decisions banked</h3>
+  <table>
+    <tr><th></th><th>Decision</th><th>What it means</th><th></th></tr>
+    <tr>
+      <td class="ref">D1</td>
+      <td class="what">Channel-rate strategy</td>
+      <td class="ask">Separate rate plan in Mews per OTA = <strong>direct flexible rate + per-channel markup</strong> absorbing commission. Markup managed via Mews prices, can move over time. Every OTA rate replicated so the correct rate stamps inbound reservations.</td>
+      <td class="tag"><span class="pill go">Locked</span></td>
+    </tr>
+    <tr>
+      <td class="ref">D2</td>
+      <td class="what">Rate-name display fix</td>
+      <td class="ask">Workaround: change Mews UI language to Spanish and/or edit rate translations to include "OTA". No Mews-side fix needed.</td>
+      <td class="tag"><span class="pill go">Resolved</span></td>
+    </tr>
+    <tr>
+      <td class="ref">D3</td>
+      <td class="what">Property clone = 86%</td>
+      <td class="ask">Rates, policies, prices DO copy. <strong>Email templates do NOT</strong> — manual edit per property. <strong>Poem chosen as template source</strong>; LN notifies Emilie when Poem config is complete to trigger the clone for the next 6.</td>
+      <td class="tag"><span class="pill go">Confirmed</span></td>
+    </tr>
+    <tr>
+      <td class="ref">D4</td>
+      <td class="what">SiteMinder rate mapping</td>
+      <td class="ask">Manual mapping — too few rates to justify the distribution-file upload path.</td>
+      <td class="tag"><span class="pill go">Manual</span></td>
+    </tr>
+    <tr>
+      <td class="ref">D5</td>
+      <td class="what">Airbnb via SiteMinder, not direct</td>
+      <td class="ask">Reservations come in on the SiteMinder file the day the connection goes live. <strong>KYB validation required first</strong> — so KYB blocks both payments AND the Airbnb channel.</td>
+      <td class="tag"><span class="pill go">Locked</span></td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <strong>Deferred — multi-owner Hospedajes.</strong> Naive path = one service per owner, but
+    that creates one calendar per owner (operationally bad). Emilie is running tests in her
+    environment for a unified-calendar solution that's still compatible with police /
+    hospedaje reports. <strong>Resolution due at Wed 27 May follow-up call.</strong>
+  </div>
+
+  <div class="strip">
+    <strong>Out of scope</strong>
+    Yacan API activation without Yacan's direct help · separate calendar per owner ·
+    direct Airbnb integration bypassing SiteMinder.
+  </div>
+
+  <h3 class="section-title">Next steps</h3>
+  <table>
+    <tr><th></th><th>Action</th><th>Owner</th><th></th></tr>
+    <tr>
+      <td class="ref">N1</td>
+      <td class="what">Send KYB info to Elisa</td>
+      <td class="who">LN + Javier</td>
+      <td class="tag"><span class="pill urgent">Today</span></td>
+    </tr>
+    <tr>
+      <td class="ref">N2</td>
+      <td class="what">Create Mews Booking rates with markup per date/rate</td>
+      <td class="who">Javier + LN</td>
+      <td class="tag"><span class="pill warn">This week</span></td>
+    </tr>
+    <tr>
+      <td class="ref">N3</td>
+      <td class="what">Notify Emilie when Poem config is finished — triggers 6-property clone</td>
+      <td class="who">LN</td>
+      <td class="tag"><span class="pill warn">Trigger</span></td>
+    </tr>
+    <tr>
+      <td class="ref">N4</td>
+      <td class="what">Prepare SiteMinder mapping (manual)</td>
+      <td class="who">LN</td>
+      <td class="tag"><span class="pill warn">This week</span></td>
+    </tr>
+    <tr>
+      <td class="ref">N5</td>
+      <td class="what">Push Elisa to review KYB ASAP</td>
+      <td class="who">Emilie</td>
+      <td class="tag"><span class="pill urgent">Today</span></td>
+    </tr>
+    <tr>
+      <td class="ref">N6</td>
+      <td class="what">Test multi-owner Hospedajes solution</td>
+      <td class="who">Emilie</td>
+      <td class="tag"><span class="pill warn">Before Wed</span></td>
+    </tr>
+    <tr>
+      <td class="ref">N7</td>
+      <td class="what">Send invite for Wed 27 May 14:00 Canarias call</td>
+      <td class="who">Emilie</td>
+      <td class="tag"><span class="pill go">Pending</span></td>
+    </tr>
+  </table>
+
+  <h3 class="section-title">Status flips · 15-task go-live list</h3>
+  <table>
+    <tr><th>#</th><th>Task</th><th>New status</th></tr>
+    <tr><td class="ref">1</td><td class="ask">KYB — handler is Elisa; LN+Javier must send info today</td><td class="tag"><span class="pill urgent">Urgent</span></td></tr>
+    <tr><td class="ref">2</td><td class="ask">Airbnb xlsx handed to Emilie</td><td class="tag"><span class="pill done">Done</span></td></tr>
+    <tr><td class="ref">3</td><td class="ask">OTA connections — all three via SiteMinder; Airbnb KYB-gated</td><td class="tag"><span class="pill stop">Blocked on KYB</span></td></tr>
+    <tr><td class="ref">4</td><td class="ask">Channel rate plans — strategy locked, Javier+LN owners</td><td class="tag"><span class="pill warn">In progress</span></td></tr>
+    <tr><td class="ref">5</td><td class="ask">Channel-rate mapping — manual, waiting on #4</td><td class="tag"><span class="pill warn">Waiting on #4</span></td></tr>
+    <tr><td class="ref">13</td><td class="ask">Hospedajes multi-owner — Emilie testing alternative path</td><td class="tag"><span class="pill warn">Under investigation</span></td></tr>
+    <tr><td class="ref">14</td><td class="ask">Yacan — confirmed out-of-scope w/o Yacan help; need manual fallback</td><td class="tag"><span class="pill stop">Blocked external</span></td></tr>
+    <tr><td class="ref">15</td><td class="ask">Template property — Poem chosen, 86% clone confirmed</td><td class="tag"><span class="pill done">Done</span></td></tr>
+  </table>
+
+  <h3 class="section-title">Wed 27 May · Follow-up agenda preview</h3>
+  <ul style="list-style: none; margin-top: 4px; font-size: 13.5px; line-height: 1.6;">
+    <li>· Multi-owner Hospedajes — Emilie's test results &amp; recommended setup</li>
+    <li>· KYB status — has Elisa cleared it? Stripe + Airbnb-SiteMinder gating</li>
+    <li>· Mews rates progress — Booking markup rates created?</li>
+    <li>· Poem config completion check — green-light the 6-property clone?</li>
+    <li>· Carryover not closed today: rate pricing source confirmation (C1), INE registration number (C3), room access codes (C4), accounting overrides (C5)</li>
+  </ul>
+
+</main>
+
+<footer>
+  <span>Airnest Homes SL · Mews Meeting Outcomes · 2026-05-25</span>
+  <span>Internal · Not for external distribution</span>
+</footer>
+
+</body>
+</html>
